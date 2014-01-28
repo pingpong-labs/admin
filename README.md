@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ##Simple Administrator Package for Laravel 4.*
 
 ###Installation
@@ -40,13 +38,3 @@ See an example config for create `User` admin file [here](https://github.com/gra
   
 ###License
 This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-=======
-##Simple Administrator Package for Laravel 4
->>>>>>> 25eb8f2a30a60e52caae353935a7063dc2bc05d6
-=======
-admin
-=====
-
-Simple Administrator Package for Laravel 4
->>>>>>> 507812a6cd6b1ff4f1a099f28e84009248147b90
