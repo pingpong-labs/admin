@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ##Simple Administrator Package for Laravel 4.*
 
 ###Installation
@@ -43,3 +44,9 @@ This package is open-sourced software licensed under the [MIT license](http://op
 =======
 ##Simple Administrator Package for Laravel 4
 >>>>>>> 25eb8f2a30a60e52caae353935a7063dc2bc05d6
+=======
+admin
+=====
+
+Simple Administrator Package for Laravel 4
+>>>>>>> 507812a6cd6b1ff4f1a099f28e84009248147b90
