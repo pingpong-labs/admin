@@ -38,4 +38,7 @@ See an example config for create `User` admin file [here](https://github.com/gra
   
 ###License
 This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38

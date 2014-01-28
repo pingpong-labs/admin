@@ -6,7 +6,15 @@
 		{{ sprintf($resource['title']['index'], $count) }}
 	</h4>
 
+<<<<<<< HEAD
 	<div class="btn-add-new index col-lg-7">
+=======
+<<<<<<< HEAD
+	<div class="btn-add-new index col-lg-7">
+=======
+	<div class="btn-add-new col-lg-5 col-md-5">
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		<div class="form-search">
 			{{
 				Form::open(array(
@@ -33,6 +41,10 @@
 			{{ Form::close() }}	
 		</div>
 		<a class="btn btn-danger" href="{{ url('admin/'. Request::segment(2) .'/create' )}}"><i class="glyphicon glyphicon-plus-sign"></i> Add New</a>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 
 		<!-- Single button -->
 		<div class="btn-group">
@@ -73,6 +85,11 @@
 				</li>
 			</ul>
 		</div>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	</div>
 
 	@if($count > 0)
@@ -82,7 +99,15 @@
 		</thead>
 		<body>
 		@foreach ($datas as $data)
+<<<<<<< HEAD
 			{{ Resource::fetch($data, $fields, $format) }}
+=======
+<<<<<<< HEAD
+			{{ Resource::fetch($data, $fields, $format, $actions) }}
+=======
+			{{ Resource::fetch($data, $fields, $format) }}
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		@endforeach
 		</body>
 		</table>

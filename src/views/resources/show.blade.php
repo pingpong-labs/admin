@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 @extends(Config::get('admin::admin.template'))
+=======
+<<<<<<< HEAD
+@extends(Config::get('admin::admin.template'))
+=======
+@extends('admin::template')
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 
 @section('main')
 	

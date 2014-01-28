@@ -4,7 +4,10 @@ namespace Pingpong\Admin;
 
 use DB, Form, Request;
 use Closure;
+<<<<<<< HEAD
 use Pingpong\Admin\AdminException as Exception;
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 
 class Resource
 {
@@ -60,15 +63,26 @@ class Resource
 				{
 					throw new Exception("Format field must be an array or string.");
 				}
+<<<<<<< HEAD
 			}else{
 				$result.= '<th>'.$field.'</th>';
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 			}
 		}
 		$result.= '<th width="10%"><div class="text-center">Action</div></th>';
 		return $result;		
 	}
 
+<<<<<<< HEAD
 	public function fetch($data, $fields, $formatArray)
+=======
+<<<<<<< HEAD
+	public function fetch($data, $fields, $formatArray, $costumAction= array())
+=======
+	public function fetch($data, $fields, $formatArray)
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	{
 		$result = '<tr>';
 		foreach ($fields as $field) {
@@ -88,7 +102,15 @@ class Resource
 							$result.= $data->$field;
 						}
 					}else{
+<<<<<<< HEAD
 						$params 	= [$data->$field];
+=======
+<<<<<<< HEAD
+						$params 	= [$data->$field, $data];
+=======
+						$params 	= [$data->$field];
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 						$callback 	= $format[1];
 						$result.= call_user_func_array($callback, $params);
 					}
@@ -111,7 +133,11 @@ class Resource
 				<ul class="dropdown-menu text-left pull-right" role="menu">
 					<li>
 						<a href="'.$url_show.'">
+<<<<<<< HEAD
 							<i class="glyphicon glyphicon-list-alt"></i>
+=======
+							<i class="glyphicon glyphicon-list"></i>
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 							Detail
 						</a>
 					</li>
@@ -127,8 +153,25 @@ class Resource
 							Delete
 						</a>
 					</li>
+<<<<<<< HEAD
 				</ul>
 			</div><!-- /btn-group -->
+=======
+<<<<<<< HEAD
+		';
+		if($costumAction instanceof Closure)
+		{
+			$result.= call_user_func_array($costumAction, [$data]);
+		}
+
+		$result.= '
+				</ul>
+			</div>
+=======
+				</ul>
+			</div><!-- /btn-group -->
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		';
 		$result.= Form::open(array('id'=>'form'.$data->id, 'method'=> 'DELETE', 'url'=> 'admin/'.Request::segment(2).'/'.$data->id));
 		$result.= Form::close();
@@ -158,7 +201,10 @@ class Resource
 				case 'checkbox':
 				case 'radio':
 				case 'email':
+<<<<<<< HEAD
 				case 'password':
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 					return Form::input($type, $name, $options['value'], $options['attributes']);
 					break;
 				

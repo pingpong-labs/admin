@@ -3,16 +3,32 @@
 namespace Pingpong\Admin;
 
 use Request, Config, DB, View, Resource, Input, Validator;
+<<<<<<< HEAD
 use Redirect;
 use Admin;
 use Pingpong\Admin\AdminException as Exception;
+=======
+use Redirect, Exception;
+<<<<<<< HEAD
+use Admin;
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 
 class ResourceController extends \Controller
 {
 	protected $resource;
 
+<<<<<<< HEAD
 	protected $resourceName;
 
+=======
+<<<<<<< HEAD
+	protected $resourceName;
+
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	protected $request;
 
 	protected $allResources;
@@ -37,11 +53,24 @@ class ResourceController extends \Controller
 
 	protected function register($resource)
 	{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$config = Config::get("resources::$resource");
 		if( ! empty($config) )
 		{
 			$this->resource = $config;
 			$this->resourceName = $resource;
+<<<<<<< HEAD
+=======
+=======
+		$config = Config::get("admin::$resource");
+		if( ! empty($config) )
+		{
+			$this->resource = $config;
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		}else
 		{
 			throw new Exception("Resource [$resource] have not config file.");
@@ -63,13 +92,36 @@ class ResourceController extends \Controller
 		$count = $eloquent::count();
 		$data = $eloquent::paginate($paginate);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		$actions = null;
+		$fl = $this->resource['fields'];
+		if(isset($fl['costum-action']))
+		{
+			$ac = $fl['costum-action'];
+			$actions = $ac;
+		}
+
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$datas = array(
 			'datas'		=>	$data,
 			'count'		=>	$count,
 			'fields'	=>	$fields,
 			'resource'	=>	$this->resource,
 			'heading'	=>	$heading,
+<<<<<<< HEAD
 			'format'	=>	$headingArray
+=======
+<<<<<<< HEAD
+			'format'	=>	$headingArray,
+			'actions'	=>	$actions
+=======
+			'format'	=>	$headingArray
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		);
 
 		return View::make('admin::resources.index', $datas);
@@ -89,17 +141,30 @@ class ResourceController extends \Controller
 
 		$rules 		= $resource['validation']['create']['rules'];
 		$messages 	= $resource['validation']['create']['messages'];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$format 	= Admin::getConfig($this->resourceName, 'validation.update.format');
 		if(empty($format) or !is_array($format))
 		{
 			$format = array();
 		}
 		
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$input 		= Input::all();
 
 		$validation = Validator::make($input, $rules, $messages);
 		if($validation->passes())
 		{	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 			if(count($format) > 0)
 			{
 				foreach ($format as $field => $callback) {
@@ -111,6 +176,11 @@ class ResourceController extends \Controller
 					}
 				}
 			}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 			$eloquent::create($input);			
 			return Redirect::to('admin/'.Request::segment(2))
 				->with('message-success', 'Data created successfully.')
@@ -148,12 +218,21 @@ class ResourceController extends \Controller
 
 		$rules 		= $resource['validation']['update']['rules'];
 		$messages 	= $resource['validation']['update']['messages'];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$format 	= Admin::getConfig($this->resourceName, 'validation.update.format');
 		if(empty($format) or !is_array($format))
 		{
 			$format = array();
 		}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$input 		= Input::all();
 		$input 		= array_except($input, '_method');
 
@@ -163,6 +242,10 @@ class ResourceController extends \Controller
 			$find = $eloquent::find($id);
 			if(!empty($find))
 			{	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 				if(count($format) > 0)
 				{
 					foreach ($format as $field => $callback) {
@@ -174,6 +257,11 @@ class ResourceController extends \Controller
 						}
 					}
 				}
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 				$find->update($input);
 				return Redirect::to('admin/'.Request::segment(2))
 					->with('message-success', 'Data updated successfully.')
@@ -183,7 +271,15 @@ class ResourceController extends \Controller
 				->with('message-success', 'Failed to update. Data not found.')
 			;		
 		}
+<<<<<<< HEAD
 		return Redirect::to('admin/'.Request::segment(2)."/$id/edit")
+=======
+<<<<<<< HEAD
+		return Redirect::to('admin/'.Request::segment(2)."/$id/edit")
+=======
+		return Redirect::to('admin/'.Request::segment(2)."$id/edit")
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 			->withInput()
 			->withErrors($validation)
 		;
@@ -254,6 +350,20 @@ class ResourceController extends \Controller
 			}
 		});
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		$actions = null;
+		$fl = $this->resource['fields'];
+		if(isset($fl['costum-action']))
+		{
+			$ac = $fl['costum-action'];
+			$actions = $ac;
+		}
+		
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		$count = $find->count();
 		$data = $find->paginate($paginate);
 
@@ -264,7 +374,16 @@ class ResourceController extends \Controller
 			'resource'	=>	$this->resource,
 			'heading'	=>	$heading,
 			'format'	=>	$headingArray,
+<<<<<<< HEAD
 			'q'			=>	$q
+=======
+<<<<<<< HEAD
+			'q'		=>	$q,
+			'actions'	=>	$actions
+=======
+			'q'			=>	$q
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 		);
 
 		return View::make('admin::resources.search', $datas);

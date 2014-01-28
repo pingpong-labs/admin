@@ -29,10 +29,19 @@ class Admin
 		}else{
 			return 'Copyright must be a string or closure.';
 		}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	}	
 
 	public function getConfig($resource, $key = null)
 	{
 		return Config::get("resources::$resource.".$key);
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	}
 }

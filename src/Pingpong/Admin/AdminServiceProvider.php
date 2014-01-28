@@ -4,7 +4,10 @@ namespace Pingpong\Admin;
 
 use Illuminate\Support\ServiceProvider;
 use Config;
+<<<<<<< HEAD
 use Pingpong\Admin\Generators as Generators;
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 
 class AdminServiceProvider extends ServiceProvider {
 
@@ -55,7 +58,10 @@ class AdminServiceProvider extends ServiceProvider {
 	{				
 		$this->registerProviders();
 		$this->registerFacades();
+<<<<<<< HEAD
 		$this->registerGenerators();
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	}
 
 	/**
@@ -72,6 +78,7 @@ class AdminServiceProvider extends ServiceProvider {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Register the generators.
 	 *
 	 * @return void
@@ -98,6 +105,8 @@ class AdminServiceProvider extends ServiceProvider {
 	}
 
 	/**
+=======
+>>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	 * Register all service providers.
 	 *
 	 * @return void
