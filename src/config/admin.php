@@ -63,11 +63,6 @@ return array(
 	
 	/*
 	|----------------------------------------------------
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
->>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 	| Menus
 	|----------------------------------------------------
 	| Here you define all menus for your admin page.
@@ -121,11 +116,7 @@ return array(
 		{
 			if( ! Auth::check())
 			{
-<<<<<<< HEAD
 				return Redirect::to(Config::get('admin::admin.login-url'))->with('message-error', 'You must logged in first.');
-=======
-				return Redirect::to('admin')->with('message-error', 'You must logged in first.');
->>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
 			}
 		}
 	],
@@ -164,12 +155,4 @@ return array(
 	'resources'	=>	array(
 		'users',
 	),
-<<<<<<< HEAD
 );
-=======
-<<<<<<< HEAD
-);
-=======
-);
->>>>>>> 9915882e3f7d6642bffcb31c5bd1de414fd4d3dc
->>>>>>> 53a5123897370f9f62a4a5fefa48de54ea763d38
