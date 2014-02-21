@@ -6,8 +6,8 @@
 		@yield('title', 'Administrator')
 	</title>
 
-	{{ Admin::style('bootstrap/css/bootstrap.css') }}
-	{{ Admin::style('css/style.css') }}
+	{{ AdminHelper::style('bootstrap/css/bootstrap.css') }}
+	{{ AdminHelper::style('css/style.css') }}
 
 	@yield('style')
 
@@ -17,9 +17,9 @@
 
 	@yield('main', 'Contest is empty.')
 
-	{{ Admin::script('js/jquery.js') }}
-	{{ Admin::script('bootstrap/js/bootstrap.min.js') }}
-	{{ Admin::script('js/admin.js') }}
+	{{ AdminHelper::script('js/jquery.js') }}
+	{{ AdminHelper::script('bootstrap/js/bootstrap.min.js') }}
+	{{ AdminHelper::script('js/admin.js') }}
 
 	@yield('script')
 	
