@@ -9,8 +9,8 @@ class AdminDatabaseSeeder extends \Seeder {
 	 */
 	public function run()
 	{
-		DB::table('users')->truncate();
-		$users = array(
+		DB::table('admins')->truncate();
+		$admins = array(
 			array(
 				'fullname'		=>	'Administrator',
 				'username'		=>	'admin',
@@ -20,7 +20,7 @@ class AdminDatabaseSeeder extends \Seeder {
 				'updated_at'	=>	new Datetime
 			)
 		);
-		DB::table('users')->insert($users);		
+		DB::table('admins')->insert($admins);		
 	}
 
 }
