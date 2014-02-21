@@ -103,7 +103,7 @@ return array(
 				'url'	=>	'admin/charts'
 			]
 		],
-		'charts'	=>	Chart::submenu()
+		//'charts'	=>	Chart::submenu()
 	],
 
 	/*
