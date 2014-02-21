@@ -22,7 +22,7 @@
             "src/models"
         ],
         "psr-4": {
-            "Pingpong\\Admin\\": "src/Admin"
+            "Pingpong\\Admin\\": "src/Pingpong"
         }
     },
     "minimum-stability": "dev"
