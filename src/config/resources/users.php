@@ -2,9 +2,9 @@
 
 return array(
 
-	'table'     		=>  'users',
+	'table'     		=>  'admins',
 
-	'eloquent'  		=>  'User',
+	'eloquent'  		=>  'Admin',
 
 	'data-perpage'  	=>  10,
 
