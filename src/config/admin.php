@@ -91,16 +91,14 @@ return array(
 	|
 	*/
 	'submenus'	=>	[
-		'data'	=>	[
-			[
-				'title'	=>	'Users',
-				'url'	=>	'admin/users'
-			]
-		],
 		'settings'	=>	[
 			[
 				'title'	=>	'Charts',
 				'url'	=>	'admin/charts'
+			],
+			[
+				'title'	=>	'Admins',
+				'url'	=>	'admin/admins'
 			]
 		],
 		//'charts'	=>	Chart::submenu()
@@ -204,7 +202,7 @@ return array(
 	|
 	*/
 	'resources'	=>	array(
-		'users',
+		'admins',
 		'charts',
 	),
 );
