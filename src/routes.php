@@ -15,9 +15,7 @@ Route::group(array('prefix'	=>	'admin', 'before'	=>	$permission ), function(){
 	*/
 	$constumPages = Config::get('admin::admin.pages');
 	foreach ($constumPages as $page => $callback) {
-		
 		Route::get($page, $callback);
-
 	}
 
 	/*
@@ -28,12 +26,10 @@ Route::group(array('prefix'	=>	'admin', 'before'	=>	$permission ), function(){
 	|
 	*/
 	$resources = Config::get('admin::admin.resources');
-	foreach ($resources as $resource) {
-		
+	foreach ($resources as $resource) {		
 		Route::get($resource.'/search/{search}', 'Pingpong\Admin\ResourceController@getSearch');
 		Route::post($resource.'/search', 'Pingpong\Admin\ResourceController@postSearch');
 		Route::resource($resource, 'Pingpong\Admin\ResourceController');
-
 	}
 
 });

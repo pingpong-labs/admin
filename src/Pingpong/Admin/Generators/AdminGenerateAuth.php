@@ -59,7 +59,6 @@ class AdminGenerateAuth extends Command {
 				$this->info("Created $name in $controller.");
 			}
 		}
-
 		//publish view from admin package
 		$this->call('admin:publish-view', array());
 

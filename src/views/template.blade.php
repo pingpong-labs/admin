@@ -31,7 +31,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 				@foreach (Config::get('admin::admin.menus') as $key => $value)
-					{{-- */ $submenu = Config::get('admin::admin.submenus.'.$key) /* --}}
+					<?php $submenu = Config::get('admin::admin.submenus.'.$key); ?>
 					@if(!empty($submenu))
 					<li class="dropdown">	
 					<a href="{{ url($value['url']) }}" class="dropdown-toggle" data-toggle="dropdown">{{ $value['title'] }} <b class="caret"></b></a>
@@ -86,7 +86,7 @@
 	{{ AdminHelper::script('js/jquery.js') }}
 	{{ AdminHelper::script('bootstrap/js/bootstrap.min.js') }}
 	{{ AdminHelper::script('js/admin.js') }}
-	
+
 	@yield('script')
 	
 </body>
