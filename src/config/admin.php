@@ -98,7 +98,7 @@ return array(
 			],
 			[
 				'title'	=>	'Admins',
-				'url'	=>	'admin/admins'
+				'url'	=>	'admin/users'
 			]
 		],
 		//'charts'	=>	Chart::submenu()
@@ -202,7 +202,7 @@ return array(
 	|
 	*/
 	'resources'	=>	array(
-		'admins',
+		'users',
 		'charts',
 	),
 );
