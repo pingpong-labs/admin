@@ -5,6 +5,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Admin extends Eloquent implements UserInterface, RemindableInterface {
 
+	protected $guarded = array();
+
+	public static $rules = array();
+	
 	/**
 	 * The database table used by the model.
 	 *
