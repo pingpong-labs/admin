@@ -1,0 +1,13 @@
+
+/**
+ *-----------------------------------------------------------------------------
+ * Created by package pingpong/admin
+ *-----------------------------------------------------------------------------
+ * Here is code to defined login url administrator
+ *
+ */
+
+$loginUrl = Config::get('admin::admin.login-url');
+
+Route::get($loginUrl, '{{name}}@index');
+Route::post($loginUrl, '{{name}}@postLogin')->before('csrf');

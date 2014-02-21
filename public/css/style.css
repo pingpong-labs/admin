@@ -1,0 +1,65 @@
+*{
+	font-family: Helvetica;
+}
+body{
+	padding-top: 50px;
+	font-size: 13px;
+	background-color: #e4e4e4;
+}
+
+.td-action .btn{
+	margin: 1px;
+}
+
+.alert-message{
+	margin-top: 10px;
+}
+
+.middle-content{
+	/*width: 980px;*/
+}
+.main-content{
+	background-color: #FFF;
+	border-left: 1px solid #d4d4d4;
+	border-right: 1px solid #d4d4d4;
+	border-bottom: 1px solid #d4d4d4;
+}
+.footer{
+	margin: 3px 0;
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 10px 0;
+	border-top: 1px dashed #e4e4e4;
+}
+
+.btn-add-new{
+	position: relative;
+	float: right;
+	top: -50px;
+	margin-bottom: -50px;
+	/*right: -35px;*/
+}
+
+/* Bootstrap Reset */
+.page-header{
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+	background-color: #f2544f;
+	color: #FFF;
+}
+
+.navbar-danger{
+	background-color: #d2322d;
+	border-color: #ac2925;
+}
+.navbar-danger a{
+	color: #eed;
+}
+.navbar-danger .nav > li > a:hover,
+.navbar-danger .nav > li > a:focus,
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+	background-color: #f2544f;
+}
