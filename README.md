@@ -1,5 +1,11 @@
 ##Simple Administrator Package for Laravel 4.*
 
+###Requirement
+
+```
+This package is required php 5.4 or greater.
+```
+
 ###Installation
 
 1. Open your composer.json file and and new required package:
