@@ -11,7 +11,7 @@ This package is required php 5.4 or greater.
 1. Open your composer.json file and and new required package:
 
   ```
-  "pingpong/admin": "dev-master"
+  "pingpong/admin": "~1"
   ```
 
 2. Open terminal and run:
