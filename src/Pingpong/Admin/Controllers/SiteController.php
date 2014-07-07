@@ -24,23 +24,12 @@ class SiteController extends BaseController
 
 	public function settings()
 	{
+
+		define('STDIN', fopen ("php://stdin","r"));
+
 		return $this->view('settings');
 	}
 
-	public function reset()
-	{
-		$tables = array(
-			'products', 'articles', 'categories', 'events', 'lessons', 'classes', 'comments', 'notifications',
-			'projects', 'designs', 'votes', 'sliders', 'photos', 'orders',
-		);
-
-		foreach ($tables as $table)
-		{
-			$this->db->table($table)->truncate();
-		}
-
-		return $this->redirect('settings')->withFlashMessage('Database has been reset successfully!');
-	}
 
 	public function reinstall()
 	{

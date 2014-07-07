@@ -2,12 +2,12 @@
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'], function()
 {
-	Route::group(['before' => 'admin.guest'], function()
+	Route::group(['before' => Config::get('admin::filter.guest')], function()
 	{
 		Route::resource('login', 'LoginController', ['only' => ['index', 'store']]);
 	});
 
-	Route::group(['before' => 'admin.auth'], function()
+	Route::group(['before' => Config::get('admin::filter.auth')], function()
 	{
 		Route::get('/',         ['as' => 'admin.home',      'uses' => 'SiteController@index']);
 		Route::get('/logout',   ['as' => 'admin.logout',    'uses' => 'SiteController@logout']);
@@ -28,7 +28,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'],
 		Route::get('backup/reset', ['as' => 'admin.reset', 'uses' => 'SiteController@reset']);
 		Route::get('app/reinstall', ['as' => 'admin.reinstall', 'uses' => 'SiteController@reinstall']);
 		Route::get('cache/clear', ['as' => 'admin.cache.clear', 'uses' => 'SiteController@clearCache']);
-
-		// data
 	});
 });

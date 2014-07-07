@@ -4,10 +4,11 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#home" data-toggle="tab">General</a></li>
+	<li class="active"><a href="#general" data-toggle="tab">General</a></li>
 	<li><a href="#social" data-toggle="tab">Social Media</a></li>
 	<li><a href="#seo" data-toggle="tab">SEO</a></li>
 	<li><a href="#analytics" data-toggle="tab">Analytics</a></li>
+	<li><a href="#backup" data-toggle="tab">Cache And Reset</a></li>
 	<li><a href="#account" data-toggle="tab">Developers</a></li>
 </ul>
 
@@ -49,17 +50,22 @@
 			</div>
 		{{ Form::close() }}
 	</div>
-	<div class="tab-pane hidden" id="messages">
+	<div class="tab-pane" id="backup">
 		<h3></h3>
-		<p class="hidden">
-			{{ modal_popup(route('admin.reset'), 'Reset Database', 'Anda yakin ingin me-reset ulang database website ini ?')}}
-		</p>
+		@if(defined("STDIN"))
 		<p>
 			{{ modal_popup(route('admin.reinstall'), 'Reinstall Website', 'Anda yakin ingin menginstall ulang website ini ?')}}
 		</p>
 		<p>
 			{{ modal_popup(route('admin.cache.clear'), 'Clear Cache', 'Anda yakin ingin menghapus cache?')}}
 		</p>
+		@else
+		<div class="alert alert-warning">
+			<p>
+				Sorry, your server is not support artisan via interface.
+			</p>
+		</div>
+		@endif
 	</div>
 	<div class="tab-pane" id="seo">
 		<h3></h3>
