@@ -1,0 +1,164 @@
+<?php namespace Pingpong\Admin\Controllers;
+
+use $MODEL$;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+class $NAME$ extends BaseController {
+	
+	/**
+	 * @var \$MODEL$
+	 */
+	protected $$COLLECTION$;
+
+	/**
+	 * @param \$MODEL$ $$COLLECTION$
+	 */
+	public function __construct($MODEL$ $$COLLECTION$)
+	{
+		$this->$COLLECTION$ = $$COLLECTION$;
+	}
+	
+	/**
+	 * Redirect not found.
+	 *
+	 * @return Response
+	 */
+	protected function redirectNotFound()
+	{
+		return $this->redirect('$COLLECTION$.index');
+	}
+
+	/**
+	 * Display a listing of $COLLECTION$
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		$$COLLECTION$ = $this->$COLLECTION$->paginate(10);
+		$no 		  = $$COLLECTION$->getFrom();
+
+		return $this->view('$COLLECTION$.index', compact('$COLLECTION$', 'no'));
+	}
+
+	/**
+	 * Show the form for creating a new $RESOURCE$
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		return $this->view('$COLLECTION$.create');
+	}
+
+	/**
+	 * Store a newly created $RESOURCE$ in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$data 		= $this->inputAll();
+		$rules      = $this->$COLLECTION$->getRules();
+		$validator 	= $this->validator->make($data, $rules);
+
+		if ($validator->fails())
+		{
+			return $this->redirect->back()->withErrors($validator)->withInput();
+		}
+
+		$this->$COLLECTION$->create($data);
+
+		return $this->redirect('$COLLECTION$.index');
+	}
+
+	/**
+	 * Display the specified $RESOURCE$.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		try
+		{
+			$$RESOURCE$ = $this->$COLLECTION$->findOrFail($id);
+			return $this->view('$COLLECTION$.show', compact('$RESOURCE$'));
+		}
+		catch(ModelNotFoundException $e)
+		{
+			return $this->redirectNotFound();
+		}
+	}
+
+	/**
+	 * Show the form for editing the specified $RESOURCE$.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{		
+		try
+		{
+			$$RESOURCE$ = $this->$COLLECTION$->findOrFail($id);
+			return $this->view('$COLLECTION$.edit', compact('$RESOURCE$'));
+		}		
+		catch(ModelNotFoundException $e)
+		{
+			return $this->redirectNotFound();
+		}
+	}
+
+	/**
+	 * Update the specified $RESOURCE$ in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		try
+		{
+			$data 		=	$this->inputAll();
+			$$RESOURCE$ = 	$this->$COLLECTION$->findOrFail($id);
+			$rules		=   $this->$COLLECTION$->getUpdateRules();
+
+			$validator  = $this->validator->make($data, $rules);
+
+			if ($validator->fails())
+			{
+				return $this->redirect->back()->withErrors($validator)->withInput();
+			}
+
+			$$RESOURCE$->update($data);
+
+			return $this->redirect('$COLLECTION$.index');
+		}
+		catch(ModelNotFoundException $e)
+		{
+			return $this->redirectNotFound();
+		}
+	}
+
+	/**
+	 * Remove the specified $RESOURCE$ from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		try
+		{
+			$this->$COLLECTION$->destroy($id);
+
+			return $this->redirect('$COLLECTION$.index');
+		}		
+		catch(ModelNotFoundException $e)
+		{
+			return $this->redirectNotFound();
+		}
+	}
+
+}

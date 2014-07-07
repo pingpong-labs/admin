@@ -1,0 +1,28 @@
+{
+    "name": "pingpong/admin",
+    "description": "",
+    "authors": [
+        {
+            "name": "Pingpong Labs",
+            "email": "gue.warsono@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*",
+        "pingpong/menus": "dev-master",
+        "pingpong/presenters": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Pingpong\\Admin": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "way/generators": "~2"
+    }
+}
