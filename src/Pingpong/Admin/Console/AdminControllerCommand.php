@@ -37,6 +37,21 @@ class AdminControllerCommand extends Command {
 	 */
 	public function fire()
 	{
+		if( ! class_exists('Way\Generators\GeneratorServiceProvider'))
+		{
+			return $this->error("Please install way/generators package first!");
+		}
+
+		return $this->generate();
+	}
+
+	/**
+	 * Generate the controller.
+	 * 
+	 * @return void
+	 */
+	public function generate()
+	{
 		$stub = __DIR__ . '/stubs/controller.txt';
 		$path = __DIR__ . '/../Controllers/';
 
@@ -58,17 +73,4 @@ class AdminControllerCommand extends Command {
 			array('controller', InputArgument::REQUIRED, 'The Controller Name.'),
 		);
 	}
-
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return array(
-			// array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
-	}
-
 }

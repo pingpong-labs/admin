@@ -39,36 +39,12 @@ class AdminRefreshCommand extends Command {
 	{
 		$this->call('migrate:refresh');
 
-		$this->call('migrate', ['--bench' => 'pingpong/admin']);
+		$this->call('migrate', ['--package' => 'pingpong/admin']);
 		
 		$this->call('migrate', ['--package' => 'pingpong/trusty']);
 		
 		$this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
 
-	}
-
-	/**
-	 * Get the console command arguments.
-	 *
-	 * @return array
-	 */
-	protected function getArguments()
-	{
-		return array(
-			// array('example', InputArgument::REQUIRED, 'An example argument.'),
-		);
-	}
-
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return array(
-			// array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
 	}
 
 }
