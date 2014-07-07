@@ -14,9 +14,10 @@
         "illuminate/support": "4.*",
         "pingpong/menus": "dev-master",
         "pingpong/presenters": "dev-master",
-        "pingpong/auth": "dev-master"
+        "pingpong/trusty": "dev-master"
     },
     "require-dev": {
+        "phpunit/phpunit": "4.*",
         "way/generators": "~2"
     },
     "autoload": {
