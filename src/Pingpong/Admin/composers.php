@@ -1,8 +1,8 @@
 <?php
 
-use Pingpong\Auth\Eloquent\Role;
-use Pingpong\Auth\Eloquent\Permission;
+use Pingpong\Trusty\Entities\Role;
 use Pingpong\Admin\Entities\Category;
+use Pingpong\Trusty\Entities\Permission;
 
 View::composer('admin::articles.form', function($view)
 {

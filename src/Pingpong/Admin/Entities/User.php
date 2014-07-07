@@ -5,11 +5,11 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-use Pingpong\Admin\Traits\RolesTrait;
+use Pingpong\Trusty\Traits\TrustyTrait;
 
 class User extends \Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait, RolesTrait;
+	use UserTrait, RemindableTrait, TrustyTrait;
 
 	/**
 	 * The database table used by the model.
@@ -32,6 +32,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $fillable = array('name', 'username', 'email', 'password', 'status');
 
+	/**
+	 * The rules.
+	 * 
+	 * @var array
+	 */
 	public $rules = [
 		'name'		=>	'required',
 		'email'		=>	'required|email|unique:users,email',

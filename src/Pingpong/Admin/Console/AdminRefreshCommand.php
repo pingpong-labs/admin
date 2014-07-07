@@ -41,7 +41,7 @@ class AdminRefreshCommand extends Command {
 
 		$this->call('migrate', ['--bench' => 'pingpong/admin']);
 		
-		$this->call('migrate', ['--package' => 'pingpong/auth']);
+		$this->call('migrate', ['--package' => 'pingpong/trusty']);
 		
 		$this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
 

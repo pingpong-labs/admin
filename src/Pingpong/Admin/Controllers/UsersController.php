@@ -69,7 +69,7 @@ class UsersController extends BaseController {
 
 		$user = $this->users->create($data);
 
-		$user->setRole($this->input->get('role'));
+		$user->addRole($this->input->get('role'));
 
 		return $this->redirect('users.index');
 	}

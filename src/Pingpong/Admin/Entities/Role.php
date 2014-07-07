@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Entities;
 
-use Pingpong\Auth\Eloquent\Role as BaseRole;
+use Pingpong\Trusty\Entities\Role as BaseRole;
 
 class Role extends BaseRole
 {

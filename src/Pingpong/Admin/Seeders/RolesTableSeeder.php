@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Seeders;
 
-use Pingpong\Auth\Eloquent\Role;
+use Pingpong\Trusty\Entities\Role;
 
 class RolesTableSeeder extends \Seeder {
 

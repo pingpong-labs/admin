@@ -1,10 +1,15 @@
 <?php
 
-use Pingpong\Admin\Trusty\Facades\Trusty;
-
 Trusty::setView('admin::403');
 
-Trusty::registerPermissions();
+try
+{
+	Trusty::registerPermissions();
+}
+catch(PDOException $e)
+{
+
+}
 
 Trusty::when(['admin/users', 'admin/users/*'], 'manage_users');
 Trusty::when(['admin/pages', 'admin/pages/*'], 'manage_pages');

@@ -49,11 +49,6 @@ class AdminServiceProvider extends ServiceProvider {
 		$this->registerCommands();
 		// set
 		$this->app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
-		// Trusty
-		$this->app['trusty'] = $this->app->share(function($app)
-		{
-			return new Trusty\Trusty;	
-		});
 	}
 
 	/**
