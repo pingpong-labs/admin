@@ -2,3 +2,5 @@
 composer.phar
 composer.lock
 .DS_Store
+.env.local.php
+.env.php
