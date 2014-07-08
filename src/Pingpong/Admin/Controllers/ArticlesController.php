@@ -1,8 +1,8 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 use Pingpong\Admin\Entities\Article;
+use Pingpong\Admin\Uploader\ImageUploader;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Pingpong\Uploader\ImageUploader;
 
 class ArticlesController extends BaseController {
 	
