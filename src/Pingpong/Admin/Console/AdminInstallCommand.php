@@ -45,6 +45,10 @@ class AdminInstallCommand extends Command {
 		
 		$this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
 
+		$this->call('config:publish', ['package' => 'pingpong/admin']);
+
+		$this->call('asset:publish', ['package' => 'pingpong/admin']);
+
 	}
 
 }

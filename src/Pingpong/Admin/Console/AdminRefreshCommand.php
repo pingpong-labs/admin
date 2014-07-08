@@ -18,7 +18,7 @@ class AdminRefreshCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Refresh the admin package.';
+	protected $description = 'Refresh the migration and re-seed the database.';
 
 	/**
 	 * Create a new command instance.
