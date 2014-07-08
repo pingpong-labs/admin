@@ -51,57 +51,6 @@
 		</div>
 
 	</div>
-	{{--
-	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Contents
-			</div>
-			<table class="table">
-				<tr>
-					<th>Articles</th>
-					<td>{{ Article::onlyPost()->count() }}</td>
-				</tr>
-				<tr>
-					<th>Pages</th>
-					<td>{{ Article::onlyPage()->count() }}</td>
-				</tr>
-				<tr>
-					<th>Comments</th>
-					<td>{{ Comment::count() }}</td>
-				</tr>
-				<tr>
-					<th>Products</th>
-					<td>{{ Product::count() }}</td>
-				</tr>
-				<tr>
-					<th>Ads</th>
-					<td>{{ Ad::count() }}</td>
-				</tr>
-				<tr>
-					<th>Events</th>
-					<td>{{ Events::count() }}</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	--}}
-	
-</div>
-
-
-<div class="row hidden">
-	<div class="col-md-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Data
-			</div>
-			<table class="table">
-				
-			</table>
-		</div>
-
-	</div>
 	
 </div>
 
