@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('home') }}" target="_blank">
+      <a class="navbar-brand" href="{{ url('/') }}" target="_blank">
         {{ option('site.name', 'Administrator') }}
       </a>
     </div>
