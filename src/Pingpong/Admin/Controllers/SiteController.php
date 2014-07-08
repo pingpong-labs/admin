@@ -24,7 +24,6 @@ class SiteController extends BaseController
 
 	public function settings()
 	{
-
 		define('STDIN', fopen ("php://stdin","r"));
 
 		return $this->view('settings');
