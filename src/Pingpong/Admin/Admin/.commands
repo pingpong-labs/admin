@@ -1,1 +1,0 @@
-artisan generate:controller --path=app/Pingpong/Admin/Controllers/ --templatePath=app/Pingpong/Admin/storage/stubs/controller.txt ProductsController
