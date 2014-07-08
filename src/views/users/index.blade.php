@@ -2,11 +2,11 @@
 
 @section('content')
 	
-	<h3 class="page-header">
+	<h4 class="page-header">
 		All Users ({{ $users->count() }})
 		&middot;
 		<small>{{ link_to_route('admin.users.create', 'Add New') }}</small>
-	</h3>
+	</h4>
 
 	<table class="table">
 		<thead>

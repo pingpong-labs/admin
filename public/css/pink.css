@@ -1,0 +1,63 @@
+body, table{
+	font-size: 13px;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	color: #333;
+}
+
+.page-header{
+	margin-top: 0px;
+}
+
+#tracking{
+	font-family: menlo, monaco, monospace;
+}
+
+a, 
+a:hover,
+a:focus{
+	color: #F9397F;
+}
+
+.navbar-admin{
+	background-color: #F9397F;
+}
+
+.navbar-admin * a{
+	color: #FFF !important;
+}
+
+.navbar-admin .dropdown-menu>li>a{
+	color: #333 !important;
+}
+
+.navbar-admin .dropdown-menu>li>a:hover,
+.navbar-admin .navbar-nav>.active>a,
+.navbar-admin .navbar-nav>.active>a:hover,
+.navbar-admin .navbar-nav>.open>a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li.active > a,
+.dropdown-menu > li > a:focus 
+.navbar-admin .navbar-nav>.active>a:focus{
+	background-color: #FB5B9F !important;
+	color: #FFF !important;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:focus{
+	background-color: #F9397F !important;
+	border: 0;
+}
+
+.panel-admin{
+	border-color: #FB5B9F;
+}
+
+.panel-admin > .panel-heading{
+	background-color: #FB5B9F;
+	color: #FFF;
+}
+
+th{
+	color: #444;
+}

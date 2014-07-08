@@ -2,22 +2,22 @@
 
 @section('content')
 
-<h3 class="page-header">Hello, {{ Auth::user()->name }}.</h3>
+<h3 class="page-header admin-header">Hello, {{ Auth::user()->name }}.</h3>
 
 <div class="row">
 	<div class="col-md-6">
-		<div class="panel panel-default">
+		<div class="panel panel-admin">
 			<div class="panel-heading">
 				Users
 			</div>
 			<table class="table">
 				<tr>
-					<th>All Users</th>
+					<td>All Users</td>
 					<td>{{ User::count() }}</td>
 				</tr>
 				@foreach(Role::all() as $role)
 				<tr>
-					<th>{{ Str::plural($role->name) }}</th>
+					<td>{{ Str::plural($role->name) }}</td>
 					<td>{{ Pingpong\Admin\Entities\User::hasRole($role->slug)->count() }}</td>
 				</tr>
 				@endforeach
@@ -26,25 +26,25 @@
 
 	</div>
 	<div class="col-md-6">
-		<div class="panel panel-default">
+		<div class="panel panel-admin">
 			<div class="panel-heading">
 				Visitors
 			</div>
 			<table class="table">
 				<tr>
-					<th>Total Hits</th>
+					<td>Total Hits</td>
 					<td>{{ Pingpong\Admin\Entities\Visitor::getTotalHits() }}</td>
 				</tr>
 				<tr>
-					<th>Page Hits Today </th>
+					<td>Page Hits Today </td>
 					<td>{{ Pingpong\Admin\Entities\Visitor::getHitsToday() }}</td>
 				</tr>
 				<tr>
-					<th>Online Users</th>
+					<td>Online Users</td>
 					<td>{{ Pingpong\Admin\Entities\Visitor::getOnlineUsers() }}</td>
 				</tr>
 				<tr>
-					<th>Total Visitors Today</th>
+					<td>Total Visitors Today</td>
 					<td>{{ Pingpong\Admin\Entities\Visitor::getTotalVisitorsToday() }}</td>
 				</tr>
 			</table>
@@ -59,9 +59,9 @@
 @section('style')
 	<style type="text/css">
 	td{
-		width:50px;
+		widtd:50px;
 	}
-	th{
+	td{
 		text-indent: 10px;
 	}
 	</style>

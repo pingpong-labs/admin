@@ -37,9 +37,9 @@ class AdminInstallCommand extends Command {
 	 */
 	public function fire()
 	{
-		$this->call('migrate:publish', ['--package' => 'pingpong/admin']);
+		$this->call('migrate:publish', ['package' => 'pingpong/admin']);
 
-		$this->call('migrate:publish', ['--package' => 'pingpong/trusty']);
+		$this->call('migrate:publish', ['package' => 'pingpong/trusty']);
 
 		$this->call('migrate');
 		

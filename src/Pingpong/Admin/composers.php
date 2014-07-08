@@ -22,3 +22,12 @@ View::composer('admin::roles.form', function($view)
 	$permissions = Permission::lists('name', 'id');
 	$view->with(compact('permissions'));
 });
+
+View::composer('admin::settings', function($view)
+{
+	$themes = [
+		'default'	=>	'Default',
+		'pink'		=>	'Pink',
+	];
+	$view->with(compact('themes'));
+});

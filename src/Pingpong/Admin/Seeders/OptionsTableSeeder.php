@@ -45,6 +45,10 @@ class OptionsTableSeeder extends \Seeder {
 				'key'	=>	'ckfinder.prefix',
 				'value'	=>	'packages/pingpong/admin'
 			),
+			array(
+				'key'	=>	'admin.theme',
+				'value'	=>	'default'
+			),
 		);
 
 		foreach($options as $option)

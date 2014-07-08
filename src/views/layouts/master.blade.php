@@ -7,7 +7,7 @@
 	<title> Administrator </title>
 	
     {{ style('css/bootstrap.min.css') }}
-    {{ style('css/admin.css') }}
+    {{ style('css/'.option('admin.theme', 'default').'.css') }}
 	{{ Menu::style() }}
 	
 	@yield('style')
