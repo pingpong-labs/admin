@@ -16,14 +16,15 @@ class Article extends Model
 
 	public function user()
 	{
-		return $this->belongsTo('User');
+		return $this->belongsTo(__NAMESPACE__ . '\\User');
 	}
 
 	public function category()
 	{
-		return $this->belongsTo('Category');
+		return $this->belongsTo(__NAMESPACE__ . '\\Category');
 	}
 
+	// coming soon
 	public function comments()
 	{
 		return $this->morphMany('Comment', 'commentable');

@@ -12,7 +12,7 @@ class Category extends \Eloquent
 
 	public function articles()
 	{
-		return $this->hasMany('Article');
+		return $this->hasMany(__NAMESPACE__ . '\\Article');
 	}
 
 	public function scopeOptions($query)

@@ -9,7 +9,7 @@
 	</h4>
 	
 	<div>
-		@include('admin::categories.form', array('model' => $user))
+		@include('admin::categories.form', array('model' => $category))
 	</div>
 
 @stop

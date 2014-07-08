@@ -14,7 +14,7 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-	<div class="tab-pane active" id="home">
+	<div class="tab-pane active" id="general">
 		<h3></h3>
 		{{ Form::open() }}
 			<div class="form-group">

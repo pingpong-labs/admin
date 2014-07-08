@@ -4,11 +4,21 @@ session_start();
 
 class LoginController extends BaseController
 {
+	/**
+	 * Show login page.
+	 * 
+	 * @return mixed 
+	 */
 	public function index()
 	{
 		return $this->view('login');
 	}
 
+	/**
+	 * Login action.
+	 * 
+	 * @return mixed
+	 */
 	public function store()
 	{
 		$credentials = $this->input->only('username', 'password');

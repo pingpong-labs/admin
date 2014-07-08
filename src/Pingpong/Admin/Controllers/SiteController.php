@@ -8,11 +8,21 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SiteController extends BaseController
 {	
+	/**
+	 * Admin dashboard.
+	 * 
+	 * @return \Response 
+	 */
 	public function index()
 	{
 		return $this->view('index');
 	}
 
+	/**
+	 * Logout.
+	 * 
+	 * @return \Response
+	 */
 	public function logout()
 	{
 		$this->auth->logout();
@@ -22,6 +32,11 @@ class SiteController extends BaseController
 		return $this->redirect('login.index');
 	}
 
+	/**
+	 * Settings Page.
+	 * 
+	 * @return \Response 
+	 */
 	public function settings()
 	{
 		define('STDIN', fopen ("php://stdin","r"));
@@ -29,7 +44,11 @@ class SiteController extends BaseController
 		return $this->view('settings');
 	}
 
-
+	/**
+	 * Reinstall the application.
+	 * 
+	 * @return mixed
+	 */
 	public function reinstall()
 	{
 		$this->artisan->call('migrate:refresh');
@@ -39,6 +58,11 @@ class SiteController extends BaseController
 		return $this->redirect('settings')->withFlashMessage('Reinstalled success!');
 	}
 	
+	/**
+	 * Clear the application cache.
+	 * 
+	 * @return mixed 
+	 */
 	public function clearCache()
 	{
 		$this->artisan->call('cache:clear');
@@ -46,6 +70,11 @@ class SiteController extends BaseController
 		return $this->redirect('settings')->withFlashMessage('Application cache cleared!');
 	}
 
+	/**
+	 * Update the settings.
+	 * 
+	 * @return mixed 
+	 */
 	public function updateSettings()
 	{
 		$settings = $this->input->all();
@@ -59,11 +88,17 @@ class SiteController extends BaseController
 		return $this->redirect->back()->withFlashMessage('Settings has been successfully updated!');
 	}
 
+	/**
+	 * Show article.
+	 * 
+	 * @param  int $id 
+	 * @return mixed     
+	 */
 	public function showArticle($id)
 	{
 		try
 		{
-			$post = Article::with('user')->whereId($id)->orWhere('slug', $id)->firstOrFail();
+			$post = Article::with('user', 'category')->whereId($id)->orWhere('slug', $id)->firstOrFail();
 
 			$view = $this->config->get('admin::post.view');
 
