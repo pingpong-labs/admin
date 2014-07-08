@@ -37,8 +37,6 @@
 				@endif
 				<td>{{ $article->created_at }}</td>
 				<td class="text-center">
-					<a href="{{ route('articles.show', $article->slug) }}" target="_blank">View</a>
-					&middot;
 					<a href="{{ route('admin.articles.edit', $article->id) }}">Edit</a>
 					&middot;
 					@if(isOnPages())
