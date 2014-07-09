@@ -20,8 +20,7 @@
     "require-dev": {
         "phpunit/phpunit": "4.*",
         "mockery/mockery": "0.9.1",
-        "zizaco/testcases-laravel": "dev-master",
-        "way/generators": "~2"
+        "way/generators": "2.*"
     },
     "autoload": {
         "classmap": [
