@@ -18,7 +18,7 @@ Menu::create('admin-menu', function($menu)
 		$sub->route('admin.users.index', 'All Users');
 		$sub->divider();
 		$sub->route('admin.roles.index', 'Roles');		
-		$sub->route('admin.permissions.index', 'Permission');		
+		$sub->route('admin.permissions.index', 'Permissions');		
 	});
 });
 

@@ -2,11 +2,11 @@
 
 @section('content')
 	
-	<h3 class="page-header">
-		All Categories ({{ $categories->count() }})
+	<h4 class="page-header">
+		All Categories ({{ $categories->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.categories.create', 'Add New') }}</small>
-	</h3>
+	</h4>
 
 	<table class="table">
 		<thead>

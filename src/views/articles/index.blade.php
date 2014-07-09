@@ -3,13 +3,13 @@
 @section('content')
 	@if( ! isOnPages())
 	<h4 class="page-header">
-		All Articles
+		All Articles ({{ $articles->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.articles.create', 'Add New') }}</small>
 	</h4>
 	@else
 	<h4 class="page-header">
-		All Pages
+		All Pages ({{ $articles->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.pages.create', 'Add New') }}</small>
 	</h4>

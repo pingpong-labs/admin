@@ -19,8 +19,8 @@ $id = str_random();
         </p>
       </div>
       <div class="modal-footer">
-        <a href="{{ $url }}" class="btn btn-primary">Ya</a>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+        <a href="{{ $url }}" class="btn btn-primary">Yes</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
       </div>
       {{ Form::close() }}
     </div><!-- /.modal-content -->

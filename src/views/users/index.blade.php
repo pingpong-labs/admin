@@ -3,7 +3,7 @@
 @section('content')
 	
 	<h4 class="page-header">
-		All Users ({{ $users->count() }})
+		All Users ({{ $users->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.users.create', 'Add New') }}</small>
 	</h4>

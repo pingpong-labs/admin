@@ -3,7 +3,7 @@
 @section('content')
 	
 	<h4 class="page-header">
-		All Permission ({{ $permissions->count() }})
+		All Permissions ({{ $permissions->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.permissions.create', 'Add New') }}</small>
 	</h4>

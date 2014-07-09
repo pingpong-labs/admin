@@ -3,7 +3,7 @@
 @section('content')
 	
 	<h4 class="page-header">
-		All Roles ({{ $roles->count() }})
+		All Roles ({{ $roles->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.roles.create', 'Add New') }}</small>
 	</h4>
