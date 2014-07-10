@@ -39,6 +39,10 @@ php artisan migrate admin:install
 
 Done.
 
+### Screenshot
+
+[![Build Status](https://photos-5.dropbox.com/t/0/AAByRnUhhKoHkXeQsRIWK7WuAWSoU9tzrL8exiddZFSOVA/12/194732116/png/1024x768/3/1404982800/0/2/pingpong-admin-shot.png/T2KXwZrUInP7puy0oZloUE-x0OW45psQ_NETUcxy5x0)](https://www.dropbox.com/s/p5eaocivrb3t77h/pingpong-admin-shot.png)
+
 ### Usage
 
 Browse your app to the url : `http://your-host.com/admin`.
