@@ -47,6 +47,10 @@ Done.
 
 Browse your app to the url : `http://your-host.com/admin`. By default the login credentials is `pingpong` for the username and `secret` for the password.
 
+### Documentation
+
+For more documentation please see [wiki](https://github.com/pingpong-labs/admin/wiki) part of this repo.
+
 ### Screencasts
 
 https://www.dropbox.com/s/foyidbk7fzqywco/pingpong-admin-tutorial.mp4
