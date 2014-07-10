@@ -45,7 +45,7 @@ Done.
 
 ### Usage
 
-Browse your app to the url : `http://your-host.com/admin`.
+Browse your app to the url : `http://your-host.com/admin`. By default the login credentials is `pingpong` for username and `secret` for the password.
 
 ### License
 
