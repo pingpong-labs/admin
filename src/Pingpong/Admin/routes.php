@@ -17,14 +17,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'],
 		Route::post('settings', ['as' => 'admin.settings.update',  'uses' => 'SiteController@updateSettings']);
 
 		// app
-		Route::resource('articles', 'ArticlesController');
-		Route::resource('pages', 'ArticlesController');
-		Route::resource('users', 'UsersController');
-		Route::resource('categories', 'CategoriesController');
-		Route::resource('roles', 'RolesController');
-		Route::resource('permissions', 'PermissionsController');
+        $options = ['except' => ['show']];
 
-		// reset
+		Route::resource('articles', 'ArticlesController', $options);
+		Route::resource('pages', 'ArticlesController', $options);
+		Route::resource('users', 'UsersController', $options);
+		Route::resource('categories', 'CategoriesController', $options);
+		Route::resource('roles', 'RolesController', $options);
+		Route::resource('permissions', 'PermissionsController', $options);
+
+		// backup & reset
 		Route::get('backup/reset', ['as' => 'admin.reset', 'uses' => 'SiteController@reset']);
 		Route::get('app/reinstall', ['as' => 'admin.reinstall', 'uses' => 'SiteController@reinstall']);
 		Route::get('cache/clear', ['as' => 'admin.cache.clear', 'uses' => 'SiteController@clearCache']);

@@ -47,7 +47,7 @@ class AdminServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->registerCommands();
-		// set
+		// set the auth model
 		$this->app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
 	}
 
