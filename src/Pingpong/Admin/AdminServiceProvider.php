@@ -1,6 +1,5 @@
 <?php namespace Pingpong\Admin;
 
-use View;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider {
@@ -47,8 +46,6 @@ class AdminServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->registerCommands();
-		// set the auth model
-		$this->app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
 	}
 
 	/**
