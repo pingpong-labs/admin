@@ -32,6 +32,15 @@ Next, Add new aliases in `app/config/app.php`.
     'Trusty'	    	=> 'Pingpong\Trusty\Facades\Trusty',
 ```
 
+Next, update your user model to extend the `Pingpong\Admin\Entities\User' class. Looks like this.
+```php
+// app/model/User.php
+
+use Pingpong\Admin\Entities\User as PingpongUser;
+
+class User extends PingpongUser {}
+```
+
 Next, install the package.
 ```
 php artisan migrate admin:install
