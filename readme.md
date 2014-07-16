@@ -32,7 +32,7 @@ Next, Add new aliases in `app/config/app.php`.
     'Trusty'	    	=> 'Pingpong\Trusty\Facades\Trusty',
 ```
 
-Next, update your user model to extend the `Pingpong\Admin\Entities\User' class. Looks like this.
+Next, update your user model to extend the `Pingpong\Admin\Entities\User` class. Looks like this.
 ```php
 // app/model/User.php
 
