@@ -6,19 +6,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class CategoriesController extends BaseController {
 	
 	/**
-	 * @var \Category
-	 */
-	protected $categories;
-
-	/**
-	 * @param \Category $categories
-	 */
-	public function __construct(Category $categories)
-	{
-		$this->categories = $categories;
-	}
-	
-	/**
 	 * Redirect not found.
 	 *
 	 * @return Response
@@ -35,8 +22,8 @@ class CategoriesController extends BaseController {
 	 */
 	public function index()
 	{
-		$categories = $this->categories->paginate(10);
-		$no = $categories->getFrom();
+		$categories = Category::paginate(10);
+		$no 		= $categories->getFrom();
 
 		return $this->view('categories.index', compact('categories', 'no'));
 	}
@@ -58,7 +45,7 @@ class CategoriesController extends BaseController {
 	 */
 	public function store()
 	{
-		$category = $this->categories->create($this->inputAll());
+		$category = Category::create($this->inputAll());
         if($category->save())
         {
             return $this->redirect('categories.index');
@@ -76,7 +63,8 @@ class CategoriesController extends BaseController {
 	{
 		try
 		{
-			$category = $this->categories->findOrFail($id);
+			$category = Category::findOrFail($id);
+
 			return $this->view('categories.show', compact('category'));
 		}
 		catch(ModelNotFoundException $e)
@@ -95,7 +83,8 @@ class CategoriesController extends BaseController {
 	{		
 		try
 		{
-			$category = $this->categories->findOrFail($id);
+			$category = Category::findOrFail($id);
+
 			return $this->view('categories.edit', compact('category'));
 		}		
 		catch(ModelNotFoundException $e)
@@ -114,7 +103,7 @@ class CategoriesController extends BaseController {
 	{
 		try
 		{
-			$category = $this->categories->findOrFail($id);
+			$category = Category::findOrFail($id);
 			
 			$category->update($this->inputAll());
 
@@ -141,7 +130,7 @@ class CategoriesController extends BaseController {
 	{
 		try
 		{
-			$this->categories->destroy($id);
+			Category::destroy($id);
 
 			return $this->redirect('categories.index');
 		}		
