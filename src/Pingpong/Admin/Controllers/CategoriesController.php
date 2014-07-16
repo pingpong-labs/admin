@@ -36,7 +36,7 @@ class CategoriesController extends BaseController {
 	public function index()
 	{
 		$categories = $this->categories->paginate(10);
-		$no 		  = $categories->getFrom();
+		$no = $categories->getFrom();
 
 		return $this->view('categories.index', compact('categories', 'no'));
 	}
@@ -58,25 +58,12 @@ class CategoriesController extends BaseController {
 	 */
 	public function store()
 	{
-		$data 		= $this->inputAll();
-//		$rules      = $this->categories->getRules();
-//		$validator 	= $this->validator->make($data, $rules);
-//
-//		if ($validator->fails())
-//		{
-//			return $this->redirect->back()->withErrors($validator)->withInput();
-//		}
-//
-//		$this->categories->create($data);
-        $category = $this->categories->create($data);
+		$category = $this->categories->create($this->inputAll());
         if($category->save())
         {
-            return 'Saved!';
+            return $this->redirect('categories.index');
         }
-
-        return $this->redirect->back()->withErrors($category->getErrors())->withInput();
-
-//		return $this->redirect('categories.index');
+        return $this->redirect->back()->withInput()->withErrors($category->getErrors());
 	}
 
 	/**
@@ -127,18 +114,14 @@ class CategoriesController extends BaseController {
 	{
 		try
 		{
-			$data 		=	$this->inputAll();
-			$category = 	$this->categories->findOrFail($id);
-			$rules		=   $this->categories->getUpdateRules();
+			$category = $this->categories->findOrFail($id);
+			
+			$category->update($this->inputAll());
 
-			$validator  = $this->validator->make($data, $rules);
-
-			if ($validator->fails())
+			if( ! $category->save())
 			{
-				return $this->redirect->back()->withErrors($validator)->withInput();
+				return $this->redirect->back()->withErrors($category->getErrors())->withInput();
 			}
-
-			$category->update($data);
 
 			return $this->redirect('categories.index');
 		}
