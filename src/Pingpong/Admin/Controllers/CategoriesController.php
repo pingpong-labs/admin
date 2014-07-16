@@ -59,17 +59,24 @@ class CategoriesController extends BaseController {
 	public function store()
 	{
 		$data 		= $this->inputAll();
-		$rules      = $this->categories->getRules();
-		$validator 	= $this->validator->make($data, $rules);
+//		$rules      = $this->categories->getRules();
+//		$validator 	= $this->validator->make($data, $rules);
+//
+//		if ($validator->fails())
+//		{
+//			return $this->redirect->back()->withErrors($validator)->withInput();
+//		}
+//
+//		$this->categories->create($data);
+        $category = $this->categories->create($data);
+        if($category->save())
+        {
+            return 'Saved!';
+        }
 
-		if ($validator->fails())
-		{
-			return $this->redirect->back()->withErrors($validator)->withInput();
-		}
+        return $this->redirect->back()->withErrors($category->getErrors())->withInput();
 
-		$this->categories->create($data);
-
-		return $this->redirect('categories.index');
+//		return $this->redirect('categories.index');
 	}
 
 	/**

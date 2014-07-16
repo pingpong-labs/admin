@@ -1,12 +1,14 @@
 <?php namespace Pingpong\Admin\Entities;
 
-class Category extends \Eloquent
+use Pingpong\Validation\ModelValidator;
+
+class Category extends ModelValidator
 {
 	protected $fillable = ['name', 'slug', 'description'];
 
 	protected $rules = [
 		'name'	=>	'required',
-		'slug'	=>	'required',
+		'slug'	=>	'required|unique:categories,slug',
 		'description'	=>	'required',
 	];
 

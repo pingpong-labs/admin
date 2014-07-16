@@ -1,18 +1,17 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 use Pingpong\Admin\Entities\Role;
-use Pingpong\Admin\Entities\Permission;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RolesController extends BaseController {
 	
 	/**
-	 * @var \Role
+	 * @var \Pingpong\Admin\Entities\Role
 	 */
 	protected $roles;
 
 	/**
-	 * @param \Role $roles
+	 * @param \Pingpong\Admin\Entities\Role $roles
 	 */
 	public function __construct(Role $roles)
 	{
