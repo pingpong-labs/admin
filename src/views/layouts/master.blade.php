@@ -20,12 +20,11 @@
 		@include('admin::partials.header')
 	@endif
 
-	<div class="container">
+	<div class="container main-content">
 		@yield('content')
 	</div>
 
 	<footer class="container">
-		<hr>
 		Copyright &COPY; {{ date('Y') }}
 	</footer>
 

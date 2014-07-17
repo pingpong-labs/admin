@@ -30,6 +30,11 @@ a:focus{
 	color: #333 !important;
 }
 
+.navbar-admin .navbar-nav>li>a {
+	margin-right: 1px;
+}
+
+.navbar-admin .navbar-nav>li>a:hover,
 .navbar-admin .dropdown-menu>li>a:hover,
 .navbar-admin .navbar-nav>.active>a,
 .navbar-admin .navbar-nav>.active>a:hover,
@@ -56,4 +61,22 @@ a:focus{
 .panel-admin > .panel-heading{
 	background-color: #F7675F;
 	color: #FFF;
+}
+
+body{
+	background: #dedede;
+}
+
+div.container.main-content {
+	background: rgb(255, 255, 255);
+	top: -20px;
+	position: relative;
+	padding-top: 15px;
+}
+
+footer.container {
+	background: #FFF;
+	margin-bottom: 50px;
+	padding: 10px;
+	margin-top: -19px;
 }
