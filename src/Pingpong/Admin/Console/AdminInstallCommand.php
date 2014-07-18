@@ -49,6 +49,7 @@ class AdminInstallCommand extends Command {
 
 		$this->call('asset:publish', ['package' => 'pingpong/admin']);
 
+		$this->call('dump-autoload');
 	}
 
 }
