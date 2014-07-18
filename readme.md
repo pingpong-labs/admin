@@ -18,9 +18,9 @@ composer update
 Next, Add new service provider in `app/config/app.php`.
 
 ```php
+    'Pingpong\Admin\AdminServiceProvider',
     'Pingpong\Menus\MenusServiceProvider',
     'Pingpong\Trusty\TrustyServiceProvider',
-    'Pingpong\Admin\AdminServiceProvider',
 ```
 
 Next, Add new aliases in `app/config/app.php`.

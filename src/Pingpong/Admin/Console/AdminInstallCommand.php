@@ -49,7 +49,25 @@ class AdminInstallCommand extends Command {
 
 		$this->call('asset:publish', ['package' => 'pingpong/admin']);
 
+		$this->installMenus();
+
 		$this->call('dump-autoload');
+	}
+
+	/**
+	 * Create the menus.php file in app directory if that file does not exist.
+	 *
+	 * @return void
+	 */
+	protected function installMenus()
+	{
+		$file = app_path('menus.php');
+		if( ! file_exists($file))
+		{
+			$contents = $this->laravel['files']->get(__DIR__.'/stubs/menus.txt');
+
+			$this->laravel['files']->put($file, $contents);
+		}		
 	}
 
 }

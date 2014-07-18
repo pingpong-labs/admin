@@ -17,3 +17,8 @@ Event::listen('admin::visitors.track', function()
 		Visitor::track();
 	}
 });
+
+Event::listen('admin::menus', function()
+{
+	require __DIR__ . '/menus.php';
+});
