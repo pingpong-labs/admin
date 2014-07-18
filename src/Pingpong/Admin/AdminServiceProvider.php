@@ -70,10 +70,16 @@ class AdminServiceProvider extends ServiceProvider {
 			return new Console\AdminControllerCommand;
 		});
 
+		$this->app['pingpong.console.migration'] = $this->app->share(function($app)
+		{
+			return new Console\AdminMigrationCommand;
+		});
+
 		$this->commands([
 			'pingpong.console.install',
 			'pingpong.console.refresh',
 			'pingpong.console.controller',
+			'pingpong.console.migration',
 		]);
 	}
 
