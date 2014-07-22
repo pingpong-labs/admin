@@ -8,11 +8,11 @@
 
 Open your composer.json file, and add the new required package.
 ```
-"pingpong/admin": "1.0.*" 
+	"pingpong/admin": "1.0.*" 
 ```
 Next, open a terminal and run.
 ```
-composer update 
+	composer update 
 ```
 
 Next, Add new service provider in `app/config/app.php`.
