@@ -16,6 +16,11 @@
 		{{ Form::text('title', null, ['class' => 'form-control']) }}
 		{{ $errors->first('title', '<div class="text-danger">:message</div>') }}
 	</div>
+	<div class="form-group">
+		{{ Form::label('slug', 'Slug:') }}
+		{{ Form::text('slug', null, ['class' => 'form-control']) }}
+		{{ $errors->first('slug', '<div class="text-danger">:message</div>') }}
+	</div>
 	@if(Request::is('admin/articles/create'))
 	<div class="form-group">
 		{{ Form::label('category_id', 'Category:') }}

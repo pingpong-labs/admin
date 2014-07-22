@@ -30,6 +30,7 @@
 
     {{ script('js/jquery.js') }}
     {{ script('js/bootstrap.min.js') }}
+    {{ script('js/all.js') }}
 
 	@yield('script')
 </body>
