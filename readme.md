@@ -43,7 +43,7 @@ class User extends PingpongUser {}
 
 Next, install the package.
 ```
-php artisan migrate admin:install
+php artisan admin:install
 ```
 
 Done.
