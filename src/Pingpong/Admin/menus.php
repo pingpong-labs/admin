@@ -24,9 +24,10 @@ Menu::create('admin-menu', function($menu)
 
 Menu::create('admin-menu-right', function($menu)	
 {
-	$menu->setPresenter('Pingpong\Admin\Presenters\NavbarRight');
+	$menu->style('navbar-right');
 
 	$name = isset(Auth::user()->name) ? Auth::user()->name : 'Preferences';
+	
 	$menu->dropdown($name, function($sub)
 	{
 		$sub->route('admin.settings', 'Settings');
