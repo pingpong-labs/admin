@@ -57,12 +57,12 @@
 @endsection
 
 @section('style')
-	<style type="text/css">
+<style type="text/css">
 	td{
 		widtd:50px;
 	}
 	td{
 		text-indent: 10px;
 	}
-	</style>
+</style>
 @stop
