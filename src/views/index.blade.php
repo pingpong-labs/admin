@@ -33,19 +33,19 @@
 			<table class="table">
 				<tr>
 					<th>Total Hits</th>
-					<td>{{ Visitor::sum('hits') }}</td>
+					<td>{{ Pingpong\Admin\Entities\Visitor::sum('hits') }}</td>
 				</tr>
 				<tr>
 					<th>Page Hits Today </th>
-					<td>{{ Visitor::today()->sum('hits') }}</td>
+					<td>{{ Pingpong\Admin\Entities\Visitor::today()->sum('hits') }}</td>
 				</tr>
 				<tr>
 					<th>Online Users</th>
-					<td>{{ Visitor::getOnlineUsers() }}</td>
+					<td>{{ Pingpong\Admin\Entities\Visitor::getOnlineUsers() }}</td>
 				</tr>
 				<tr>
 					<th>Total Visitors Today</th>
-					<td>{{ Visitor::today()->count() }}</td>
+					<td>{{ Pingpong\Admin\Entities\Visitor::today()->count() }}</td>
 				</tr>
 			</table>
 		</div>
