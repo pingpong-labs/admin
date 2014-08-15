@@ -32,20 +32,20 @@
 			</div>
 			<table class="table">
 				<tr>
-					<td>Total Hits</td>
-					<td>{{ Pingpong\Admin\Entities\Visitor::getTotalHits() }}</td>
+					<th>Total Hits</th>
+					<td>{{ Pingpong\Admin\Entities\Visitor::sum('hits') }}</td>
 				</tr>
 				<tr>
-					<td>Page Hits Today </td>
-					<td>{{ Pingpong\Admin\Entities\Visitor::getHitsToday() }}</td>
+					<th>Page Hits Today </th>
+					<td>{{ Pingpong\Admin\Entities\Visitor::today()->sum('hits') }}</td>
 				</tr>
 				<tr>
-					<td>Online Users</td>
+					<th>Online Users</th>
 					<td>{{ Pingpong\Admin\Entities\Visitor::getOnlineUsers() }}</td>
 				</tr>
 				<tr>
-					<td>Total Visitors Today</td>
-					<td>{{ Pingpong\Admin\Entities\Visitor::getTotalVisitorsToday() }}</td>
+					<th>Total Visitors Today</th>
+					<td>{{ Pingpong\Admin\Entities\Visitor::today()->count() }}</td>
 				</tr>
 			</table>
 		</div>
@@ -57,12 +57,12 @@
 @endsection
 
 @section('style')
-	<style type="text/css">
+<style type="text/css">
 	td{
 		widtd:50px;
 	}
 	td{
 		text-indent: 10px;
 	}
-	</style>
+</style>
 @stop

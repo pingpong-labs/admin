@@ -98,7 +98,11 @@ class SiteController extends BaseController
 	{
 		try
 		{
-			$post = Article::with('user', 'category')->whereId($id)->orWhere('slug', $id)->firstOrFail();
+			$post = Article::with('user', 'category')
+				->whereId(intval($id))
+				->orWhere('slug', $id)
+				->firstOrFail()
+			;
 
 			$view = $this->config->get('admin::post.view');
 
