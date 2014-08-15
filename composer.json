@@ -1,0 +1,34 @@
+{
+    "name": "pingpong/admin",
+    "description": "Simple Administrator Package for Laravel 4",
+    "keywords": ["pingpong", "admin", "laravel", "administrator"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pingpong Labs",
+            "email": "gue.warsono@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "4.*",
+        "illuminate/support": "4.*",
+        "pingpong/menus": "1.0.*",
+        "pingpong/presenters": "1.0.*",
+        "pingpong/trusty": "1.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "mockery/mockery": "0.9.1",
+        "way/generators": "2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Pingpong\\Admin": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
