@@ -2,8 +2,6 @@
 
 if(Auth::check())
 {
-	Trusty::setView('admin::403');
-
 	try
 	{
 		Trusty::registerPermissions();
