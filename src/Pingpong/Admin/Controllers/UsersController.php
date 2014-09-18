@@ -1,6 +1,5 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-use Pingpong\Admin\Entities\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UsersController extends BaseController {
@@ -13,9 +12,9 @@ class UsersController extends BaseController {
 	/**
 	 * @param \User $users
 	 */
-	public function __construct(User $users)
+	public function __construct()
 	{
-		$this->users = $users;
+		$this->users = \App::make(\Config::get('auth.model'));
 	}
 	
 	/**
