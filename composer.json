@@ -2,7 +2,7 @@
     "name": "pingpong/admin",
     "description": "Simple Administrator Package for Laravel 4",
     "keywords": ["pingpong", "admin", "laravel", "administrator"],
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Pingpong Labs",
