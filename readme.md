@@ -66,4 +66,4 @@ https://www.dropbox.com/s/foyidbk7fzqywco/pingpong-admin-tutorial.mp4
 
 ### License
 
-This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+This package is open-sourced software licensed under [The BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause)
