@@ -11,7 +11,8 @@ class ConsoleServiceProvider extends ServiceProvider {
      */
     protected $commands = [
         'CreateUserCommand',
-        'InstallCommand'
+        'InstallCommand',
+        'SeedCommand'
     ];
 
     /**
