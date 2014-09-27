@@ -14,8 +14,8 @@
         "laravel/framework": "4.*",
         "illuminate/support": "4.*",
         "pingpong/menus": "1.0.*",
-        "pingpong/validation": "1.*",
-        "pingpong/trusty": "1.0.*"
+        "pingpong/trusty": "1.0.*",
+        "pingpong/validator": "1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*",
