@@ -14,7 +14,7 @@
         "laravel/framework": "4.*",
         "illuminate/support": "4.*",
         "pingpong/menus": "1.0.*",
-        "pingpong/presenters": "1.0.*",
+        "pingpong/validation": "1.*",
         "pingpong/trusty": "1.0.*"
     },
     "require-dev": {
