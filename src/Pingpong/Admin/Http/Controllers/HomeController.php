@@ -9,5 +9,4 @@ class HomeController extends Controller {
         return aview('index');
     }
 
-
 } 
