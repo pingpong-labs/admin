@@ -4,6 +4,11 @@ use Pingpong\Validator\Validator;
 
 class Register extends Validator {
 
+    /**
+     * The validation rules.
+     *
+     * @return array
+     */
     public function rules()
     {
         return [
