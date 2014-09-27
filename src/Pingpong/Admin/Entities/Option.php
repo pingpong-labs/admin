@@ -3,7 +3,7 @@
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Modell {
+class Option extends Model {
 
     /**
      * The fillable attributes.
