@@ -23,6 +23,7 @@ Next, Add new service provider in `app/config/app.php`.
     'Pingpong\Admin\Providers\FilterServiceProvider',
     'Pingpong\Admin\Providers\ConsoleServiceProvider',
     'Pingpong\Admin\Providers\ErrorServiceProvider',
+    
     'Pingpong\Menus\MenusServiceProvider',
     'Pingpong\Trusty\TrustyServiceProvider',
 ```
