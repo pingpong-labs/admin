@@ -17,9 +17,9 @@ class ErrorServiceProvider extends ServiceProvider {
             $this->app->error(function (ValidationException $e)
             {
                 return $this->app['redirect']->back()
-                    ->withInput()
                     ->withErrors($e->getErrors())
-                    ->withError($e->getMessage());
+                    ->withError($e->getMessage())
+                    ->withInput();
             });
         });
     }
