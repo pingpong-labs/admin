@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use Pingpong\Admin\Entities\Option;
 use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\View;
+use Pingpong\Admin\Menus\Menu;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 if ( ! function_exists('pagination_links'))
@@ -67,5 +68,13 @@ if ( ! function_exists('aview'))
     function aview($view, array $data = [], array $mergeData = [])
     {
         return View::make('admin::' . $view, $data, $mergeData);
+    }
+}
+
+if ( ! function_exists('menu'))
+{
+    function menu($name, $presenter = null)
+    {
+        return Menu::render($name, $presenter);
     }
 }
