@@ -85,5 +85,4 @@ class MenuItem extends Model {
     {
         return $this->title == trim('-');
     }
-
 }

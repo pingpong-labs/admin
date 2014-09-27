@@ -12,7 +12,7 @@ Open your composer.json file, and add the new required package.
 ```
 Next, open a terminal and run.
 ```
-	composer update 
+	composer update
 ```
 
 Next, Add new service provider in `app/config/app.php`.
@@ -23,7 +23,6 @@ Next, Add new service provider in `app/config/app.php`.
     'Pingpong\Admin\Providers\FilterServiceProvider',
     'Pingpong\Admin\Providers\ConsoleServiceProvider',
     'Pingpong\Admin\Providers\ErrorServiceProvider',
-    
     'Pingpong\Menus\MenusServiceProvider',
     'Pingpong\Trusty\TrustyServiceProvider',
 ```
