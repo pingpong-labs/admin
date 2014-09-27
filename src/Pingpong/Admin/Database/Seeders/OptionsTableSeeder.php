@@ -42,14 +42,6 @@ class OptionsTableSeeder extends Seeder {
 				'key'	=>	'post.permalink',
 				'value'	=>	'{slug}'
 			),
-			array(
-				'key'	=>	'ckfinder.prefix',
-				'value'	=>	'packages/pingpong/admin'
-			),
-			array(
-				'key'	=>	'admin.theme',
-				'value'	=>	'default'
-			),
 		);
 
 		foreach($options as $option)
