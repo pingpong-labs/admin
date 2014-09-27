@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Validation\Auth;
 
-use Pingpong\Admin\Validation\Validator;
+use Pingpong\Validator\Validator;
 
 class Register extends Validator {
 
