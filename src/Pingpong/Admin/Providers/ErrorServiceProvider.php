@@ -1,7 +1,7 @@
 <?php namespace Pingpong\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Pingpong\Admin\Validation\Exceptions\ValidationException;
+use Pingpong\Validator\Exceptions\ValidationException;
 
 class ErrorServiceProvider extends ServiceProvider {
 
@@ -16,7 +16,10 @@ class ErrorServiceProvider extends ServiceProvider {
         {
             $this->app->error(function (ValidationException $e)
             {
-                return $this->app['redirect']->back()->withInput()->withErrors($e->getErrors());
+                return $this->app['redirect']->back()
+                    ->withInput()
+                    ->withErrors($e->getErrors())
+                    ->withError($e->getMessage());
             });
         });
     }
