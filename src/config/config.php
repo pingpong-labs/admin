@@ -8,7 +8,4 @@ return [
 	'post'	=>	[
 		'view'	=>	'admin::article'
 	],
-    'menu'  =>  [
-        'presenter' =>  'Pingpong\\Admin\\Menus\\Presenters\\Bootstrap\\NavbarPresenter'
-    ]
 ];

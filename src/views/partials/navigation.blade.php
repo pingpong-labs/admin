@@ -13,8 +13,7 @@
             </a>
         </div>
         <!-- Top Menu Items -->
-        {{ menu('menu.top', 'NavbarRight') }}
-        <ul class="nav hidden navbar-right top-nav">
+        <ul class="nav navbar-right top-nav">
             <li class="dropdown hidden">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
                         class="caret"></b></a>
@@ -81,10 +80,8 @@
                 </ul>
             </li>
             <li class="dropdown hidden">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bell"></i>
-                    <b class="caret"></b>
-                </a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b
+                        class="caret"></b></a>
                 <ul class="dropdown-menu alert-dropdown">
                     <li>
                         <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
@@ -134,9 +131,8 @@
             </li>
         </ul>
 
-        {{ menu('menu.sidebar', 'Sidebar') }}
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse hidden navbar-collapse navbar-ex1-collapse">
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
                     <a href="{{ r('home')  }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
@@ -169,21 +165,6 @@
                         </li>
                         <li>
                             <a href="#">Permissions</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#settings"><i
-                            class="fa fa-fw fa-settings"></i> Settings <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="settings" class="collapse">
-                        <li>
-                            <a href="#">Account</a>
-                        </li>
-                        <li>
-                            <a href="#">Themes</a>
-                        </li>
-                        <li>
-                            <a href="#">Menus</a>
                         </li>
                     </ul>
                 </li>
