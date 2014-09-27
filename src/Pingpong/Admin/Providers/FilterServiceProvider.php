@@ -9,7 +9,10 @@ class FilterServiceProvider extends ServiceProvider {
      *
      * @var array
      */
-    protected $filters = [];
+    protected $filters = [
+        'admin.auth' => 'AdminAuthFilter',
+        'admin.guest' => 'AdminGuestFilter',
+    ];
 
     /**
      * Register the service provider.
