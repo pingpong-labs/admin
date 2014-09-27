@@ -1,6 +1,8 @@
-<?php namespace Pingpong\Admin\Seeders;
+<?php namespace Pingpong\Admin\Database\Seeders;
 
-class AdminDatabaseSeeder extends \Seeder {
+use Illuminate\Database\Seeder;
+
+class AdminDatabaseSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.

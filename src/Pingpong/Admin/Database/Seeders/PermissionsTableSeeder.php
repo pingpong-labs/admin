@@ -1,9 +1,10 @@
-<?php namespace Pingpong\Admin\Seeders;
+<?php namespace Pingpong\Admin\Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Pingpong\Trusty\Entities\Role;
 use Pingpong\Trusty\Entities\Permission;
 
-class PermissionsTableSeeder extends \Seeder {
+class PermissionsTableSeeder extends Seeder {
 
 	public function run()
 	{

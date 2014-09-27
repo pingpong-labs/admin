@@ -1,8 +1,9 @@
-<?php namespace Pingpong\Admin\Seeders;
+<?php namespace Pingpong\Admin\Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use Pingpong\Admin\Entities\Option;
 
-class OptionsTableSeeder extends \Seeder {
+class OptionsTableSeeder extends Seeder {
 
 	public function run()
 	{
