@@ -1,38 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Pingpong\Admin\Entities\Option;
-use Illuminate\Support\Facades\HTML;
-use Illuminate\Support\Facades\View;
-use Pingpong\Admin\Menus\Menu;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-
-if ( ! function_exists('pagination_links'))
-{
-    function pagination_links($data, $view = null)
-    {
-        if ($query = Request::query())
-        {
-            $request = array_except($query, 'page');
-
-            return $data->appends($request)->links($view);
-        }
-        return $data->links($view);
-    }
-
-}
-
-function modal_popup($url, $title, $message)
-{
-    return View::make('admin::partials.popup', compact('url', 'title', 'message'))->render();
-}
-
-function isOnPages()
-{
-    return Request::is('admin/pages') || Request::is('admin/pages/*');
-}
-
 function option($key, $default = null)
 {
     try
