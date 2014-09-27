@@ -1,42 +1,62 @@
 <?php namespace Pingpong\Admin\Traits;
 
-use Input, Redirect, Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
-trait ValidatorTrait
-{
-	protected $validator;
+trait ValidatorTrait {
 
-	public function validate(array $input = null)
-	{
-		$data = is_null($input) ? Input::all() : $input;
+    /**
+     * @var \Illuminate\Validation\Validator
+     */
+    protected $validator;
 
-		$this->validator = Validator::make($data, $this->getRules(), $this->getMessages());
+    /**
+     * @param array $input
+     * @return mixed
+     */
+    public function validate(array $input = null)
+    {
+        $data = is_null($input) ? Input::all() : $input;
 
-		return $this->validator->passes();
-	}
+        $this->validator = Validator::make($data, $this->getRules(), $this->getMessages());
 
-	public function getRules()
-	{
-		return $this->rules;
-	}
+        return $this->validator->passes();
+    }
 
-	public function getMessages()
-	{
-		return $this->messages ?: array();
-	}
+    /**
+     * @return mixed
+     */
+    public function getRules()
+    {
+        return [];
+    }
 
-	public function getErrors()
-	{
-		return $this->validator->messages();
-	}
+    /**
+     * @return array
+     */
+    public function getMessages()
+    {
+        return [];
+    }
 
-	public function redirectFails()
-	{
-		return Redirect::back()
-			->withInput()
-			->withErrors($this->getErrors())
-			->withFlashMessage("There was validation errors.")
-			->withFlashType('danger')
-		;
-	}
+    /**
+     * @return mixed
+     */
+    public function getErrors()
+    {
+        return $this->validator->messages();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function redirectFails()
+    {
+        return Redirect::back()
+            ->withInput()
+            ->withErrors($this->getErrors())
+            ->withFlashMessage("There was validation errors.")
+            ->withFlashType('danger');
+    }
 }
