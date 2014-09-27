@@ -18,7 +18,11 @@ Next, open a terminal and run.
 Next, Add new service provider in `app/config/app.php`.
 
 ```php
-    'Pingpong\Admin\AdminServiceProvider',
+    'Pingpong\Admin\Providers\AdminServiceProvider',
+    'Pingpong\Admin\Providers\SupportServiceProvider',
+    'Pingpong\Admin\Providers\FilterServiceProvider',
+    'Pingpong\Admin\Providers\ConsoleServiceProvider',
+    'Pingpong\Admin\Providers\ErrorServiceProvider',
     'Pingpong\Menus\MenusServiceProvider',
     'Pingpong\Trusty\TrustyServiceProvider',
 ```

@@ -69,3 +69,8 @@ if ( ! function_exists('aview'))
         return View::make('admin::' . $view, $data, $mergeData);
     }
 }
+
+function menu($name, $presenter = null)
+{
+    return Pingpong\Admin\Menus\Menu::render($name, $presenter);
+}

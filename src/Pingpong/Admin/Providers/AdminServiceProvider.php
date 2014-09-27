@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Pingpong\Admin\Menus\Menu;
 
 class AdminServiceProvider extends ServiceProvider {
 
@@ -28,8 +29,10 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->booted(function ()
+        $this->app->booted(function ($app)
         {
+            Menu::setPresenter($app['config']->get('admin::menu.presenter'));
+
             include __DIR__ . '/../Http/routes.php';
         });
     }
