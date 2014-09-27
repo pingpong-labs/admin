@@ -1,11 +1,26 @@
 <?php namespace Pingpong\Admin\Entities;
 
-class Option extends \Eloquent
-{
-	protected $fillable = ['key', 'value'];
+use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Model;
 
-	public function scopeFindByKey($query, $key)
-	{
-		return $query->whereKey($key);
-	}
+class Option extends Modell {
+
+    /**
+     * The fillable attributes.
+     *
+     * @var array
+     */
+    protected $fillable = ['key', 'value'];
+
+    /**
+     * Scope find option by the given key.
+     *
+     * @param Builder $query
+     * @param $key
+     * @return mixed
+     */
+    public function scopeFindByKey(Builder $query, $key)
+    {
+        return $query->whereKey($key);
+    }
 }

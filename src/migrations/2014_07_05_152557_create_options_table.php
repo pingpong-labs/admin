@@ -16,7 +16,7 @@ class CreateOptionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('key')->unique();
-			$table->text('value');
+			$table->text('value')->nullable();
 			$table->timestamps();
 		});
 	}

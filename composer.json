@@ -26,8 +26,8 @@
         "classmap": [
             "src/migrations"
         ],
-        "psr-0": {
-            "Pingpong\\Admin": "src/"
+        "psr-4": {
+            "Pingpong\\Admin\\": "src/Pingpong/Admin"
         }
     },
     "minimum-stability": "stable"
