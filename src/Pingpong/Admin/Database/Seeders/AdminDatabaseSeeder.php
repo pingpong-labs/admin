@@ -14,7 +14,6 @@ class AdminDatabaseSeeder extends Seeder {
 		$this->call(__NAMESPACE__ . '\\OptionsTableSeeder');
 		$this->call(__NAMESPACE__ . '\\RolesTableSeeder');
 		$this->call(__NAMESPACE__ . '\\PermissionsTableSeeder');
-		$this->call(__NAMESPACE__ . '\\UsersTableSeeder');
 	}
 
 }
