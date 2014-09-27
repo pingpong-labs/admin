@@ -27,17 +27,19 @@ class InstallCommand extends Command {
      */
     public function fire()
     {
-        $this->call('admin:migration');
+        $this->call('migrate:publish', ['package' => 'pingpong/admin']);
 
         $this->call('migrate:publish', ['package' => 'pingpong/trusty']);
 
         $this->call('migrate');
 
-        $this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
+        $this->call('admin:seed');
 
         $this->call('config:publish', ['package' => 'pingpong/admin']);
 
         $this->call('asset:publish', ['package' => 'pingpong/admin']);
+
+        $this->call('view:publish', ['package' => 'pingpong/admin']);
 
         $this->installMenus();
 
