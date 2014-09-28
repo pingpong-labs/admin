@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Testing\Controllers;
 
-use Pingpong\Testing\TestCase;
+use Pingpong\Admin\Testing\TestCase;
 
 class LoginController extends TestCase {
 
