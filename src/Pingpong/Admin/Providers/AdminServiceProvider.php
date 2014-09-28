@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Pingpong\Admin\Admin;
 
 class AdminServiceProvider extends ServiceProvider {
 
@@ -28,6 +29,11 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function register()
     {
+        $this->app->bindShared('admin', function($app)
+        {
+            return new Admin($app['html']);
+        });
+
         $this->app->booted(function ()
         {
             include __DIR__ . '/../Http/routes.php';
