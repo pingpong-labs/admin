@@ -3,6 +3,7 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Pingpong\Admin\Validation\Auth\Login;
 
 class LoginController extends Controller {
@@ -37,10 +38,10 @@ class LoginController extends Controller {
 
         if (Auth::attempt(Input::only('username', 'password'), Input::has('remember')))
         {
-            return app('redirect')->route('admin.home')->withSuccess('Login success');
+            return Redirect::route('admin.home')->withSuccess('Login success');
         }
 
-        return app('redirect')->back()->withError("Login failed");
+        return Redirect::back()->withError("Login failed");
     }
 
 } 

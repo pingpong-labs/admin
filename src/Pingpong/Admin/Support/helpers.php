@@ -1,5 +1,9 @@
 <?php
 
+use Pingpong\Admin\Menus\Menu;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\HTML;
+
 function option($key, $default = null)
 {
     try

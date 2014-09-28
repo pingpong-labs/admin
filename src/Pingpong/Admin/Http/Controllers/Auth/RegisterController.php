@@ -30,7 +30,7 @@ class RegisterController extends Controller {
 
     /**
      * @return mixed
-     * @throws \Pingpong\Admin\Validation\Exceptions\ValidationException
+     * @throws \Pingpong\Validator\Exceptions\ValidationException
      */
     public function postIndex()
     {
