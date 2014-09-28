@@ -35,7 +35,7 @@ abstract class TestCase extends \Pingpong\Testing\TestCase {
      */
     protected function getEnvironmentSetUp($app)
     {
-        //
+        error_reporting(E_ALL | E_STRICT);
     }
 
 } 
