@@ -1,9 +1,9 @@
 <?php
 
 use Pingpong\Admin\Menus\Menu;
-use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\HTML;
+use Illuminate\Support\ViewErrorBag;
 
 if ( ! function_exists('option'))
 {
@@ -114,10 +114,10 @@ if ( ! function_exists('error_for'))
      * Get error message for the specified field and format it to "text-danger" style.
      *
      * @param $field
-     * @param MessageBag $errors
+     * @param ViewErrorBag $errors
      * @return mixed
      */
-    function error_for($field, MessageBag $errors)
+    function error_for($field, ViewErrorBag $errors)
     {
         return $errors->first($field, '<div class="text-danger">:message</div>');
     }
