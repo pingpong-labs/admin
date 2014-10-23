@@ -17,7 +17,8 @@ class ConsoleServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $commands = [
-		'Seed'
+		'Seed',
+		'Refresh'
 	];
 
 	/**
