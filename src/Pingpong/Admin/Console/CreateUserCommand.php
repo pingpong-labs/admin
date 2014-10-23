@@ -32,7 +32,7 @@ class CreateUserCommand extends Command {
 		$name = $this->ask('Name : ');
 		$email = $this->ask('Email : ');
 		$username = $this->ask('Username : ');
-		$password = \Hash::make($this->secret('password : '));
+		$password = $this->secret('Password : ');
 
 		$user = User::firstOrcreate(compact('name', 'username', 'email', 'password'));
 
