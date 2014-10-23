@@ -1,14 +1,6 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-use Pingpong\Admin\Traits\LaravelTrait;
-
-/**
- * Class BaseController
- * @package Pingpong\Admin\Controllers
- */
-class BaseController extends \Controller
-{
-    use LaravelTrait;
+class BaseController extends \Controller {
     
     /**
      * Show view.
@@ -20,7 +12,7 @@ class BaseController extends \Controller
      */
     public function view($view, $data = array(), $mergeData = array())
 	{
-		return $this->view->make('admin::' . $view, $data, $mergeData);
+		return app('view')->make('admin::' . $view, $data, $mergeData);
 	}
 
     /**
@@ -34,7 +26,7 @@ class BaseController extends \Controller
      */
     public function redirect($route, $parameters = array(), $status = 302, $headers = array())
 	{
-		return $this->redirect->route('admin.' . $route, $parameters, $status, $headers); 
+		return app('redirect')->route('admin.' . $route, $parameters, $status, $headers); 
 	}
 
     /**
@@ -44,6 +36,6 @@ class BaseController extends \Controller
      */
     public function inputAll()
     {
-        return $this->input->all();
+        return app('request')->all();
     }
 }

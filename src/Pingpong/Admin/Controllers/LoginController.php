@@ -21,16 +21,16 @@ class LoginController extends BaseController
 	 */
 	public function store()
 	{
-		$credentials = $this->input->only('username', 'password');
-		$remember    = $this->input->has('remember');
+		$credentials = \Input::only('username', 'password');
+		$remember    = \Input::has('remember');
        	
-       	if($this->auth->attempt($credentials, $remember))
+       	if(\Auth::attempt($credentials, $remember))
        	{
        		$_SESSION['admin'] = \Auth::id();
        		
        		return $this->redirect('home')->withFlashMessage('Login Success!');
        	} 
 
-        return $this->redirect->back()->withFlashMessage("Login failed!")->withFlashType('danger');
+        return app('redirect')->back()->withFlashMessage("Login failed!")->withFlashType('danger');
 	}
 }
