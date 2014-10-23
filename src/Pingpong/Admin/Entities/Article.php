@@ -86,11 +86,13 @@ class Article extends Model
 	public function deleteImage()
 	{
 		$file = $this->present()->image_path;
+
 		if(file_exists($file))
 		{
 			@unlink($file);
 			return true;
 		}
+		
 		return false;
 	}
 }

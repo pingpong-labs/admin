@@ -21,6 +21,7 @@ class ConsoleServiceProvider extends ServiceProvider {
 		'Refresh',
 		'Install',
 		'Migration',
+		'CreateUser',
 	];
 
 	/**
