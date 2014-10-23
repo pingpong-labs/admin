@@ -58,7 +58,7 @@ class Visitor extends \Eloquent
 	// scopes
 	public function scopeToday($query)
 	{
-		return $query->whereRaw("LEFT(created_at, 10) = LEFT(NOW(), 10)");
+		return $query->whereRaw("date(created_at) = date(now())");
 	}
 
 	public function scopeSelectTotalHits($query)
@@ -92,7 +92,7 @@ class Visitor extends \Eloquent
 		
 		$data = static::where('online', '>', $time)
 			->groupBy('ip')
-			->select('ip', DB::raw("COUNT(*) as total_users"))
+			->select('ip', DB::raw("count(*) as total_users"))
 			->first();
 		
 		return isset($data->total_users) ? $data->total_users : 0;

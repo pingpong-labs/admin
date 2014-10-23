@@ -60,11 +60,11 @@ class RolesController extends BaseController {
 	{
 		$data 		= $this->inputAll();
 		$rules      = $this->roles->getRules();
-		$validator 	= $this->validator->make($data, $rules);
+		$validator 	= \Validator::make($data, $rules);
 
 		if ($validator->fails())
 		{
-			return $this->redirect->back()->withErrors($validator)->withInput();
+			return \Redirect::back()->withErrors($validator)->withInput();
 		}
 
 		$this->roles->create($data);
@@ -127,18 +127,18 @@ class RolesController extends BaseController {
 			$role = 	$this->roles->findOrFail($id);
 			$rules		=   $this->roles->getUpdateRules();
 
-			$validator  = $this->validator->make($data, $rules);
+			$validator  = \Validator::make($data, $rules);
 
 			if ($validator->fails())
 			{
-				return $this->redirect->back()->withErrors($validator)->withInput();
+				return \Redirect::back()->withErrors($validator)->withInput();
 			}
 
 			$role->update($data);
 
 			$role->permissions()->detach($role->permissions->lists('id'));
 
-			$role->permissions()->attach($this->input->get('permissions'));
+			$role->permissions()->attach(\Input::get('permissions'));
 
 			return $this->redirect('roles.index');
 		}

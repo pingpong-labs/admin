@@ -41,7 +41,7 @@ class ArticlesController extends BaseController {
 	{
 		$articles = $this->articles->newest()->onlyPost()->paginate(10);
 		
-		if($this->request->is('admin/pages'))
+		if(\Request::is('admin/pages'))
 		{
 			$articles = $this->articles->onlyPage()->newest()->paginate(10);
 		}
@@ -70,16 +70,16 @@ class ArticlesController extends BaseController {
 	{
 		$data 		= $this->inputAll();
 		$rules      = $this->articles->getUpdateRules();
-		$validator 	= $this->validator->make($data, $rules);
+		$validator 	= \Validator::make($data, $rules);
 
 		if ($validator->fails())
 		{
-			return $this->redirect->back()->withErrors($validator)->withInput();
+			return \Redirect::back()->withErrors($validator)->withInput();
 		}
 
 		unset($data['image']);
 
-		if($this->input->hasFile('image'))
+		if(\Input::hasFile('image'))
 		{
 			// upload image
 			$this->uploader->upload('image')->save('images/articles');
@@ -147,16 +147,16 @@ class ArticlesController extends BaseController {
 			$article 	= 	$this->articles->findOrFail($id);
 			$rules		=   $this->articles->getUpdateRules();
 
-			$validator  = $this->validator->make($data, $rules);
+			$validator  = \Validator::make($data, $rules);
 
 			if ($validator->fails())
 			{
-				return $this->redirect->back()->withErrors($validator)->withInput();
+				return \Redirect::back()->withErrors($validator)->withInput();
 			}
 
 			unset($data['image']);
 
-			if($this->input->hasFile('image'))
+			if(\Input::hasFile('image'))
 			{
 				$article->deleteImage();
 
@@ -189,7 +189,7 @@ class ArticlesController extends BaseController {
 		{
 			$this->articles->destroy($id);
 
-			return $this->redirect('articles.index');
+			return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
 		}		
 		catch(ModelNotFoundException $e)
 		{

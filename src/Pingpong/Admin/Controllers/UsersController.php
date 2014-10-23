@@ -59,16 +59,16 @@ class UsersController extends BaseController {
 	{
 		$data 		= $this->inputAll();
 		$rules      = $this->users->getRules();
-		$validator 	= $this->validator->make($data, $rules);
+		$validator 	= \Validator::make($data, $rules);
 
 		if ($validator->fails())
 		{
-			return $this->redirect->back()->withErrors($validator)->withInput();
+			return \Redirect::back()->withErrors($validator)->withInput();
 		}
 
 		$user = $this->users->create($data);
 
-		$user->addRole($this->input->get('role'));
+		$user->addRole(\Input::get('role'));
 
 		return $this->redirect('users.index');
 	}
@@ -124,21 +124,21 @@ class UsersController extends BaseController {
 	{
 		try
 		{
-			$input 		= 	$this->input->except('password');
-			$data 		=	! $this->input->has('password') ? $input : $this->inputAll();
+			$input 		= 	\Input::except('password');
+			$data 		=	! \Input::has('password') ? $input : $this->inputAll();
 			$user 		= 	$this->users->findOrFail($id);
 			$rules		=   $this->users->getUpdateRules($id);
 
-			$validator  = $this->validator->make($data, $rules);
+			$validator  = \Validator::make($data, $rules);
 
 			if ($validator->fails())
 			{
-				return $this->redirect->back()->withErrors($validator)->withInput();
+				return \Redirect::back()->withErrors($validator)->withInput();
 			}
 
 			$user->update($data);
 
-			$user->updateRole($this->input->get('role'));
+			$user->updateRole(\Input::get('role'));
 
 			return $this->redirect('users.index');
 		}

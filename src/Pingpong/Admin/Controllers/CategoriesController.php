@@ -46,11 +46,13 @@ class CategoriesController extends BaseController {
 	public function store()
 	{
 		$category = Category::create($this->inputAll());
+
         if($category->save())
         {
             return $this->redirect('categories.index');
         }
-        return $this->redirect->back()->withInput()->withErrors($category->getErrors());
+        
+        return \Redirect::back()->withInput()->withErrors($category->getErrors());
 	}
 
 	/**
@@ -109,7 +111,7 @@ class CategoriesController extends BaseController {
 
 			if( ! $category->save())
 			{
-				return $this->redirect->back()->withErrors($category->getErrors())->withInput();
+				return \Redirect::back()->withErrors($category->getErrors())->withInput();
 			}
 
 			return $this->redirect('categories.index');

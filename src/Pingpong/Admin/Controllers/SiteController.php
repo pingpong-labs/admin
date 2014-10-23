@@ -25,7 +25,7 @@ class SiteController extends BaseController
 	 */
 	public function logout()
 	{
-		$this->auth->logout();
+		\Auth::logout();
 		
 		unset($_SESSION['admin']);
 
@@ -51,9 +51,9 @@ class SiteController extends BaseController
 	 */
 	public function reinstall()
 	{
-		$this->artisan->call('migrate:refresh');
+		\Artisan::call('migrate:refresh');
 		
-		$this->artisan->call('db:seed');
+		\Artisan::call('db:seed');
 
 		return $this->redirect('settings')->withFlashMessage('Reinstalled success!');
 	}
@@ -65,7 +65,7 @@ class SiteController extends BaseController
 	 */
 	public function clearCache()
 	{
-		$this->artisan->call('cache:clear');
+		\Artisan::call('cache:clear');
 
 		return $this->redirect('settings')->withFlashMessage('Application cache cleared!');
 	}
@@ -77,15 +77,18 @@ class SiteController extends BaseController
 	 */
 	public function updateSettings()
 	{
-		$settings = $this->input->all();
+		$settings = \Input::all();
+
 		foreach ($settings as $key => $value)
 		{
 			$option = str_replace('_', '.', $key);
+
 			Option::findByKey($option)->update([
 				'value'	=>	$value
 			]);
 		}
-		return $this->redirect->back()->withFlashMessage('Settings has been successfully updated!');
+
+		return \Redirect::back()->withFlashMessage('Settings has been successfully updated!');
 	}
 
 	/**
@@ -104,9 +107,9 @@ class SiteController extends BaseController
 				->firstOrFail()
 			;
 
-			$view = $this->config->get('admin::post.view');
+			$view = \Config::get('admin::post.view');
 
-			return $this->view->make($view, compact('post')); 
+			return \View::make($view, compact('post')); 
 		}
 
 		catch(ModelNotFoundException $e)

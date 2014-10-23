@@ -36,7 +36,8 @@ class PermissionsController extends BaseController {
 	public function index()
 	{
 		$permissions = $this->permissions->paginate(10);
-		$no 		  = $permissions->getFrom();
+
+		$no = $permissions->getFrom();
 
 		return $this->view('permissions.index', compact('permissions', 'no'));
 	}
@@ -60,11 +61,11 @@ class PermissionsController extends BaseController {
 	{
 		$data 		= $this->inputAll();
 		$rules      = $this->permissions->getRules();
-		$validator 	= $this->validator->make($data, $rules);
+		$validator 	= \Validator::make($data, $rules);
 
 		if ($validator->fails())
 		{
-			return $this->redirect->back()->withErrors($validator)->withInput();
+			return \Redirect::back()->withErrors($validator)->withInput();
 		}
 
 		$this->permissions->create($data);
@@ -83,6 +84,7 @@ class PermissionsController extends BaseController {
 		try
 		{
 			$permission = $this->permissions->findOrFail($id);
+
 			return $this->view('permissions.show', compact('permission'));
 		}
 		catch(ModelNotFoundException $e)
@@ -102,6 +104,7 @@ class PermissionsController extends BaseController {
 		try
 		{
 			$permission = $this->permissions->findOrFail($id);
+
 			return $this->view('permissions.edit', compact('permission'));
 		}		
 		catch(ModelNotFoundException $e)
@@ -124,11 +127,11 @@ class PermissionsController extends BaseController {
 			$permission = 	$this->permissions->findOrFail($id);
 			$rules		=   $this->permissions->getUpdateRules();
 
-			$validator  = $this->validator->make($data, $rules);
+			$validator  = \Validator::make($data, $rules);
 
 			if ($validator->fails())
 			{
-				return $this->redirect->back()->withErrors($validator)->withInput();
+				return \Redirect::back()->withErrors($validator)->withInput();
 			}
 
 			$permission->update($data);
