@@ -18,7 +18,8 @@ class ConsoleServiceProvider extends ServiceProvider {
 	 */
 	protected $commands = [
 		'Seed',
-		'Refresh'
+		'Refresh',
+		'Install'
 	];
 
 	/**
