@@ -38,6 +38,7 @@ class AdminMigrationCommand extends Command {
 	public function fire()
 	{
 		$destinationPath = app_path('database/migrations');
+		
 		$migrationPath   = __DIR__ . '/../../../migrations/';
 		
 		if($this->laravel['files']->copyDirectory($migrationPath, $destinationPath))
