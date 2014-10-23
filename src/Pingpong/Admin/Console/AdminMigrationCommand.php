@@ -21,16 +21,6 @@ class AdminMigrationCommand extends Command {
 	protected $description = 'Copy the migration file to the application.';
 
 	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
 	 * Execute the console command.
 	 *
 	 * @return mixed
