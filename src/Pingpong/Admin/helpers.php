@@ -2,46 +2,95 @@
 
 use Pingpong\Admin\Entities\Option;
 
-function pagination_links($data, $view = null)
+if ( ! function_exists('pagination_links'))
 {
-	if($query = Request::query())
-	{
-		$request = array_except($query, 'page');
-		return $data->appends($request)->links($view);
-	}
-	return $data->links($view);
+    /**
+     * @param $data
+     * @param null $view
+     * @return mixed
+     */
+    function pagination_links($data, $view = null)
+    {
+        if ($query = Request::query())
+        {
+            $request = array_except($query, 'page');
+            return $data->appends($request)->links($view);
+        }
+        return $data->links($view);
+    }
 }
 
-function modal_popup($url, $title, $message)
+if ( ! function_exists('modal_popup'))
 {
-	return View::make('admin::partials.popup', compact('url', 'title', 'message'))->render();
+    /**
+     * @param $url
+     * @param $title
+     * @param $message
+     * @return mixed
+     */
+    function modal_popup($url, $title, $message)
+    {
+        return View::make('admin::partials.popup', compact('url', 'title', 'message'))->render();
+    }
 }
 
-function isOnPages()
+if ( ! function_exists('isOnPages'))
 {
-	return Request::is('admin/pages') || Request::is('admin/pages/*');
+    /**
+     * @return bool
+     */
+    function isOnPages()
+    {
+        return Request::is('admin/pages') || Request::is('admin/pages/*');
+    }
 }
 
-function option($key, $default = null)
+if ( ! function_exists('option'))
 {
-	try
-	{
-		$option = Option::findByKey($key)->first();
-		
-		return ! empty($option) ? $option->value : $default;
-	}
-	catch(PDOException $e)
-	{
-		return $default;
-	}
+    /**
+     * @param $key
+     * @param null $default
+     * @return null
+     */
+    function option($key, $default = null)
+    {
+        try
+        {
+            $option = Option::findByKey($key)->first();
+
+            return ! empty($option) ? $option->value : $default;
+        }
+        catch (PDOException $e)
+        {
+            return $default;
+        }
+    }
 }
 
-function style($url, $attributes = array(), $secure = false)
+if ( ! function_exists('style'))
 {
-	return HTML::style('packages/pingpong/admin/' . $url, $attributes, $secure);
+    /**
+     * @param $url
+     * @param array $attributes
+     * @param bool $secure
+     * @return mixed
+     */
+    function style($url, $attributes = array(), $secure = false)
+    {
+        return HTML::style('packages/pingpong/admin/' . $url, $attributes, $secure);
+    }
 }
 
-function script($url, $attributes = array(), $secure = false)
+if ( ! function_exists('script'))
 {
-	return HTML::script('packages/pingpong/admin/' . $url, $attributes, $secure);
+    /**
+     * @param $url
+     * @param array $attributes
+     * @param bool $secure
+     * @return mixed
+     */
+    function script($url, $attributes = array(), $secure = false)
+    {
+        return HTML::script('packages/pingpong/admin/' . $url, $attributes, $secure);
+    }
 }
