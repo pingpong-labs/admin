@@ -27,6 +27,25 @@ class InstallCommand extends Command {
 	 */
 	public function fire()
 	{
+		if($this->option('only-menu'))
+		{
+			$this->installMenus();
+
+			$this->info("Menus installed successfully.");
+		}
+		else
+		{
+			$this->installPackage();
+		}
+	}
+
+	/**
+	 * Install the package.
+	 * 
+	 * @return void
+	 */
+	protected function installPackage()
+	{
 		$this->call('admin:migration');
 
 		$this->call('migrate:publish', ['package' => 'pingpong/trusty']);
@@ -59,6 +78,19 @@ class InstallCommand extends Command {
 
 			$this->laravel['files']->put($file, $contents);
 		}		
+	}
+
+
+	/**
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
+	protected function getOptions()
+	{
+		return array(
+			array('--only-menu', null, InputOption::VALUE_NONE, 'An example option.'),
+		);
 	}
 
 }
