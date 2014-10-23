@@ -21,16 +21,6 @@ class AdminRefreshCommand extends Command {
 	protected $description = 'Refresh the migration and re-seed the database.';
 
 	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
-	/**
 	 * Execute the console command.
 	 *
 	 * @return mixed
@@ -39,8 +29,7 @@ class AdminRefreshCommand extends Command {
 	{
 		$this->call('migrate:refresh');
 		
-		$this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
-
+		$this->call('admin:seed');
 	}
 
 }
