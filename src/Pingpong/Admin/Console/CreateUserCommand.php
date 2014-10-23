@@ -1,57 +1,53 @@
 <?php namespace Pingpong\Admin\Console;
 
 use Illuminate\Console\Command;
-use Pingpong\Admin\Entities\User;
-use Pingpong\Trusty\Entities\Role;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Pingpong\Admin\Entities\Role;
+use Pingpong\Admin\Entities\User;
 
 class CreateUserCommand extends Command {
 
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-    protected $name = 'admin:create-user';
+	/**
+	 * The console command name.
+	 *
+	 * @var string
+	 */
+	protected $name = 'admin:create-user';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new user';
+	/**
+	 * The console command description.
+	 *
+	 * @var string
+	 */
+	protected $description = 'Create a new user';
 
+	/**
+	 * Execute the console command.
+	 *
+	 * @return mixed
+	 */
+	public function fire()
+	{	
+		$name = $this->ask('Name : ');
+		$email = $this->ask('Email : ');
+		$username = $this->ask('Username : ');
+		$password = $this->secret('Password : ');
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function fire()
-    {
-        $name = $this->ask("Name : ");
+		$user = User::firstOrcreate(compact('name', 'username', 'email', 'password'));
 
-        $username = $this->ask("Username : ");
+		$this->line('Select role:');
 
-        $email = $this->ask("Email : ");
+		foreach (Role::all() as $role)
+		{
+			$this->line($role->id . '. ' . $role->name);
+		}
 
-        $password = $this->secret("Password : ");
+		$role = $this->ask("Role number : ");
 
-        $this->line("Select a role : ");
+		$user->addRole($role);
 
-        foreach(Role::all() as $role)
-        {
-            $this->line($role->id . ". {$role->name}");
-        }
-
-        $role = $this->ask("Enter the number of role : ");
-
-        $user = User::create(compact('name', 'username', 'email', 'password'));
-
-        $user->addRole($role);
-
-        $this->info("User [{$user->name}] created successfully.");
-    }
+		$this->info("User [{$user->name}] created successfully.");
+	}
 
 }
