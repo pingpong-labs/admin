@@ -12,6 +12,15 @@ class AdminServiceProvider extends ServiceProvider {
 	protected $defer = false;
 
 	/**
+	 * The providers package.
+	 * 
+	 * @var array
+	 */
+	protected $providers = [
+		'Console'
+	];
+
+	/**
 	 * Bootstrap the application events.
 	 *
 	 * @return void
@@ -19,6 +28,7 @@ class AdminServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('pingpong/admin');
+
 		$this->registerFiles();
 	}
 
@@ -45,42 +55,20 @@ class AdminServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->registerCommands();
+		$this->registerProviders();
 	}
 
 	/**
-	 * Register the commands.
+	 * Register the providers.
 	 * 
 	 * @return void
 	 */
-	public function registerCommands()
+	public function registerProviders()
 	{
-		$this->app['pingpong.console.install'] = $this->app->share(function($app)
+		foreach ($this->providers as $provider)
 		{
-			return new Console\AdminInstallCommand;
-		});
-		
-		$this->app['pingpong.console.refresh'] = $this->app->share(function($app)
-		{
-			return new Console\AdminRefreshCommand;
-		});
-
-		$this->app['pingpong.console.controller'] = $this->app->share(function($app)
-		{
-			return new Console\AdminControllerCommand;
-		});
-
-		$this->app['pingpong.console.migration'] = $this->app->share(function($app)
-		{
-			return new Console\AdminMigrationCommand;
-		});
-
-		$this->commands([
-			'pingpong.console.install',
-			'pingpong.console.refresh',
-			'pingpong.console.controller',
-			'pingpong.console.migration',
-		]);
+			$this->app->register('Pingpong\\Admin\\Providers\\' . $provider . 'ServiceProvider');
+		}
 	}
 
 	/**

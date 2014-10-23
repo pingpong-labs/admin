@@ -42,8 +42,8 @@ class AdminInstallCommand extends Command {
 		$this->call('migrate:publish', ['package' => 'pingpong/trusty']);
 		
 		$this->call('migrate');
-		
-		$this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
+
+		$this->call('admin:seed');
 
 		$this->call('config:publish', ['package' => 'pingpong/admin']);
 
