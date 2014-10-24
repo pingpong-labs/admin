@@ -11,8 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "laravel/framework": "4.*",
-        "illuminate/support": "4.*",
+        "pingpong/testing": "1.*",
         "pingpong/menus": "1.0.*",
         "pingpong/presenters": "1.0.*",
         "pingpong/trusty": "1.0.*"
