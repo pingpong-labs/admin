@@ -1,5 +1,6 @@
 <?php namespace Pingpong\Admin;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider {
@@ -17,8 +18,30 @@ class AdminServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $providers = [
-		'Console'
+	    'Pingpong\Menus\MenusServiceProvider',
+	    'Pingpong\Trusty\TrustyServiceProvider',
+	    'Pingpong\Admin\Providers\ConsoleServiceProvider',
 	];
+
+	protected $facades = [
+	    'Menu'				=> 'Pingpong\Menus\Facades\Menu',
+		'Role'			    => 'Pingpong\Trusty\Entities\Role',
+		'Permission'	    => 'Pingpong\Trusty\Entities\Permission',
+		'Trusty'	    	=> 'Pingpong\Trusty\Facades\Trusty',
+	];
+
+	public function registerProviders()
+	{
+		foreach ($this->providers as $provider)
+		{
+			$this->app->register($provider);
+		}
+	}
+
+	public function registerFacades()
+	{
+		AliasLoader::getInstance($this->facades);		
+	}
 
 	/**
 	 * Bootstrap the application events.
@@ -56,19 +79,8 @@ class AdminServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->registerProviders();
-	}
 
-	/**
-	 * Register the providers.
-	 * 
-	 * @return void
-	 */
-	public function registerProviders()
-	{
-		foreach ($this->providers as $provider)
-		{
-			$this->app->register('Pingpong\\Admin\\Providers\\' . $provider . 'ServiceProvider');
-		}
+		$this->registerFacades();
 	}
 
 	/**
