@@ -1,0 +1,82 @@
+body, table, a{
+	font-size: 13px;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	color: #333;
+}
+
+.page-header{
+	margin-top: 0px;
+}
+
+#tracking{
+	font-family: menlo, monaco, monospace;
+}
+
+a, 
+a:hover,
+a:focus{
+	color: #E5453E;
+}
+
+.navbar-admin{
+	background-color: #E5453E;
+}
+
+.navbar-admin * a{
+	color: #FFF !important;
+}
+
+.navbar-admin .dropdown-menu>li>a{
+	color: #333 !important;
+}
+
+.navbar-admin .navbar-nav>li>a {
+	margin-right: 1px;
+}
+
+.navbar-admin .navbar-nav>li>a:hover,
+.navbar-admin .dropdown-menu>li>a:hover,
+.navbar-admin .navbar-nav>.active>a,
+.navbar-admin .navbar-nav>.active>a:hover,
+.navbar-admin .navbar-nav>.open>a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li.active > a,
+.dropdown-menu > li > a:focus 
+.navbar-admin .navbar-nav>.active>a:focus{
+	background-color: #F6564F !important;
+	color: #FFF !important;
+}
+
+.btn-primary,
+.btn-primary:active,
+.btn-primary:focus{
+	background-color: #E5453E !important;
+	border: 0;
+}
+
+.panel-admin{
+	border-color: #F7675F;
+}
+
+.panel-admin > .panel-heading{
+	background-color: #F7675F;
+	color: #FFF;
+}
+
+body{
+	background: #dedede;
+}
+
+div.container.main-content {
+	background: rgb(255, 255, 255);
+	top: -20px;
+	position: relative;
+	padding-top: 15px;
+}
+
+footer.container {
+	background: #FFF;
+	margin-bottom: 50px;
+	padding: 10px;
+	margin-top: -19px;
+}
