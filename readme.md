@@ -19,17 +19,6 @@ Next, Add new service provider in `app/config/app.php`.
 
 ```php
     'Pingpong\Admin\AdminServiceProvider',
-    'Pingpong\Menus\MenusServiceProvider',
-    'Pingpong\Trusty\TrustyServiceProvider',
-```
-
-Next, Add new aliases in `app/config/app.php`.
-
-```php
-    'Menu'				=> 'Pingpong\Menus\Facades\Menu',
-    'Role'			    => 'Pingpong\Trusty\Entities\Role',
-    'Permission'	    => 'Pingpong\Trusty\Entities\Permission',
-    'Trusty'	    	=> 'Pingpong\Trusty\Facades\Trusty',
 ```
 
 Next, update your user model to extend the `Pingpong\Admin\Entities\User` class. Looks like this.
