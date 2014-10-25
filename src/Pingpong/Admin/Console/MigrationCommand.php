@@ -27,16 +27,11 @@ class MigrationCommand extends Command {
 	 */
 	public function fire()
 	{
-		$destinationPath = app_path('database/migrations');
+		$path = realpath(__DIR__ . '/../../../../src/migrations/');
 		
-		$migrationPath   = __DIR__ . '/../../../migrations/';
-		
-		if($this->laravel['files']->copyDirectory($migrationPath, $destinationPath))
-		{
-			return $this->info('Migration published!');
-		}
+		$this->laravel['files']->copyDirectory($path, $this->laravel['path'] . '/database/migrations');
 
-		return $this->error('Unable to copy the migration.'); 
+		$this->info("Migrations published successfully.");
 	}
 
 }

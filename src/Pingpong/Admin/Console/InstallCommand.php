@@ -27,16 +27,7 @@ class InstallCommand extends Command {
 	 */
 	public function fire()
 	{
-		if($this->option('only-menu'))
-		{
-			$this->installMenus();
-
-			$this->info("Menus installed successfully.");
-		}
-		else
-		{
-			$this->installPackage();
-		}
+		$this->installPackage();
 	}
 
 	/**
@@ -46,21 +37,51 @@ class InstallCommand extends Command {
 	 */
 	protected function installPackage()
 	{
-		$this->call('admin:migration');
+		if($this->confirm('Do you want publish the pingpong/admin\'s migrations ?'))
+			$this->call('admin:migration');
 
-		$this->call('migrate:publish', ['package' => 'pingpong/trusty']);
+		if($this->confirm('Do you want publish the pingpong/trusty\'s migrations ?'))
+		{
+			if($this->option('bench'))
+			{
+				$this->publishTrustyMigrations();
+			}
+			else
+			{
+				$this->call('migrate:publish', ['package' => 'pingpong/trusty']);
+			}
+		}
 		
-		$this->call('migrate');
+		if($this->confirm('Do you want run all migrations now ?'))
+			$this->call('migrate');
+		
+		if($this->confirm('Do you want run the pingpong/admin\'s seeders now ?'))
+			$this->call('admin:seed');
+		
+		if($this->confirm('Do you want publish configuration files from pingpong/admin package ?'))
+			$this->call('config:publish', ['package' => 'pingpong/admin']);
+		
+		if($this->confirm('Do you want publish assets from pingpong/admin package ?'))
+			$this->call('asset:publish', ['package' => 'pingpong/admin']);
 
-		$this->call('admin:seed');
-
-		$this->call('config:publish', ['package' => 'pingpong/admin']);
-
-		$this->call('asset:publish', ['package' => 'pingpong/admin']);
-
-		$this->installMenus();
-
+		if($this->confirm('Do you want create the app/menus.php file ?'))
+			$this->installMenus();
+		
 		$this->call('dump-autoload');
+	}
+
+	public function publishTrustyMigrations()
+	{
+		$path = realpath(__DIR__ . '/../../../../vendor/pingpong/trusty/src/migrations/');
+		
+		$published = $this->laravel['migration.publisher']->publish(
+			$path, $this->laravel['path'].'/database/migrations'
+		);
+
+		foreach ($published as $migration)
+		{
+			$this->line('<info>Published:</info> '.basename($migration));
+		}
 	}
 
 	/**
@@ -77,7 +98,13 @@ class InstallCommand extends Command {
 			$contents = $this->laravel['files']->get(__DIR__.'/stubs/menus.txt');
 
 			$this->laravel['files']->put($file, $contents);
-		}		
+
+			$this->info("Created : {$file}");
+		}	
+		else
+		{
+			$this->line("File already exists at path : {$file}");
+		}	
 	}
 
 
@@ -89,7 +116,7 @@ class InstallCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-			array('--only-menu', null, InputOption::VALUE_NONE, 'An example option.'),
+			array('--bench', null, InputOption::VALUE_NONE, 'Indicates the package is used in workbench.'),
 		);
 	}
 
