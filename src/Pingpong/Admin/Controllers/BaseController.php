@@ -1,6 +1,11 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-class BaseController extends \Controller {
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
+use Illuminate\Routing\Controller;
+
+class BaseController extends Controller {
 
     /**
      * Show view.
@@ -12,7 +17,7 @@ class BaseController extends \Controller {
      */
     public function view($view, $data = array(), $mergeData = array())
     {
-        return app('view')->make('admin::' . $view, $data, $mergeData);
+        return View::make('admin::' . $view, $data, $mergeData);
     }
 
     /**
@@ -26,7 +31,7 @@ class BaseController extends \Controller {
      */
     public function redirect($route, $parameters = array(), $status = 302, $headers = array())
     {
-        return app('redirect')->route('admin.' . $route, $parameters, $status, $headers);
+        return Redirect::route('admin.' . $route, $parameters, $status, $headers);
     }
 
     /**
@@ -36,6 +41,6 @@ class BaseController extends \Controller {
      */
     public function inputAll()
     {
-        return app('request')->all();
+        return Input::all();
     }
 }

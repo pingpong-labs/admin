@@ -27,7 +27,34 @@ class InstallCommand extends Command {
      */
     public function fire()
     {
-        $this->installPackage();
+        if (getenv('TESTING'))
+        {
+            $this->installPackageTest();
+        }
+        else
+        {
+            $this->installPackage();
+        }
+    }
+
+    /**
+     * Install package using testing environment.
+     *
+     * @return void
+     */
+    private function installPackageTest()
+    {
+        $this->call('admin:migration');
+
+        $this->publishTrustyMigrations();
+
+        $this->call('migrate');
+
+        $this->call('admin:seed');
+
+        $this->installMenus();
+
+        // $this->call('dump-autoload');
     }
 
     /**

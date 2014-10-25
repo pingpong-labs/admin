@@ -1,6 +1,6 @@
 <?php
 
-class SiteControllerTest extends TestCase {
+class SiteControllerTest extends DatabaseTestCase {
 
 	public function setUp()
 	{

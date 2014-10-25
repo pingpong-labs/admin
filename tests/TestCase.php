@@ -1,6 +1,6 @@
 <?php
 
-class TestCase extends Pingpong\Testing\TestCase {
+abstract class TestCase extends Pingpong\Testing\TestCase {
 
     protected function getPackageProviders()
     {
@@ -14,6 +14,17 @@ class TestCase extends Pingpong\Testing\TestCase {
      */
     protected function registerBootedCallback($app)
     {
+        $this->setupEnvironment($app);
+
+        $this->setupDatabase($app);
+
+        $app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
+
+        $app['log']->useFiles(__DIR__ . '/package.log');
+    }
+
+    protected function setupEnvironment($app)
+    {
         putenv('TESTING=1');
 
         if(gethostname() == 'gravitano-desktop')
@@ -23,8 +34,19 @@ class TestCase extends Pingpong\Testing\TestCase {
             putenv('DB_USERNAME=pingpong');
             putenv('DB_PASSWORD=1234');
         }
+    }
 
-        $options = array(
+    protected function setupDatabase($app)
+    {
+        $app['config']->set('database.default', 'mysql');
+
+        $app['config']->set('database.connections.sqlite', [
+            'driver'   => 'sqlite',
+            'database' => __DIR__ . '/testing.db',
+            'prefix'   => '',
+        ]);
+
+        $app['config']->set('database.connections.mysql', [
             'driver'    => 'mysql',
             'host'      => getenv('DB_HOST'),
             'database'  => getenv('DB_NAME'),
@@ -33,15 +55,33 @@ class TestCase extends Pingpong\Testing\TestCase {
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-        );
+        ]);
 
-        $app['config']->set('database.connections.mysql', $options);
+        $app['config']->set('database.connections.pgsql', [
+            'driver'   => 'pgsql',
+            'host'     => getenv('DB_HOST'),
+            'database' => getenv('DB_NAME'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PASSWORD'),
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+        ]);
+    }
 
-        $app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
+    /**
+     * @return array
+     */
+    protected function getApplicationPaths()
+    {
+        $basePath = realpath(__DIR__.'/../fixture');
 
-        ini_set('display_errors', '0');     # don't show any errors...
-        
-        error_reporting(E_ALL | E_STRICT);  # ...but do log them
+        return [
+            'app'     => "{$basePath}/app",
+            'public'  => "{$basePath}/public",
+            'base'    => $basePath,
+            'storage' => "{$basePath}/app/storage",
+        ];
     }
     
 }

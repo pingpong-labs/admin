@@ -1,6 +1,6 @@
 <?php
 
-class LoginControllerTest extends TestCase {
+class LoginControllerTest extends DatabaseTestCase {
 
 	public function testGetIndex()
 	{

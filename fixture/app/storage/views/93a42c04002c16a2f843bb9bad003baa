@@ -1,0 +1,67 @@
+<?php $__env->startSection('content'); ?>
+
+<h3 class="page-header admin-header">Hello, <?php echo Auth::user()->name; ?>.</h3>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-admin">
+			<div class="panel-heading">
+				Users
+			</div>
+			<table class="table">
+				<tr>
+					<td>All Users</td>
+					<td><?php echo Pingpong\Admin\Entities\User::count(); ?></td>
+				</tr>
+				<?php foreach(Role::all() as $role): ?>
+				<tr>
+					<td><?php echo Str::plural($role->name); ?></td>
+					<td><?php echo Pingpong\Admin\Entities\User::hasRole($role->slug)->count(); ?></td>
+				</tr>
+				<?php endforeach; ?>
+			</table>
+		</div>
+
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-admin">
+			<div class="panel-heading">
+				Visitors
+			</div>
+			<table class="table">
+				<tr>
+					<th>Total Hits</th>
+					<td><?php echo Pingpong\Admin\Entities\Visitor::sum('hits'); ?></td>
+				</tr>
+				<tr>
+					<th>Page Hits Today </th>
+					<td><?php echo Pingpong\Admin\Entities\Visitor::today()->sum('hits'); ?></td>
+				</tr>
+				<tr>
+					<th>Online Users</th>
+					<td><?php echo Pingpong\Admin\Entities\Visitor::getOnlineUsers(); ?></td>
+				</tr>
+				<tr>
+					<th>Total Visitors Today</th>
+					<td><?php echo Pingpong\Admin\Entities\Visitor::today()->count(); ?></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+	
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('style'); ?>
+<style type="text/css">
+	td{
+		widtd:50px;
+	}
+	td{
+		text-indent: 10px;
+	}
+</style>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin::layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
