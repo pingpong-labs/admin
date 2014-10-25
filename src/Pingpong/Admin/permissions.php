@@ -8,7 +8,7 @@ if(Auth::check())
 	}
 	catch(PDOException $e)
 	{
-		
+		//
 	}
 
 	Trusty::when(['admin/users', 'admin/users/*'], 'manage_users');
