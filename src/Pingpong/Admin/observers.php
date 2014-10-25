@@ -1,24 +1,7 @@
 <?php
 
-Event::listen('admin::routes', function ()
-{
-    $permalink = option('post.permalink', '{slug}');
+Event::listen('admin::routes', 'Pingpong\Admin\Observers\RoutesOberver');
 
-    $controller = 'Pingpong\Admin\Controllers\SiteController';
+Event::listen('admin::visitors.track', 'Pingpong\Admin\Observers\VisitorObserver');
 
-    Route::get($permalink, ['as' => 'articles.show', 'uses' => $controller . '@showArticle']);
-});
-
-Event::listen('admin::visitors.track', function ()
-{
-    $isOnAdmin = Request::is('admin') || Request::is('admin/*');
-    if ( ! $isOnAdmin)
-    {
-        Visitor::track();
-    }
-});
-
-Event::listen('admin::menus', function ()
-{
-    require __DIR__ . '/menus.php';
-});
+Event::listen('admin::menus', 'Pingpong\Admin\Observers\MenusObserver');
