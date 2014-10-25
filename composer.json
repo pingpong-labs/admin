@@ -29,5 +29,10 @@
             "Pingpong\\Admin": "src/"
         }
     },
+    "autoload-dev": {
+        "files": [
+            "tests/TestCase.php"
+        ]
+    },
     "minimum-stability": "stable"
 }

@@ -13,7 +13,7 @@
 			<table class="table">
 				<tr>
 					<td>All Users</td>
-					<td>{{ User::count() }}</td>
+					<td>{{ Pingpong\Admin\Entities\User::count() }}</td>
 				</tr>
 				@foreach(Role::all() as $role)
 				<tr>

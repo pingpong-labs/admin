@@ -1,13 +1,13 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-session_start();
+session_check();
 
 use Pingpong\Admin\Entities\Option;
 use Pingpong\Admin\Entities\Article;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SiteController extends BaseController
-{	
+class SiteController extends BaseController {
+
 	/**
 	 * Admin dashboard.
 	 * 
@@ -39,7 +39,10 @@ class SiteController extends BaseController
 	 */
 	public function settings()
 	{
-		define('STDIN', fopen ("php://stdin","r"));
+		if( ! defined('STDIN'))
+		{
+			define('STDIN', fopen ("php://stdin","r"));
+		}
 
 		return $this->view('settings');
 	}

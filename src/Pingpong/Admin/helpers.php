@@ -94,3 +94,11 @@ if ( ! function_exists('script'))
         return HTML::script('packages/pingpong/admin/' . $url, $attributes, $secure);
     }
 }
+
+if ( ! function_exists('session_check'))
+{
+    function session_check()
+    {
+        if( ! getenv('TESTING')) session_start();
+    }
+}

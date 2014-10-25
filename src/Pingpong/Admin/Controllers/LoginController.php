@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-session_start();
+session_check();
 
 class LoginController extends BaseController
 {
@@ -30,6 +30,11 @@ class LoginController extends BaseController
        		
        		return $this->redirect('home')->withFlashMessage('Login Success!');
        	} 
+
+       	if(getenv('TESTING'))
+       	{
+	        return app('redirect')->to('admin/login')->withFlashMessage("Login failed!")->withFlashType('danger');
+       	}
 
         return app('redirect')->back()->withFlashMessage("Login failed!")->withFlashType('danger');
 	}
