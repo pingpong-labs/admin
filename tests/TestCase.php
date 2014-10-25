@@ -21,7 +21,7 @@ class TestCase extends Pingpong\Testing\TestCase {
             'host'      => getenv('DB_HOST') ?: 'localhost',
             'database'  => getenv('DB_NAME') ?: 'pingpong_packages',
             'username'  => getenv('DB_USERNAME') ?: 'pingpong',
-            'password'  => getenv('DB_PASSWORD') ?: '1234',
+            'password'  => getenv('DB_PASSWORD') ?: '',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
