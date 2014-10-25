@@ -1,5 +1,7 @@
 ## Simple Administrator Package for Laravel 4+
 
+[![Build Status](https://travis-ci.org/pingpong-labs/admin.svg?branch=master)](https://travis-ci.org/pingpong-labs/admin)
+
 ### Server Requirements
 
 - PHP 5.4 or higher
@@ -52,6 +54,11 @@ For more documentation please see [wiki](https://github.com/pingpong-labs/admin/
 ### Screencasts
 
 https://www.dropbox.com/s/foyidbk7fzqywco/pingpong-admin-tutorial.mp4
+
+### Todos
+
+- Add support for all database drivers.
+- Add more tests.
 
 ### License
 
