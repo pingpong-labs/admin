@@ -3,12 +3,8 @@
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Input;
 
-/**
- * Class ImageUploader
- * @package Pingpong\Uploader
- */
-class ImageUploader
-{
+class ImageUploader {
+
     /**
      * @var string
      */
@@ -21,6 +17,7 @@ class ImageUploader
     public function setExt($ext)
 	{
 		$this->ext = $ext;
+
 		return $this;
 	}
 
