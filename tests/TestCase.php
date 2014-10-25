@@ -30,6 +30,8 @@ class TestCase extends Pingpong\Testing\TestCase {
         $app['config']->set('database.connections.mysql', $options);
 
         $app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
+
+        error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE);
     }
     
 }
