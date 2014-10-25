@@ -18,15 +18,18 @@ class TestCase extends Pingpong\Testing\TestCase {
 
         if(gethostname() == 'gravitano-desktop')
         {
+            putenv('DB_HOST=localhost');
+            putenv('DB_NAME=pingpong_packages');
+            putenv('DB_USERNAME=pingpong');
             putenv('DB_PASSWORD=1234');
         }
 
         $options = array(
             'driver'    => 'mysql',
-            'host'      => getenv('DB_HOST') ?: 'localhost',
-            'database'  => getenv('DB_NAME') ?: 'pingpong_packages',
-            'username'  => getenv('DB_USERNAME') ?: 'pingpong',
-            'password'  => getenv('DB_PASSWORD') ?: '',
+            'host'      => getenv('DB_HOST'),
+            'database'  => getenv('DB_NAME'),
+            'username'  => getenv('DB_USERNAME'),
+            'password'  => getenv('DB_PASSWORD'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
