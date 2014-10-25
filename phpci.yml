@@ -1,0 +1,35 @@
+build_settings:
+    clone_depth: 1 # depth of 1 is a shallow clone, remove this line to clone entire repo
+    ignore:
+        - "vendor"
+        - "tests"
+    mysql:
+        host: "localhost"
+        user: "phpci"
+        pass: ""
+    env:
+        APP_ENV: "production"
+        DB_NAME: "phpci_pingpongadmin"
+        DB_USERNAME: "phpci"
+        DB_PASSWORD: ""
+        DB_HOST: "localhost"
+
+setup:
+    mysql:
+        - "DROP DATABASE IF EXISTS phpci_pingpongadmin;"
+        - "CREATE DATABASE phpci_pingpongadmin;"
+    composer:
+        action: "install"
+
+test:
+    php_unit:
+    php_mess_detector:
+        allow_failures: true
+    php_code_sniffer:
+        standard: "PSR2"
+    php_cpd:
+        allow_failures: true
+
+complete:
+    mysql:
+        - "DROP DATABASE IF EXISTS phpci_pingpongadmin;"
