@@ -8,7 +8,7 @@
 
 Open your composer.json file, and add the new required package.
 ```
-	"pingpong/admin": "dev-master" 
+	"pingpong/admin": "1.*" 
 ```
 Next, open a terminal and run.
 ```
