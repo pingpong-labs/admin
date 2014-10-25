@@ -10,7 +10,7 @@ class AuthFilter extends Filter {
      */
     public function filter()
     {
-        if( ! Auth::check() or ! Auth::user()->is('admin'))
+        if ( ! Auth::check() or ! Auth::user()->is('admin'))
         {
             Auth::logout();
 

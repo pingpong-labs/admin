@@ -1,171 +1,171 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-use Pingpong\Admin\Entities\Role;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Pingpong\Admin\Entities\Role;
 
 class RolesController extends BaseController {
-	
-	/**
-	 * @var \Pingpong\Admin\Entities\Role
-	 */
-	protected $roles;
 
-	/**
-	 * @param \Pingpong\Admin\Entities\Role $roles
-	 */
-	public function __construct(Role $roles)
-	{
-		$this->roles = $roles;
-	}
-	
-	/**
-	 * Redirect not found.
-	 *
-	 * @return Response
-	 */
-	protected function redirectNotFound()
-	{
-		return $this->redirect('roles.index');
-	}
+    /**
+     * @var \Pingpong\Admin\Entities\Role
+     */
+    protected $roles;
 
-	/**
-	 * Display a listing of roles
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$roles = $this->roles->paginate(10);
-		$no 		  = $roles->getFrom();
+    /**
+     * @param \Pingpong\Admin\Entities\Role $roles
+     */
+    public function __construct(Role $roles)
+    {
+        $this->roles = $roles;
+    }
 
-		return $this->view('roles.index', compact('roles', 'no'));
-	}
+    /**
+     * Redirect not found.
+     *
+     * @return Response
+     */
+    protected function redirectNotFound()
+    {
+        return $this->redirect('roles.index');
+    }
 
-	/**
-	 * Show the form for creating a new role
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return $this->view('roles.create');
-	}
+    /**
+     * Display a listing of roles
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $roles = $this->roles->paginate(10);
+        $no = $roles->getFrom();
 
-	/**
-	 * Store a newly created role in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$data 		= $this->inputAll();
-		$rules      = $this->roles->getRules();
-		$validator 	= \Validator::make($data, $rules);
+        return $this->view('roles.index', compact('roles', 'no'));
+    }
 
-		if ($validator->fails())
-		{
-			return \Redirect::back()->withErrors($validator)->withInput();
-		}
+    /**
+     * Show the form for creating a new role
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return $this->view('roles.create');
+    }
 
-		$this->roles->create($data);
+    /**
+     * Store a newly created role in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $data = $this->inputAll();
+        $rules = $this->roles->getRules();
+        $validator = \Validator::make($data, $rules);
 
-		return $this->redirect('roles.index');
-	}
+        if ($validator->fails())
+        {
+            return \Redirect::back()->withErrors($validator)->withInput();
+        }
 
-	/**
-	 * Display the specified role.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		try
-		{
-			$role = $this->roles->findOrFail($id);
-			return $this->view('roles.show', compact('role'));
-		}
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+        $this->roles->create($data);
 
-	/**
-	 * Show the form for editing the specified role.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{		
-		try
-		{
-			$role = $this->roles->findOrFail($id);
+        return $this->redirect('roles.index');
+    }
 
-			$permission_role = $role->permissions->lists('id');
+    /**
+     * Display the specified role.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        try
+        {
+            $role = $this->roles->findOrFail($id);
+            return $this->view('roles.show', compact('role'));
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
-			return $this->view('roles.edit', compact('role', 'permission_role'));
-		}		
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+    /**
+     * Show the form for editing the specified role.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        try
+        {
+            $role = $this->roles->findOrFail($id);
 
-	/**
-	 * Update the specified role in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		try
-		{
-			$data 		=	$this->inputAll();
-			$role = 	$this->roles->findOrFail($id);
-			$rules		=   $this->roles->getUpdateRules();
+            $permission_role = $role->permissions->lists('id');
 
-			$validator  = \Validator::make($data, $rules);
+            return $this->view('roles.edit', compact('role', 'permission_role'));
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
-			if ($validator->fails())
-			{
-				return \Redirect::back()->withErrors($validator)->withInput();
-			}
+    /**
+     * Update the specified role in storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        try
+        {
+            $data = $this->inputAll();
+            $role = $this->roles->findOrFail($id);
+            $rules = $this->roles->getUpdateRules();
 
-			$role->update($data);
+            $validator = \Validator::make($data, $rules);
 
-			$role->permissions()->detach($role->permissions->lists('id'));
+            if ($validator->fails())
+            {
+                return \Redirect::back()->withErrors($validator)->withInput();
+            }
 
-			$role->permissions()->attach(\Input::get('permissions'));
+            $role->update($data);
 
-			return $this->redirect('roles.index');
-		}
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            $role->permissions()->detach($role->permissions->lists('id'));
 
-	/**
-	 * Remove the specified role from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		try
-		{
-			$this->roles->destroy($id);
+            $role->permissions()->attach(\Input::get('permissions'));
 
-			return $this->redirect('roles.index');
-		}		
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            return $this->redirect('roles.index');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
+
+    /**
+     * Remove the specified role from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        try
+        {
+            $this->roles->destroy($id);
+
+            return $this->redirect('roles.index');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
 }

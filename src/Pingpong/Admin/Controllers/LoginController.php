@@ -2,40 +2,40 @@
 
 session_check();
 
-class LoginController extends BaseController
-{
-	/**
-	 * Show login page.
-	 * 
-	 * @return mixed 
-	 */
-	public function index()
-	{
-		return $this->view('login');
-	}
+class LoginController extends BaseController {
 
-	/**
-	 * Login action.
-	 * 
-	 * @return mixed
-	 */
-	public function store()
-	{
-		$credentials = \Input::only('username', 'password');
-		$remember    = \Input::has('remember');
-       	
-       	if(\Auth::attempt($credentials, $remember))
-       	{
-       		$_SESSION['admin'] = \Auth::id();
-       		
-       		return $this->redirect('home')->withFlashMessage('Login Success!');
-       	} 
+    /**
+     * Show login page.
+     *
+     * @return mixed
+     */
+    public function index()
+    {
+        return $this->view('login');
+    }
 
-       	if(getenv('TESTING'))
-       	{
-	        return app('redirect')->to('admin/login')->withFlashMessage("Login failed!")->withFlashType('danger');
-       	}
+    /**
+     * Login action.
+     *
+     * @return mixed
+     */
+    public function store()
+    {
+        $credentials = \Input::only('username', 'password');
+        $remember = \Input::has('remember');
+
+        if (\Auth::attempt($credentials, $remember))
+        {
+            $_SESSION['admin'] = \Auth::id();
+
+            return $this->redirect('home')->withFlashMessage('Login Success!');
+        }
+
+        if (getenv('TESTING'))
+        {
+            return app('redirect')->to('admin/login')->withFlashMessage("Login failed!")->withFlashType('danger');
+        }
 
         return app('redirect')->back()->withFlashMessage("Login failed!")->withFlashType('danger');
-	}
+    }
 }

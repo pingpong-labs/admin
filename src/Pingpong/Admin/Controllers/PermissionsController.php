@@ -1,167 +1,167 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-use Pingpong\Admin\Entities\Permission;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Pingpong\Admin\Entities\Permission;
 
 class PermissionsController extends BaseController {
-	
-	/**
-	 * @var \Permission
-	 */
-	protected $permissions;
 
-	/**
-	 * @param \Permission $permissions
-	 */
-	public function __construct(Permission $permissions)
-	{
-		$this->permissions = $permissions;
-	}
-	
-	/**
-	 * Redirect not found.
-	 *
-	 * @return Response
-	 */
-	protected function redirectNotFound()
-	{
-		return $this->redirect('permissions.index');
-	}
+    /**
+     * @var \Permission
+     */
+    protected $permissions;
 
-	/**
-	 * Display a listing of permissions
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$permissions = $this->permissions->paginate(10);
+    /**
+     * @param \Permission $permissions
+     */
+    public function __construct(Permission $permissions)
+    {
+        $this->permissions = $permissions;
+    }
 
-		$no = $permissions->getFrom();
+    /**
+     * Redirect not found.
+     *
+     * @return Response
+     */
+    protected function redirectNotFound()
+    {
+        return $this->redirect('permissions.index');
+    }
 
-		return $this->view('permissions.index', compact('permissions', 'no'));
-	}
+    /**
+     * Display a listing of permissions
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $permissions = $this->permissions->paginate(10);
 
-	/**
-	 * Show the form for creating a new permission
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return $this->view('permissions.create');
-	}
+        $no = $permissions->getFrom();
 
-	/**
-	 * Store a newly created permission in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$data 		= $this->inputAll();
-		$rules      = $this->permissions->getRules();
-		$validator 	= \Validator::make($data, $rules);
+        return $this->view('permissions.index', compact('permissions', 'no'));
+    }
 
-		if ($validator->fails())
-		{
-			return \Redirect::back()->withErrors($validator)->withInput();
-		}
+    /**
+     * Show the form for creating a new permission
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return $this->view('permissions.create');
+    }
 
-		$this->permissions->create($data);
+    /**
+     * Store a newly created permission in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $data = $this->inputAll();
+        $rules = $this->permissions->getRules();
+        $validator = \Validator::make($data, $rules);
 
-		return $this->redirect('permissions.index');
-	}
+        if ($validator->fails())
+        {
+            return \Redirect::back()->withErrors($validator)->withInput();
+        }
 
-	/**
-	 * Display the specified permission.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		try
-		{
-			$permission = $this->permissions->findOrFail($id);
+        $this->permissions->create($data);
 
-			return $this->view('permissions.show', compact('permission'));
-		}
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+        return $this->redirect('permissions.index');
+    }
 
-	/**
-	 * Show the form for editing the specified permission.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{		
-		try
-		{
-			$permission = $this->permissions->findOrFail($id);
+    /**
+     * Display the specified permission.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        try
+        {
+            $permission = $this->permissions->findOrFail($id);
 
-			return $this->view('permissions.edit', compact('permission'));
-		}		
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            return $this->view('permissions.show', compact('permission'));
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
-	/**
-	 * Update the specified permission in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		try
-		{
-			$data 		=	$this->inputAll();
-			$permission = 	$this->permissions->findOrFail($id);
-			$rules		=   $this->permissions->getUpdateRules();
+    /**
+     * Show the form for editing the specified permission.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        try
+        {
+            $permission = $this->permissions->findOrFail($id);
 
-			$validator  = \Validator::make($data, $rules);
+            return $this->view('permissions.edit', compact('permission'));
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
-			if ($validator->fails())
-			{
-				return \Redirect::back()->withErrors($validator)->withInput();
-			}
+    /**
+     * Update the specified permission in storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        try
+        {
+            $data = $this->inputAll();
+            $permission = $this->permissions->findOrFail($id);
+            $rules = $this->permissions->getUpdateRules();
 
-			$permission->update($data);
+            $validator = \Validator::make($data, $rules);
 
-			return $this->redirect('permissions.index');
-		}
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            if ($validator->fails())
+            {
+                return \Redirect::back()->withErrors($validator)->withInput();
+            }
 
-	/**
-	 * Remove the specified permission from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		try
-		{
-			$this->permissions->destroy($id);
+            $permission->update($data);
 
-			return $this->redirect('permissions.index');
-		}		
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            return $this->redirect('permissions.index');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
+
+    /**
+     * Remove the specified permission from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        try
+        {
+            $this->permissions->destroy($id);
+
+            return $this->redirect('permissions.index');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
 }

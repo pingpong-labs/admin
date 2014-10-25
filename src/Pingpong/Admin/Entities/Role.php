@@ -2,19 +2,19 @@
 
 use Pingpong\Trusty\Entities\Role as BaseRole;
 
-class Role extends BaseRole
-{
-	protected $rules = array(
-		'name'	=>  'required',
-	);
+class Role extends BaseRole {
 
-	public function getRules()
-	{
-		return $this->rules;
-	}
+    protected $rules = array(
+        'name' => 'required',
+    );
 
-	public function getUpdateRules()
-	{
-		return $this->rules;
-	}
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    public function getUpdateRules()
+    {
+        return $this->rules;
+    }
 }

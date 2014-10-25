@@ -1,21 +1,21 @@
 <?php namespace Pingpong\Admin\Entities;
 
-class Category extends Model
-{
-	protected $fillable = ['name', 'slug', 'description'];
+class Category extends Model {
 
-	protected $rules = [
-		'name'	=>	'required',
-		'slug'	=>	'required|unique:categories,slug',
-	];
+    protected $fillable = ['name', 'slug', 'description'];
 
-	public function articles()
-	{
-		return $this->hasMany(__NAMESPACE__ . '\\Article');
-	}
+    protected $rules = [
+        'name' => 'required',
+        'slug' => 'required|unique:categories,slug',
+    ];
 
-	public function scopeOptions($query)
-	{
-		return $query->lists('name', 'id');
-	}
+    public function articles()
+    {
+        return $this->hasMany(__NAMESPACE__ . '\\Article');
+    }
+
+    public function scopeOptions($query)
+    {
+        return $query->lists('name', 'id');
+    }
 }

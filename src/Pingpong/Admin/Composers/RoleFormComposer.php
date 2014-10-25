@@ -4,11 +4,11 @@ use Pingpong\Admin\Entities\Permission;
 
 class RoleFormComposer {
 
-	public function compose($view)
-	{
-		$permissions = Permission::lists('name', 'id');
-		
-		$view->with(compact('permissions'));
-	}
+    public function compose($view)
+    {
+        $permissions = Permission::lists('name', 'id');
+
+        $view->with(compact('permissions'));
+    }
 
 }

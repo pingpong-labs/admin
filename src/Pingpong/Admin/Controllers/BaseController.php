@@ -1,7 +1,7 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 class BaseController extends \Controller {
-    
+
     /**
      * Show view.
      *
@@ -11,9 +11,9 @@ class BaseController extends \Controller {
      * @return mixed
      */
     public function view($view, $data = array(), $mergeData = array())
-	{
-		return app('view')->make('admin::' . $view, $data, $mergeData);
-	}
+    {
+        return app('view')->make('admin::' . $view, $data, $mergeData);
+    }
 
     /**
      * Redirect to a route.
@@ -25,9 +25,9 @@ class BaseController extends \Controller {
      * @return mixed
      */
     public function redirect($route, $parameters = array(), $status = 302, $headers = array())
-	{
-		return app('redirect')->route('admin.' . $route, $parameters, $status, $headers); 
-	}
+    {
+        return app('redirect')->route('admin.' . $route, $parameters, $status, $headers);
+    }
 
     /**
      * Get all input data.

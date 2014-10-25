@@ -2,122 +2,121 @@
 
 session_check();
 
-use Pingpong\Admin\Entities\Option;
-use Pingpong\Admin\Entities\Article;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Pingpong\Admin\Entities\Article;
+use Pingpong\Admin\Entities\Option;
 
 class SiteController extends BaseController {
 
-	/**
-	 * Admin dashboard.
-	 * 
-	 * @return \Response 
-	 */
-	public function index()
-	{
-		return $this->view('index');
-	}
+    /**
+     * Admin dashboard.
+     *
+     * @return \Response
+     */
+    public function index()
+    {
+        return $this->view('index');
+    }
 
-	/**
-	 * Logout.
-	 * 
-	 * @return \Response
-	 */
-	public function logout()
-	{
-		\Auth::logout();
-		
-		unset($_SESSION['admin']);
+    /**
+     * Logout.
+     *
+     * @return \Response
+     */
+    public function logout()
+    {
+        \Auth::logout();
 
-		return $this->redirect('login.index');
-	}
+        unset($_SESSION['admin']);
 
-	/**
-	 * Settings Page.
-	 * 
-	 * @return \Response 
-	 */
-	public function settings()
-	{
-		if( ! defined('STDIN'))
-		{
-			define('STDIN', fopen ("php://stdin","r"));
-		}
+        return $this->redirect('login.index');
+    }
 
-		return $this->view('settings');
-	}
+    /**
+     * Settings Page.
+     *
+     * @return \Response
+     */
+    public function settings()
+    {
+        if ( ! defined('STDIN'))
+        {
+            define('STDIN', fopen("php://stdin", "r"));
+        }
 
-	/**
-	 * Reinstall the application.
-	 * 
-	 * @return mixed
-	 */
-	public function reinstall()
-	{
-		\Artisan::call('migrate:refresh');
-		
-		\Artisan::call('db:seed');
+        return $this->view('settings');
+    }
 
-		return $this->redirect('settings')->withFlashMessage('Reinstalled success!');
-	}
-	
-	/**
-	 * Clear the application cache.
-	 * 
-	 * @return mixed 
-	 */
-	public function clearCache()
-	{
-		\Artisan::call('cache:clear');
+    /**
+     * Reinstall the application.
+     *
+     * @return mixed
+     */
+    public function reinstall()
+    {
+        \Artisan::call('migrate:refresh');
 
-		return $this->redirect('settings')->withFlashMessage('Application cache cleared!');
-	}
+        \Artisan::call('db:seed');
 
-	/**
-	 * Update the settings.
-	 * 
-	 * @return mixed 
-	 */
-	public function updateSettings()
-	{
-		$settings = \Input::all();
+        return $this->redirect('settings')->withFlashMessage('Reinstalled success!');
+    }
 
-		foreach ($settings as $key => $value)
-		{
-			$option = str_replace('_', '.', $key);
+    /**
+     * Clear the application cache.
+     *
+     * @return mixed
+     */
+    public function clearCache()
+    {
+        \Artisan::call('cache:clear');
 
-			Option::findByKey($option)->update([
-				'value'	=>	$value
-			]);
-		}
+        return $this->redirect('settings')->withFlashMessage('Application cache cleared!');
+    }
 
-		return \Redirect::back()->withFlashMessage('Settings has been successfully updated!');
-	}
+    /**
+     * Update the settings.
+     *
+     * @return mixed
+     */
+    public function updateSettings()
+    {
+        $settings = \Input::all();
 
-	/**
-	 * Show article.
-	 * 
-	 * @param  int $id 
-	 * @return mixed     
-	 */
-	public function showArticle($id)
-	{
-		try
-		{
-			$post = Article::with('user', 'category')
-				->whereId(intval($id))
-				->orWhere('slug', $id)
-				->firstOrFail()
-			;
+        foreach ($settings as $key => $value)
+        {
+            $option = str_replace('_', '.', $key);
 
-			$view = \Config::get('admin::post.view');
+            Option::findByKey($option)->update([
+                'value' => $value
+            ]);
+        }
 
-			return \View::make($view, compact('post')); 
-		}
+        return \Redirect::back()->withFlashMessage('Settings has been successfully updated!');
+    }
 
-		catch(ModelNotFoundException $e)
-		{
-			return \App::abort(404);
-		}
-	}
+    /**
+     * Show article.
+     *
+     * @param  int $id
+     * @return mixed
+     */
+    public function showArticle($id)
+    {
+        try
+        {
+            $post = Article::with('user', 'category')
+                           ->whereId(intval($id))
+                           ->orWhere('slug', $id)
+                           ->firstOrFail();
+
+            $view = \Config::get('admin::post.view');
+
+            return \View::make($view, compact('post'));
+        }
+
+        catch (ModelNotFoundException $e)
+        {
+            return \App::abort(404);
+        }
+    }
 }

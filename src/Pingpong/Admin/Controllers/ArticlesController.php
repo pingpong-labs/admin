@@ -1,200 +1,200 @@
 <?php namespace Pingpong\Admin\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Admin\Entities\Article;
 use Pingpong\Admin\Uploader\ImageUploader;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ArticlesController extends BaseController {
-	
-	/**
-	 * @var \Article
-	 */
-	protected $articles;
 
-	protected $uploader;
+    /**
+     * @var \Article
+     */
+    protected $articles;
 
-	/**
-	 * @param \Article $articles
-	 */
-	public function __construct(Article $articles, ImageUploader $uploader)
-	{
-		$this->articles = $articles;
-		$this->uploader = $uploader;
-	}
-	
-	/**
-	 * Redirect not found.
-	 *
-	 * @return Response
-	 */
-	protected function redirectNotFound()
-	{
-		return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
-	}
+    protected $uploader;
 
-	/**
-	 * Display a listing of articles
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$articles = $this->articles->newest()->onlyPost()->paginate(10);
-		
-		if(\Request::is('admin/pages'))
-		{
-			$articles = $this->articles->onlyPage()->newest()->paginate(10);
-		}
+    /**
+     * @param \Article $articles
+     */
+    public function __construct(Article $articles, ImageUploader $uploader)
+    {
+        $this->articles = $articles;
+        $this->uploader = $uploader;
+    }
 
-		$no = $articles->getFrom();
+    /**
+     * Redirect not found.
+     *
+     * @return Response
+     */
+    protected function redirectNotFound()
+    {
+        return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
+    }
 
-		return $this->view('articles.index', compact('articles', 'no'));
-	}
+    /**
+     * Display a listing of articles
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $articles = $this->articles->newest()->onlyPost()->paginate(10);
 
-	/**
-	 * Show the form for creating a new article
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return $this->view('articles.create');
-	}
+        if (\Request::is('admin/pages'))
+        {
+            $articles = $this->articles->onlyPage()->newest()->paginate(10);
+        }
 
-	/**
-	 * Store a newly created article in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$data 		= $this->inputAll();
-		$rules      = $this->articles->getUpdateRules();
-		$validator 	= \Validator::make($data, $rules);
+        $no = $articles->getFrom();
 
-		if ($validator->fails())
-		{
-			return \Redirect::back()->withErrors($validator)->withInput();
-		}
+        return $this->view('articles.index', compact('articles', 'no'));
+    }
 
-		unset($data['image']);
+    /**
+     * Show the form for creating a new article
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return $this->view('articles.create');
+    }
 
-		if(\Input::hasFile('image'))
-		{
-			// upload image
-			$this->uploader->upload('image')->save('images/articles');
-			
-			$data['image'] = $this->uploader->getFilename();
-		}
+    /**
+     * Store a newly created article in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $data = $this->inputAll();
+        $rules = $this->articles->getUpdateRules();
+        $validator = \Validator::make($data, $rules);
 
-		$data['user_id'] = \Auth::id();
-		$data['slug']  = \Str::slug($data['title']);
+        if ($validator->fails())
+        {
+            return \Redirect::back()->withErrors($validator)->withInput();
+        }
 
-		$this->articles->create($data);
+        unset($data['image']);
 
-		return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
-	}
+        if (\Input::hasFile('image'))
+        {
+            // upload image
+            $this->uploader->upload('image')->save('images/articles');
 
-	/**
-	 * Display the specified article.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		try
-		{
-			$article = $this->articles->findOrFail($id);
-			return $this->view('articles.show', compact('article'));
-		}
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            $data['image'] = $this->uploader->getFilename();
+        }
 
-	/**
-	 * Show the form for editing the specified article.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{		
-		try
-		{
-			$article = $this->articles->findOrFail($id);
-			return $this->view('articles.edit', compact('article'));
-		}		
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+        $data['user_id'] = \Auth::id();
+        $data['slug'] = \Str::slug($data['title']);
 
-	/**
-	 * Update the specified article in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		try
-		{
-			$data 		=	$this->inputAll();
-			$article 	= 	$this->articles->findOrFail($id);
-			$rules		=   $this->articles->getUpdateRules();
+        $this->articles->create($data);
 
-			$validator  = \Validator::make($data, $rules);
+        return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
+    }
 
-			if ($validator->fails())
-			{
-				return \Redirect::back()->withErrors($validator)->withInput();
-			}
+    /**
+     * Display the specified article.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        try
+        {
+            $article = $this->articles->findOrFail($id);
+            return $this->view('articles.show', compact('article'));
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
-			unset($data['image']);
+    /**
+     * Show the form for editing the specified article.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        try
+        {
+            $article = $this->articles->findOrFail($id);
+            return $this->view('articles.edit', compact('article'));
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
-			if(\Input::hasFile('image'))
-			{
-				$article->deleteImage();
+    /**
+     * Update the specified article in storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        try
+        {
+            $data = $this->inputAll();
+            $article = $this->articles->findOrFail($id);
+            $rules = $this->articles->getUpdateRules();
 
-				$this->uploader->upload('image')->save('images/articles');
-				
-				$data['image'] = $this->uploader->getFilename();
-			}
+            $validator = \Validator::make($data, $rules);
 
-			$data['user_id'] = \Auth::id();
-			$data['slug']  = \Str::slug($data['title']);
-			$article->update($data);
+            if ($validator->fails())
+            {
+                return \Redirect::back()->withErrors($validator)->withInput();
+            }
 
-			return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
-		}
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+            unset($data['image']);
 
-	/**
-	 * Remove the specified article from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		try
-		{
-			$this->articles->destroy($id);
+            if (\Input::hasFile('image'))
+            {
+                $article->deleteImage();
 
-			return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
-		}		
-		catch(ModelNotFoundException $e)
-		{
-			return $this->redirectNotFound();
-		}
-	}
+                $this->uploader->upload('image')->save('images/articles');
+
+                $data['image'] = $this->uploader->getFilename();
+            }
+
+            $data['user_id'] = \Auth::id();
+            $data['slug'] = \Str::slug($data['title']);
+            $article->update($data);
+
+            return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
+
+    /**
+     * Remove the specified article from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        try
+        {
+            $this->articles->destroy($id);
+
+            return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
+    }
 
 }

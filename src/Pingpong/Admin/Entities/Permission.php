@@ -2,19 +2,19 @@
 
 use Pingpong\Trusty\Entities\Permission as BasePermission;
 
-class Permission extends BasePermission
-{
-	protected $rules = array(
-		'name'	=>  'required',
-	);
+class Permission extends BasePermission {
 
-	public function getRules()
-	{
-		return $this->rules;
-	}
+    protected $rules = array(
+        'name' => 'required',
+    );
 
-	public function getUpdateRules()
-	{
-		return $this->rules;
-	}
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    public function getUpdateRules()
+    {
+        return $this->rules;
+    }
 }

@@ -99,6 +99,6 @@ if ( ! function_exists('session_check'))
 {
     function session_check()
     {
-        if( ! getenv('TESTING')) session_start();
+        if ( ! getenv('TESTING')) session_start();
     }
 }

@@ -1,100 +1,102 @@
 <?php namespace Pingpong\Admin\Entities;
 
-use Request, DB, URL;
+use DB;
+use Request;
+use URL;
 
-class Visitor extends \Eloquent
-{
-	/**
-	 * Fillable Property.
-	 * 
-	 * @var array
-	 */
-	protected $fillable = ['ip', 'hits', 'online', 'url', 'path'];
+class Visitor extends \Eloquent {
 
-	/**
-	 * Track hits online visitors.
-	 * 
-	 * @return void 
-	 */
-	public static function track()
-	{		
-		$ip 	= Request::server('REMOTE_ADDR');
-		$online = time();
-		$url	= URL::full();
-		$path   = Request::path();
+    /**
+     * Fillable Property.
+     *
+     * @var array
+     */
+    protected $fillable = ['ip', 'hits', 'online', 'url', 'path'];
 
-		$visited = static::whereIp($ip)->today()->first();
-		if( ! empty($visited))
-		{
-			$visited->update([
-				'online'	=>	$online,
-				'hits'		=>  $visited->hits + 1,	
-				'url'		=>	$url,
-				'path'		=>	$path			
-			]);	
-		}
-		else
-		{
-			static::createNewVisitor();
-		}
-	}
+    /**
+     * Track hits online visitors.
+     *
+     * @return void
+     */
+    public static function track()
+    {
+        $ip = Request::server('REMOTE_ADDR');
+        $online = time();
+        $url = URL::full();
+        $path = Request::path();
 
-	/**
-	 * Create new visitor.
-	 * 
-	 * @return self 
-	 */
-	public static function createNewVisitor()
-	{
-		return static::create([
-			'online'	=>	time(),
-			'ip'		=>	Request::server('REMOTE_ADDR'),
-			'hits'		=>	1,
-			'url'		=>	URL::full(),
-			'path'		=>	Request::path()
-		]);
-	}
+        $visited = static::whereIp($ip)->today()->first();
+        if ( ! empty($visited))
+        {
+            $visited->update([
+                'online' => $online,
+                'hits' => $visited->hits + 1,
+                'url' => $url,
+                'path' => $path
+            ]);
+        }
+        else
+        {
+            static::createNewVisitor();
+        }
+    }
 
-	// scopes
-	public function scopeToday($query)
-	{
-		return $query->whereRaw("date(created_at) = date(now())");
-	}
+    /**
+     * Create new visitor.
+     *
+     * @return self
+     */
+    public static function createNewVisitor()
+    {
+        return static::create([
+            'online' => time(),
+            'ip' => Request::server('REMOTE_ADDR'),
+            'hits' => 1,
+            'url' => URL::full(),
+            'path' => Request::path()
+        ]);
+    }
 
-	public function scopeSelectTotalHits($query)
-	{
-		return $query->select('visitors.*', DB::raw("SUM(hits) as total_hits"));
-	}
+    // scopes
+    public function scopeToday($query)
+    {
+        return $query->whereRaw("date(created_at) = date(now())");
+    }
 
-	// helpers
-	public static function getHitsToday()
-	{
-		$data = static::today()->selectTotalHits()->first();
+    public function scopeSelectTotalHits($query)
+    {
+        return $query->select('visitors.*', DB::raw("SUM(hits) as total_hits"));
+    }
 
-		return isset($data->total_hits) ? $data->total_hits : 0;
-	}
+    // helpers
+    public static function getHitsToday()
+    {
+        $data = static::today()->selectTotalHits()->first();
 
-	public static function getTotalVisitorsToday()
-	{
-		return static::today()->count();
-	}
+        return isset($data->total_hits) ? $data->total_hits : 0;
+    }
 
-	public static function getTotalHits()
-	{
-		$data = static::selectTotalHits()->first();
-		
-		return isset($data->total_hits) ? $data->total_hits : 0;
-	}
+    public static function getTotalVisitorsToday()
+    {
+        return static::today()->count();
+    }
 
-	public static function getOnlineUsers()
-	{
-		$time = time() - 300;
-		
-		$data = static::where('online', '>', $time)
-			->groupBy('ip')
-			->select('ip', DB::raw("count(*) as total_users"))
-			->first();
-		
-		return isset($data->total_users) ? $data->total_users : 0;
-	}
+    public static function getTotalHits()
+    {
+        $data = static::selectTotalHits()->first();
+
+        return isset($data->total_hits) ? $data->total_hits : 0;
+    }
+
+    public static function getOnlineUsers()
+    {
+        $time = time() - 300;
+
+        $data = static::where('online', '>', $time)
+                      ->groupBy('ip')
+                      ->select('ip', DB::raw("count(*) as total_users"))
+                      ->first();
+
+        return isset($data->total_users) ? $data->total_users : 0;
+    }
 }

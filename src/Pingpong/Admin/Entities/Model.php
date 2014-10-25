@@ -1,14 +1,14 @@
 <?php namespace Pingpong\Admin\Entities;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class Model
  * @package Pingpong\Admin\Entities
  */
-class Model extends BaseModel
-{
+class Model extends BaseModel {
+
     /**
      * The validation rules.
      *
@@ -104,9 +104,9 @@ class Model extends BaseModel
     {
         parent::boot();
 
-        foreach(array('creating', 'updating') as $event)
+        foreach (array('creating', 'updating') as $event)
         {
-            static::$event(function(BaseModel $model)
+            static::$event(function (BaseModel $model)
             {
                 return $model->validate();
             });
