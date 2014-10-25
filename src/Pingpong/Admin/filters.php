@@ -1,15 +1,8 @@
 <?php
 
-Route::filter('admin.auth', function()
-{
-	if( ! Auth::check() or ! Auth::user()->is('admin'))
-	{
-		Auth::logout();
-		return Redirect::route('admin.login.index');
-	}
-});
+use Pingpong\Admin\Filters\AuthFilter;
+use Pingpong\Admin\Filters\GuestFilter;
 
-Route::filter('admin.guest', function()
-{
-	if(Auth::check() && Auth::user()->is('admin')) return Redirect::route('admin.home');
-});
+Route::filter('admin.auth', AuthFilter::className());
+
+Route::filter('admin.guest', GuestFilter::className());
