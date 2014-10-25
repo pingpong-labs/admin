@@ -23,6 +23,11 @@ class AdminServiceProvider extends ServiceProvider {
 	    'Pingpong\Admin\Providers\ConsoleServiceProvider',
 	];
 
+	/**
+	 * The facades package.
+	 * 
+	 * @var array
+	 */
 	protected $facades = [
 	    'Menu'				=> 'Pingpong\Menus\Facades\Menu',
 		'Role'			    => 'Pingpong\Trusty\Entities\Role',
@@ -30,6 +35,11 @@ class AdminServiceProvider extends ServiceProvider {
 		'Trusty'	    	=> 'Pingpong\Trusty\Facades\Trusty',
 	];
 
+	/**
+	 * Register the providers.
+	 * 
+	 * @return void
+	 */
 	public function registerProviders()
 	{
 		foreach ($this->providers as $provider)
@@ -38,6 +48,11 @@ class AdminServiceProvider extends ServiceProvider {
 		}
 	}
 
+	/**
+	 * Register the facades.
+	 * 
+	 * @return void
+	 */
 	public function registerFacades()
 	{
 		AliasLoader::getInstance($this->facades);		
