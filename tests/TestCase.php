@@ -31,7 +31,7 @@ class TestCase extends Pingpong\Testing\TestCase {
 
         $app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
 
-        error_reporting(E_ALL | E_STRICT);
+        error_reporting(~E_STRICT);
     }
     
 }
