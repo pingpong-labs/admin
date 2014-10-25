@@ -4,9 +4,10 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\UserTrait;
+use Illuminate\Database\Eloquent\Model;
 use Pingpong\Trusty\Traits\TrustyTrait;
 
-class User extends \Eloquent implements UserInterface, RemindableInterface {
+class User extends Model implements UserInterface, RemindableInterface {
 
     use UserTrait, RemindableTrait, TrustyTrait;
 
@@ -42,17 +43,27 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
         'password' => 'required|min:6|max:20',
     ];
 
+    /**
+     * @param $value
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = \Hash::make($value);
     }
 
     // validation
+    /**
+     * @return array
+     */
     public function getRules()
     {
         return $this->rules;
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function getUpdateRules($id)
     {
         $rules = array_except($this->getRules(), ['email', 'password']);

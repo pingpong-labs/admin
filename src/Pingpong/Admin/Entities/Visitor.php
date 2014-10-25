@@ -58,17 +58,27 @@ class Visitor extends \Eloquent {
     }
 
     // scopes
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeToday($query)
     {
         return $query->whereRaw("date(created_at) = date(now())");
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeSelectTotalHits($query)
     {
         return $query->select('visitors.*', DB::raw("SUM(hits) as total_hits"));
     }
 
-    // helpers
+    /**
+     * @return int
+     */
     public static function getHitsToday()
     {
         $data = static::today()->selectTotalHits()->first();
@@ -76,11 +86,17 @@ class Visitor extends \Eloquent {
         return isset($data->total_hits) ? $data->total_hits : 0;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getTotalVisitorsToday()
     {
         return static::today()->count();
     }
 
+    /**
+     * @return int
+     */
     public static function getTotalHits()
     {
         $data = static::selectTotalHits()->first();
@@ -88,6 +104,9 @@ class Visitor extends \Eloquent {
         return isset($data->total_hits) ? $data->total_hits : 0;
     }
 
+    /**
+     * @return int
+     */
     public static function getOnlineUsers()
     {
         $time = time() - 300;
