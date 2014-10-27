@@ -21,6 +21,10 @@ abstract class AdminTestCase extends Pingpong\Testing\TestCase {
         $app['config']->set('auth.model', 'Pingpong\Admin\Entities\User');
 
         $app['log']->useFiles(__DIR__ . '/package.log');
+
+        $app['router']->enableFilters();
+
+        require __DIR__ . '/../fixture/app/routes.php';
     }
 
     protected function setupEnvironment($app)
@@ -38,11 +42,11 @@ abstract class AdminTestCase extends Pingpong\Testing\TestCase {
 
     protected function setupDatabase($app)
     {
-        $app['config']->set('database.default', 'mysql');
+        $app['config']->set('database.default', 'sqlite');
 
         $app['config']->set('database.connections.sqlite', [
             'driver'   => 'sqlite',
-            'database' => __DIR__ . '/testing.db',
+            'database' => ':memory:',
             'prefix'   => '',
         ]);
 
