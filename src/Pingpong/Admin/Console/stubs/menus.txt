@@ -1,7 +1,5 @@
 <?php
 
-Event::fire('admin::menus');
-
 $leftMenu = Menu::instance('admin-menu');
 
 $rightMenu = Menu::instance('admin-menu-right');

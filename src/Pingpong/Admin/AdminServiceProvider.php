@@ -96,6 +96,21 @@ class AdminServiceProvider extends ServiceProvider {
         $this->registerProviders();
 
         $this->registerFacades();
+
+        $this->registerEvents();
+    }
+
+    /**
+     * Register events.
+     * 
+     * @return void
+     */
+    public function registerEvents()
+    {
+        $this->app->booted(function ()
+        {
+            $this->app['events']->fire('admin::routes'); 
+        });   
     }
 
     /**
