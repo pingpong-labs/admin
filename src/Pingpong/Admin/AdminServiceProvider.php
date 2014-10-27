@@ -97,7 +97,7 @@ class AdminServiceProvider extends ServiceProvider {
 
         $this->registerFacades();
 
-        $this->registerEvents();
+        $this->registerRoutes();
     }
 
     /**
@@ -105,7 +105,7 @@ class AdminServiceProvider extends ServiceProvider {
      * 
      * @return void
      */
-    public function registerEvents()
+    public function registerRoutes()
     {
         $this->app->booted(function ()
         {
