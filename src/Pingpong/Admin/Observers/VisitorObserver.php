@@ -1,5 +1,8 @@
 <?php namespace Pingpong\Admin\Observers;
 
+use Pingpong\Admin\Entities\Visitor;
+use Illuminate\Support\Facades\Request;
+
 class VisitorObserver {
 
     /**
