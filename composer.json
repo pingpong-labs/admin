@@ -3,7 +3,6 @@
     "description": "Simple Administrator Package for Laravel 4",
     "keywords": ["pingpong", "admin", "laravel", "administrator"],
     "license": "MIT",
-    "version": "1.x-dev",
     "authors": [
         {
             "name": "Pingpong Labs",
@@ -26,7 +25,7 @@
         "classmap": [
         ],
         "psr-4": {
-            "Pingpong\\Admin": "src/Pingpong/Admin"
+            "Pingpong\\Admin\\": "src/Pingpong/Admin"
         }
     },
     "autoload-dev": {
