@@ -64,7 +64,15 @@ class Visitor extends \Eloquent {
      */
     public function scopeToday($query)
     {
-        return $query->whereRaw("date(created_at) = date(now())");
+        // mysql 
+        $raw = "date(created_at) = date(now())";
+        
+        if(db_is('sqlite'))
+        {
+            $raw = "date(created_at) = date(date('now'))"; 
+        }
+
+        return $query->whereRaw($raw);
     }
 
     /**
