@@ -1,6 +1,6 @@
 <?php
 
-abstract class DatabaseTestCase extends TestCase {
+abstract class DatabaseTestCase extends AdminTestCase {
 
     public function setUp()
     {

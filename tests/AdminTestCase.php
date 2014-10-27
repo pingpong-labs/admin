@@ -1,6 +1,6 @@
 <?php
 
-abstract class TestCase extends Pingpong\Testing\TestCase {
+abstract class AdminTestCase extends Pingpong\Testing\TestCase {
 
     protected function getPackageProviders()
     {

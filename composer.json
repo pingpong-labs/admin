@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "files": [
-            "tests/TestCase.php"
+            "tests/AdminTestCase.php"
         ]
     },
     "minimum-stability": "stable"
