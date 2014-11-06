@@ -5,6 +5,7 @@ abstract class AdminTestCase extends Pingpong\Testing\TestCase {
     protected function getPackageProviders()
     {
         return [
+            'Pingpong\Admin\Providers\SupportServiceProvider',
         	'Pingpong\Admin\AdminServiceProvider',
         ];
     }

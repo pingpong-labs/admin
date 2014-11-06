@@ -20,6 +20,7 @@ Next, open a terminal and run.
 Next, Add new service provider in `app/config/app.php`.
 
 ```php
+	'Pingpong\Admin\Providers\SupportServiceProvider',
     'Pingpong\Admin\AdminServiceProvider',
 ```
 

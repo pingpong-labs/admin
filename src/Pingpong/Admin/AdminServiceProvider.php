@@ -66,24 +66,6 @@ class AdminServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->package('pingpong/admin');
-
-        $this->registerFiles();
-    }
-
-    /**
-     * Register the required files.
-     *
-     * @return void
-     */
-    protected function registerFiles()
-    {
-        require __DIR__ . '/permissions.php';
-        require __DIR__ . '/routes.php';
-        require __DIR__ . '/filters.php';
-        require __DIR__ . '/composers.php';
-        require __DIR__ . '/helpers.php';
-        require __DIR__ . '/menus.php';
-        require __DIR__ . '/observers.php';
     }
 
     /**
