@@ -11,6 +11,7 @@ class SupportServiceProvider extends ServiceProvider {
         require __DIR__ . '/../composers.php';
         require __DIR__ . '/../helpers.php';
         require __DIR__ . '/../observers.php';
+        require __DIR__ . '/../menus.php';
         require __DIR__ . '/../routes.php';
 	}
 
