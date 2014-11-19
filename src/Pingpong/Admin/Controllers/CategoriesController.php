@@ -45,14 +45,12 @@ class CategoriesController extends BaseController {
      */
     public function store()
     {
-        $category = Category::create($this->inputAll());
+        app('Pingpong\Admin\Validation\Category\Create')
+            ->validate($data = $this->inputAll());
 
-        if ($category->save())
-        {
-            return $this->redirect('categories.index');
-        }
+        $category = Category::create($data);
 
-        return \Redirect::back()->withInput()->withErrors($category->getErrors());
+        return $this->redirect('categories.index');
     }
 
     /**
@@ -105,14 +103,12 @@ class CategoriesController extends BaseController {
     {
         try
         {
+            app('Pingpong\Admin\Validation\Category\Update')
+                ->validate($data = $this->inputAll());
+
             $category = Category::findOrFail($id);
 
-            $category->update($this->inputAll());
-
-            if ( ! $category->save())
-            {
-                return \Redirect::back()->withErrors($category->getErrors())->withInput();
-            }
+            $category->update($data);
 
             return $this->redirect('categories.index');
         }

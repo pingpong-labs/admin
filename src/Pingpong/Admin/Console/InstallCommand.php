@@ -93,12 +93,22 @@ class InstallCommand extends Command {
 
         if ($this->confirm('Do you want publish configuration files from pingpong/admin package ?'))
         {
-            $this->call('config:publish', ['package' => 'pingpong/admin']);
+            if( ! $this->option('bench'))
+            {
+                $this->call('config:publish', ['package' => 'pingpong/admin']);
+            }
         }
 
         if ($this->confirm('Do you want publish assets from pingpong/admin package ?'))
         {
-            $this->call('asset:publish', ['package' => 'pingpong/admin']);
+            if($this->option('bench'))
+            {
+                $this->call('asset:publish', ['--bench' => 'pingpong/admin']);
+            }
+            else
+            {
+                $this->call('asset:publish', ['package' => 'pingpong/admin']);
+            }
         }
 
         if ($this->confirm('Do you want create the app/menus.php file ?'))
@@ -142,7 +152,7 @@ class InstallCommand extends Command {
         }
         else
         {
-            $this->line("File already exists at path : {$file}");
+            $this->error("File already exists at path : {$file}");
         }
     }
 
