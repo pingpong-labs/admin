@@ -1,6 +1,7 @@
 ## Simple Administrator Package for Laravel 4+
 
 [![Build Status](https://travis-ci.org/pingpong-labs/admin.svg?branch=master)](https://travis-ci.org/pingpong-labs/admin)
+[![Latest Stable Version](https://poser.pugx.org/pingpong/admin/v/stable.svg)](https://packagist.org/packages/pingpong/admin) [![Total Downloads](https://poser.pugx.org/pingpong/admin/downloads.svg)](https://packagist.org/packages/pingpong/admin) [![Latest Unstable Version](https://poser.pugx.org/pingpong/admin/v/unstable.svg)](https://packagist.org/packages/pingpong/admin) [![License](https://poser.pugx.org/pingpong/admin/license.svg)](https://packagist.org/packages/pingpong/admin)
 
 ### Server Requirements
 
@@ -63,4 +64,4 @@ https://www.dropbox.com/s/foyidbk7fzqywco/pingpong-admin-tutorial.mp4
 
 ### License
 
-This package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+This package is open-sourced software licensed under [The BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause)
