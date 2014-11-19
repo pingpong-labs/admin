@@ -1,5 +1,6 @@
 <?php namespace Pingpong\Admin\Uploader;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
 
@@ -68,6 +69,11 @@ class ImageUploader {
         return $this;
     }
 
+    public function getDestinationDirectory()
+    {
+        return dirname($this->getDestinationFile());
+    }
+
     /**
      * @param null $path
      * @return mixed
@@ -75,6 +81,11 @@ class ImageUploader {
     public function save($path = null)
     {
         if ( ! is_null($path)) $this->path = $path;
+
+        if( ! is_dir($path = $this->getDestinationDirectory()))
+        {
+            File::makeDirectory($path, 0777, true);
+        }
 
         $this->image->save($this->getDestinationFile());
 
