@@ -1,6 +1,6 @@
 {
     "name": "pingpong/admin",
-    "description": "Simple Administrator Package for Laravel 4",
+    "description": "Laravel Admin Package",
     "keywords": ["pingpong", "admin", "laravel", "administrator"],
     "license": "MIT",
     "authors": [
