@@ -118,7 +118,7 @@ class RolesController extends BaseController {
         {
             $role = $this->roles->findOrFail($id);
             
-            app('Pingpong\Admin\Validation\Role\Create')->validate($data = $this->inputAll());
+            app('Pingpong\Admin\Validation\Role\Update')->validate($data = $this->inputAll());
 
             $role->update($data);
 

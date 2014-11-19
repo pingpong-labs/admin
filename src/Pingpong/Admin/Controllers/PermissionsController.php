@@ -59,14 +59,7 @@ class PermissionsController extends BaseController {
      */
     public function store()
     {
-        $data = $this->inputAll();
-        $rules = $this->permissions->getRules();
-        $validator = \Validator::make($data, $rules);
-
-        if ($validator->fails())
-        {
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
+        app('Pingpong\Admin\Validation\Permission\Create')->validate($data = $this->inputAll());   
 
         $this->permissions->create($data);
 
@@ -123,16 +116,9 @@ class PermissionsController extends BaseController {
     {
         try
         {
-            $data = $this->inputAll();
             $permission = $this->permissions->findOrFail($id);
-            $rules = $this->permissions->getUpdateRules();
-
-            $validator = \Validator::make($data, $rules);
-
-            if ($validator->fails())
-            {
-                return \Redirect::back()->withErrors($validator)->withInput();
-            }
+            
+            app('Pingpong\Admin\Validation\Permission\Update')->validate($data = $this->inputAll());
 
             $permission->update($data);
 
