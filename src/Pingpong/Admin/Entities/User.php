@@ -33,53 +33,11 @@ class User extends Model implements UserInterface, RemindableInterface {
     protected $fillable = array('name', 'username', 'email', 'password', 'status');
 
     /**
-     * The rules.
-     *
-     * @var array
-     */
-    public $rules = [
-        'name' => 'required',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6|max:20',
-    ];
-
-    /**
      * @param $value
      */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = \Hash::make($value);
-    }
-
-    // validation
-    /**
-     * @return array
-     */
-    public function getRules()
-    {
-        return $this->rules;
-    }
-
-    /**
-     * @param $id
-     * @return array
-     */
-    public function getUpdateRules($id)
-    {
-        $rules = array_except($this->getRules(), ['email', 'password']);
-
-        if (\Input::has('email'))
-        {
-            $rules['email'] = $this->rules['email'] . ',' . $id;
-        }
-        else
-        {
-            $rules['email'] = $this->rules['email'];
-        }
-
-        if (\Input::has('password')) $rules['password'] = $this->rules['password'];
-
-        return $rules;
     }
 
 }

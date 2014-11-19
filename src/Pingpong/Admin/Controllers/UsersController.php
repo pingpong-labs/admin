@@ -1,5 +1,6 @@
 <?php namespace Pingpong\Admin\Controllers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UsersController extends BaseController {
@@ -14,7 +15,7 @@ class UsersController extends BaseController {
      */
     public function __construct()
     {
-        $this->users = \App::make(\Config::get('auth.model'));
+        $this->users = app(Config::get('auth.model'));
     }
 
     /**
@@ -57,14 +58,7 @@ class UsersController extends BaseController {
      */
     public function store()
     {
-        $data = $this->inputAll();
-        $rules = $this->users->getRules();
-        $validator = \Validator::make($data, $rules);
-
-        if ($validator->fails())
-        {
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
+        app('Pingpong\Admin\Validation\User\Create')->validate($data = $this->inputAll());
 
         $user = $this->users->create($data);
 
@@ -123,19 +117,13 @@ class UsersController extends BaseController {
     public function update($id)
     {
         try
-        {
-            $input = \Input::except('password');
-            $data = ! \Input::has('password') ? $input : $this->inputAll();
+        {   
+            $data = ! \Input::has('password') ? \Input::except('password') : $this->inputAll();
+            
             $user = $this->users->findOrFail($id);
-            $rules = $this->users->getUpdateRules($id);
-
-            $validator = \Validator::make($data, $rules);
-
-            if ($validator->fails())
-            {
-                return \Redirect::back()->withErrors($validator)->withInput();
-            }
-
+                
+            app('Pingpong\Admin\Validation\User\Update')->validate($data);
+            
             $user->update($data);
 
             $user->updateRole(\Input::get('role'));
