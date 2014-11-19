@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration {
             $table->string('slug');
             $table->text('body');
             $table->string('image')->nullable();
-            $table->string('published_at')->default('NOW()');
+            $table->string('published_at')->nullable();
             $table->timestamps();
         });
     }
