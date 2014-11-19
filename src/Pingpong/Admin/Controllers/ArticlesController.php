@@ -68,14 +68,7 @@ class ArticlesController extends BaseController {
      */
     public function store()
     {
-        $data = $this->inputAll();
-        $rules = $this->articles->getUpdateRules();
-        $validator = \Validator::make($data, $rules);
-
-        if ($validator->fails())
-        {
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
+        app('Pingpong\Admin\Validation\Article\Create')->validate($data = $this->inputAll());
 
         unset($data['image']);
 
@@ -143,18 +136,12 @@ class ArticlesController extends BaseController {
     {
         try
         {
-            $data = $this->inputAll();
             $article = $this->articles->findOrFail($id);
-            $rules = $this->articles->getUpdateRules();
 
-            $validator = \Validator::make($data, $rules);
-
-            if ($validator->fails())
-            {
-                return \Redirect::back()->withErrors($validator)->withInput();
-            }
+            app('Pingpong\Admin\Validation\Article\Update')->validate($data = $this->inputAll());
 
             unset($data['image']);
+            unset($data['type']);
 
             if (\Input::hasFile('image'))
             {

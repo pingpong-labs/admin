@@ -24,15 +24,6 @@ class Article extends Model {
     ];
 
     /**
-     * @var array
-     */
-    protected $rules = array(
-        'title' => 'required',
-        'body' => 'required',
-        'image' => 'required|image',
-    );
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
@@ -56,22 +47,6 @@ class Article extends Model {
     public function comments()
     {
         return $this->morphMany('Comment', 'commentable');
-    }
-
-    /**
-     * @return array
-     */
-    public function getRules()
-    {
-        return $this->rules;
-    }
-
-    /**
-     * @return array
-     */
-    public function getUpdateRules()
-    {
-        return array_except($this->rules, 'image');
     }
 
     /**
