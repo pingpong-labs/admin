@@ -59,7 +59,7 @@ class ErrorServiceProvider extends ServiceProvider {
                 return Response::json(['code' => 404, 'message' => 'Not Found'], 404);
             }
 
-            return Response::view('404', [], 404);
+            return Response::view('admin::404', [], 404);
         });
     }
 
@@ -84,7 +84,7 @@ class ErrorServiceProvider extends ServiceProvider {
     {
         $this->app->error(function (ModelNotFoundException $e)
         {
-            return Response::view('404', [], 404);
+            return Response::view('admin::404', [], 404);
         });
     }
 
