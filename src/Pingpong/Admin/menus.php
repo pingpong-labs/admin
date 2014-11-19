@@ -3,9 +3,11 @@
 Menu::create('admin-menu', function ($menu)
 {
     $menu->route('admin.home', 'Home');
-    $menu->dropdown('Contents', function ($sub)
+    $menu->dropdown('Articles', function ($sub)
     {
-        $sub->route('admin.articles.index', 'Articles');
+        $sub->route('admin.articles.index', 'All Articles');
+        $sub->route('admin.articles.create', 'Add New');
+        $sub->divider();
         $sub->route('admin.categories.index', 'Categories');
     });
     $menu->dropdown('Pages', function ($sub)
@@ -16,6 +18,7 @@ Menu::create('admin-menu', function ($menu)
     $menu->dropdown('Users', function ($sub)
     {
         $sub->route('admin.users.index', 'All Users');
+        $sub->route('admin.users.create', 'Add New');
         $sub->divider();
         $sub->route('admin.roles.index', 'Roles');
         $sub->route('admin.permissions.index', 'Permissions');
