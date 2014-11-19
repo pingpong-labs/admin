@@ -57,15 +57,8 @@ class RolesController extends BaseController {
      * @return Response
      */
     public function store()
-    {
-        $data = $this->inputAll();
-        $rules = $this->roles->getRules();
-        $validator = \Validator::make($data, $rules);
-
-        if ($validator->fails())
-        {
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
+    {   
+        app('Pingpong\Admin\Validation\Role\Create')->validate($data = $this->inputAll());
 
         $this->roles->create($data);
 
@@ -123,16 +116,9 @@ class RolesController extends BaseController {
     {
         try
         {
-            $data = $this->inputAll();
             $role = $this->roles->findOrFail($id);
-            $rules = $this->roles->getUpdateRules();
-
-            $validator = \Validator::make($data, $rules);
-
-            if ($validator->fails())
-            {
-                return \Redirect::back()->withErrors($validator)->withInput();
-            }
+            
+            app('Pingpong\Admin\Validation\Role\Create')->validate($data = $this->inputAll());
 
             $role->update($data);
 
