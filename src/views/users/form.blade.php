@@ -9,6 +9,11 @@
 		{{ $errors->first('name', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group">
+		{{ Form::label('username', 'Username:') }}
+		{{ Form::text('username', null, ['class' => 'form-control']) }}
+		{{ $errors->first('username', '<div class="text-danger">:message</div>') }}
+	</div>
+	<div class="form-group">
 		{{ Form::label('email', 'Email:') }}
 		{{ Form::email('email', null, ['class' => 'form-control']) }}
 		{{ $errors->first('email', '<div class="text-danger">:message</div>') }}

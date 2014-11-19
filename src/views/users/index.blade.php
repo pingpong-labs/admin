@@ -12,6 +12,7 @@
 		<thead>
 			<th>No</th>
 			<th>Name</th>
+			<th>Username</th>
 			<th>Role</th>
 			<th>Email</th>
 			<th>Created At</th>
@@ -22,6 +23,7 @@
 			<tr>
 				<td>{{ $no }}</td>
 				<td>{{ $user->name }}</td>
+				<td>{{ $user->username }}</td>
 				<td>{{ $user->getRole() ? $user->getRole()->name : 'Unknow' }}</td>
 				<td>{{ $user->email }}</td>
 				<td>{{ $user->created_at }}</td>
