@@ -37,15 +37,15 @@
 		<div class="small-box bg-green">
 			<div class="inner">
 				<h3>
-					{{ Pingpong\Admin\Entities\Article::onlyPage()->count() }}
+					{{ Pingpong\Admin\Entities\Article::onlyPost()->count() }}
 				</h3>
 
 				<p>
-					Pages
+					All Articles
 				</p>
 			</div>
 			<div class="icon">
-				<i class="fa fa-flag"></i>
+				<i class="fa fa-book"></i>
 			</div>
 			<a href="{{ route('admin.pages.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
