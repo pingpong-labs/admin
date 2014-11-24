@@ -43,7 +43,7 @@
 	@if(isset($model))
 	<div class="form-group">
 		@if($model->image)
-		<img src="{{ $model->present()->image }}">
+		<img class="img-responsive" src="{{ asset('images/articles/' . $model->image) }}">
 		@endif
 	</div>
 	@endif

@@ -24,6 +24,11 @@
 		{{ $errors->first('password', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group">
+		{{ Form::label('gender', 'Gender:') }}
+		{{ Form::select('gender', ['Male' => 'Laki-laki', 'Female' => 'Perempuan'], null, ['class' => 'form-control']) }}
+		{{ $errors->first('gender', '<div class="text-danger">:message</div>') }}
+	</div>
+	<div class="form-group">
 		{{ Form::label('role', 'Role:') }}
 		{{ Form::select('role', $roles, isset($role) ? $role : null, ['class' => 'form-control']) }}
 		{{ $errors->first('role', '<div class="text-danger">:message</div>') }}

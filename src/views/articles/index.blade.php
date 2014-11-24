@@ -1,19 +1,22 @@
 @extends('admin::layouts.master')
 
-@section('content')
+@section('content-header')
 	@if( ! isOnPages())
-	<h4 class="page-header">
+	<h1>
 		All Articles ({{ $articles->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.articles.create', 'Add New') }}</small>
-	</h4>
+	</h1>
 	@else
-	<h4 class="page-header">
+	<h1>
 		All Pages ({{ $articles->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.pages.create', 'Add New') }}</small>
-	</h4>
+	</h1>
 	@endif
+@stop
+
+@section('content')
 
 	<table class="table">
 		<thead>

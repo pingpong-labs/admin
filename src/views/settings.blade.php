@@ -1,5 +1,11 @@
 @extends('admin::layouts.master')
 
+@section('content-header')
+	<h1>
+	Settings
+	</h1>
+@stop
+
 @section('content')
 
 <!-- Nav tabs -->
@@ -45,7 +51,7 @@
 			{{ Form::text('ckfinder.prefix', option('ckfinder.prefix'), ['class' => 'form-control']) }}
 			{{ $errors->first('ckfinder.prefix', '<div class="text-danger">:message</div>') }}
 		</div>
-		<div class="form-group">
+		<div class="form-group hidden">
 			{{ Form::label('admin.theme', 'Admin Theme:') }}
 			{{ Form::select('admin.theme', $themes, option('admin.theme'), ['class' => 'form-control']) }}
 			{{ $errors->first('admin.theme', '<div class="text-danger">:message</div>') }}

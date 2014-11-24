@@ -1,17 +1,27 @@
 @extends('admin::layouts.master')
 
+@section('content-header')
+	<h1>403 - Access Denied</h1>
+@stop
+
 @section('content')
 
-	<h3 class="page-header">
-		Sorry, you don't have permission to do this.
-	</h3>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</p>
+	<div class="error-page">
+	    <h2 class="headline text-info"> 403</h2>
+	    <div class="error-content">
+	        <h3><i class="fa fa-warning text-yellow"></i> Oops! Access Denied!</h3>
+	        <p>
+	             You don't have permission to access this page!
+	        </p>
+	        <form class='search-form'>
+	            <div class='input-group'>
+	                <input type="text" name="search" class='form-control' placeholder="Search"/>
+	                <div class="input-group-btn">
+	                    <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+	                </div>
+	            </div><!-- /.input-group -->
+	        </form>
+	    </div><!-- /.error-content -->
+	</div><!-- /.error-page -->
 
 @endsection

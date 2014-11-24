@@ -1,37 +1,39 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<title> Administrator </title>
-	
-    {{ style('css/bootstrap.min.css') }}
-    {{ style('css/'.option('admin.theme', 'default').'.css') }}
-	{{ Menu::style() }}
-	
-	@yield('style')
-
+    <meta charset="UTF-8">
+    <title>Administrator | @yield('title', 'Dashboard')</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    @include('admin::partials.style')
+    @yield('style')
 </head>
-<body>
-	@include('admin::partials.flashes')
-	
-	@if(Auth::check() && Auth::user()->isAdmin())
-		@include('admin::partials.header')
-	@endif
+<body class="skin-blue fixed">
 
-	<div class="container main-content">
-		@yield('content')
-	</div>
+    @include('admin::partials.header')
 
-	<footer class="container">
-		Copyright &COPY; {{ date('Y') }}
-	</footer>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
 
-    {{ script('js/jquery.js') }}
-    {{ script('js/bootstrap.min.js') }}
-    {{ script('js/all.js') }}
+        @include('admin::partials.sidebar')
 
-	@yield('script')
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                @yield('content-header')
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                @include('admin::partials.flashes')
+                @yield('content')
+            </section>
+        </aside>
+        <!-- /.right-side -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- add new calendar event modal -->
+    @include('admin::partials.script')
+    @yield('script')
 </body>
 </html>

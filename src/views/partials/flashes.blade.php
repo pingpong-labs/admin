@@ -7,7 +7,7 @@
 	<script type="text/javascript">
 		$(document).ready(function()
 		{
-			$('.flash-message').delay(3000).slideUp();
+			$('.flash-message').delay(5000).slideUp();
 		});
 	</script>
 @stop

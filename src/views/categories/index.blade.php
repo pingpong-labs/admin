@@ -1,12 +1,14 @@
 @extends('admin::layouts.master')
 
-@section('content')
-	
-	<h4 class="page-header">
+@section('content-header')
+	<h1>
 		All Categories ({{ $categories->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.categories.create', 'Add New') }}</small>
-	</h4>
+	</h1>
+@stop
+
+@section('content')
 
 	<table class="table">
 		<thead>

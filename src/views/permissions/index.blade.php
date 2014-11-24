@@ -1,12 +1,16 @@
 @extends('admin::layouts.master')
 
-@section('content')
+@section('content-header')
 	
-	<h4 class="page-header">
+	<h1>
 		All Permissions ({{ $permissions->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.permissions.create', 'Add New') }}</small>
-	</h4>
+	</h1>
+	
+@stop
+
+@section('content')
 
 	<table class="table">
 		<thead>

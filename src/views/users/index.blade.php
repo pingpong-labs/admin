@@ -1,19 +1,24 @@
 @extends('admin::layouts.master')
 
-@section('content')
-	
-	<h4 class="page-header">
-		All Users ({{ $users->getTotal() }})
+@section('content-header')
+	<h1>
+		{{{ $title or 'All Users' }}} ({{ $users->getTotal() }})
 		&middot;
 		<small>{{ link_to_route('admin.users.create', 'Add New') }}</small>
-	</h4>
+	</h1>
+@stop
+
+@section('content')
+
+	@if(isset($search))
+		@include('admin::users.search-form')
+	@endif
 
 	<table class="table">
 		<thead>
 			<th>No</th>
 			<th>Name</th>
 			<th>Username</th>
-			<th>Role</th>
 			<th>Email</th>
 			<th>Created At</th>
 			<th class="text-center">Action</th>
@@ -24,7 +29,6 @@
 				<td>{{ $no }}</td>
 				<td>{{ $user->name }}</td>
 				<td>{{ $user->username }}</td>
-				<td>{{ $user->getRole() ? $user->getRole()->name : 'Unknow' }}</td>
 				<td>{{ $user->email }}</td>
 				<td>{{ $user->created_at }}</td>
 				<td class="text-center">

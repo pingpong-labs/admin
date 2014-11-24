@@ -1,8 +1,7 @@
 @extends('admin::layouts.master')
 
-@section('content')
-	
-	<h4 class="page-header">
+@section('content-header')
+	<h1>
 		Edit
 		&middot;
 		@if(isOnPages())
@@ -10,7 +9,10 @@
 		@else
 		<small>{{ link_to_route('admin.articles.index', 'Back') }}</small>
 		@endif
-	</h4>
+	</h1>
+@stop
+
+@section('content')
 
 	<div>
 		@include('admin::articles.form', array('model' => $article))
