@@ -23,7 +23,7 @@ class OptionsTableSeeder extends \Seeder {
             ),
             array(
                 'key' => 'site.keywords',
-                'value' => 'pingpong, gravitano, panenmaya'
+                'value' => 'pingpong, gravitano'
             ),
             array(
                 'key' => 'tracking',
@@ -31,11 +31,11 @@ class OptionsTableSeeder extends \Seeder {
             ),
             array(
                 'key' => 'facebook.link',
-                'value' => 'https://www.facebook.com/'
+                'value' => 'https://www.facebook.com/pingponglabs'
             ),
             array(
                 'key' => 'twitter.link',
-                'value' => 'https://twitter.com/'
+                'value' => 'https://twitter.com/pingponglabs'
             ),
             array(
                 'key' => 'post.permalink',
