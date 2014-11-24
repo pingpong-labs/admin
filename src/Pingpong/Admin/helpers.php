@@ -81,6 +81,21 @@ if ( ! function_exists('style'))
     }
 }
 
+if ( ! function_exists('admin_asset'))
+{
+    /**
+     * Get admin asset url.
+     * 
+     * @param  string  $url
+     * @param  boolean $secure
+     * @return string
+     */
+    function admin_asset($url, $secure = false)
+    {
+        return asset("packages/pingpong/admin/" . $url, $secure);
+    }
+}
+
 if ( ! function_exists('script'))
 {
     /**
