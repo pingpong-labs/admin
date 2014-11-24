@@ -40,4 +40,19 @@ class User extends Model implements UserInterface, RemindableInterface {
         $this->attributes['password'] = \Hash::make($value);
     }
 
+    /**
+     * Get gravatar url.
+     * 
+     * @param  integer $size
+     * @param  string  $default
+     * @param  string  $rating
+     * @return string
+     */
+    public function gravatar($size = 60, $default = 'mm', $rating = 'g')
+    {
+        $email = $this->email;
+        
+        return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . "?s={$size}&d={$default}&r={$rating}";
+    }
+
 }
