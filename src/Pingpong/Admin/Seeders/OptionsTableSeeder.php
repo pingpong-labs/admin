@@ -49,6 +49,10 @@ class OptionsTableSeeder extends \Seeder {
                 'key' => 'admin.theme',
                 'value' => 'default'
             ),
+            array(
+                'key' => 'pagination.perpage',
+                'value' => 10
+            ),
         );
 
         foreach ($options as $option)
