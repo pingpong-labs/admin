@@ -1,25 +1,37 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Pingpong\Admin\Entities\Article;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
+use Pingpong\Admin\Repositories\ArticleRepository;
+use Pingpong\Admin\Repositories\PagesRepository;
 use Pingpong\Admin\Uploader\ImageUploader;
 
 class ArticlesController extends BaseController {
 
-    /**
-     * @var \Article
-     */
     protected $articles;
 
+    /**
+     * @var ImageUploader
+     */
     protected $uploader;
 
     /**
-     * @param \Article $articles
+     * @param ImageUploader $uploader
      */
-    public function __construct(Article $articles, ImageUploader $uploader)
+    public function __construct(ImageUploader $uploader)
     {
-        $this->articles = $articles;
         $this->uploader = $uploader;
+
+        if (Request::is('admin/pages'))
+        {
+            $this->articles = App::make(PagesRepository::className());
+        }
+        else
+        {
+            $this->articles = App::make(ArticleRepository::className());
+        }
     }
 
     /**
@@ -39,12 +51,7 @@ class ArticlesController extends BaseController {
      */
     public function index()
     {
-        $articles = $this->articles->newest()->onlyPost()->paginate(10);
-
-        if (\Request::is('admin/pages'))
-        {
-            $articles = $this->articles->onlyPage()->newest()->paginate(10);
-        }
+        $articles = $this->articles->searchOrAllPaginated(Input::get('q'));
 
         $no = $articles->getFrom();
 
