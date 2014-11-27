@@ -76,6 +76,17 @@ class ArticleRepository implements RepositoryInterface {
     }
 
     /**
+     * Alias for "find" method.
+     * 
+     * @param  int $id
+     * @return mixed
+     */
+    public function findOrFail($id)
+    {
+        return $this->find($id);
+    }
+
+    /**
      * Search resources by given $search.
      *
      * @param string $search
@@ -108,7 +119,7 @@ class ArticleRepository implements RepositoryInterface {
      */
     public function getArticle()
     {
-        return $this->article;
+        return new Article;
     }
 
     /**
