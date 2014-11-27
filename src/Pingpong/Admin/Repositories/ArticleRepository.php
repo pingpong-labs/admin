@@ -26,7 +26,10 @@ class ArticleRepository implements RepositoryInterface {
      */
     public function init()
     {
-        $this->article = $this->article->onlyPost();
+        if(isOnPages())
+            $this->article = $this->article->onlyPage();
+        else
+            $this->article = $this->article->onlyPost();
     }
 
     /**
