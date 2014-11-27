@@ -90,7 +90,7 @@ class ArticlesController extends BaseController {
         $data['user_id'] = \Auth::id();
         $data['slug'] = \Str::slug($data['title']);
 
-        $this->articles->create($data);
+        $this->articles->getArticle()->create($data);
 
         return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
     }
@@ -181,7 +181,7 @@ class ArticlesController extends BaseController {
     {
         try
         {
-            $this->articles->destroy($id);
+            $this->articles->getArticle()->destroy($id);
 
             return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
         }
