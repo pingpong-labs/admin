@@ -11,6 +11,7 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#general" data-toggle="tab">General</a></li>
+	<li><a href="#data" data-toggle="tab">Data</a></li>
 	<li><a href="#social" data-toggle="tab">Social Media</a></li>
 	<li><a href="#seo" data-toggle="tab">SEO</a></li>
 	<li><a href="#analytics" data-toggle="tab">Analytics</a></li>
@@ -42,7 +43,20 @@
 			{{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
 		</div>
 		{{ Form::close() }}
-	</div> 
+	</div>
+	<div class="tab-pane" id="data">
+		<h3></h3>
+		{{ Form::open() }}
+		<div class="form-group">
+			{{ Form::label('pagination.perpage', 'Pagination Per Page:') }}
+			{{ Form::text('pagination.perpage', option('pagination.perpage'), ['class' => 'form-control']) }}
+			{{ $errors->first('pagination.perpage', '<div class="text-danger">:message</div>') }}
+		</div>
+		<div class="form-group">
+			{{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
+		</div>
+		{{ Form::close() }}
+	</div>
 	<div class="tab-pane" id="developers">
 		<h3></h3>
 		{{ Form::open() }}
