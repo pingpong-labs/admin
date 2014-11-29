@@ -528,3 +528,10 @@
 			<!-- /.row (main row) -->
 
 			@stop
+
+			@section('script')
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ admin_asset('adminlte/js/AdminLTE/dashboard.js') }}" type="text/javascript"></script>
+
+			@stop
