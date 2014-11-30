@@ -58,17 +58,17 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ user()->today()->count() }}
+					{{ page()->count() }}
 				</h3>
 
 				<p>
-					User Registrations
+					All Pages
 				</p>
 			</div>
 			<div class="icon">
-				<i class="ion ion-person-add"></i>
+				<i class="fa fa-flag"></i>
 			</div>
-			<a href="{{ route('admin.users.index') }}" class="small-box-footer">
+			<a href="{{ route('admin.pages.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>

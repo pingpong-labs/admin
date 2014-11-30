@@ -138,3 +138,29 @@ if ( ! function_exists('user'))
         return app(Config::get('auth.model'));
     }
 }
+
+if( ! function_exists('article'))
+{
+    /**
+     * Get article instance.
+     * 
+     * @return mixed
+     */
+    function article()
+    {
+        return new Pingpong\Admin\Entities\Article;
+    }
+}
+
+if( ! function_exists('page'))
+{
+    /**
+     * Get page instance.
+     * 
+     * @return mixed
+     */
+    function page()
+    {
+        return article()->onlyPage();
+    }
+}
