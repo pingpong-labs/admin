@@ -26,7 +26,7 @@
 			<div class="icon">
 				<i class="fa fa-users"></i>
 			</div>
-			<a href="#" class="small-box-footer">
+			<a href="{{ route('admin.users.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -47,7 +47,7 @@
 			<div class="icon">
 				<i class="fa fa-book"></i>
 			</div>
-			<a href="{{ route('admin.pages.index') }}" class="small-box-footer">
+			<a href="{{ route('admin.articles.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
