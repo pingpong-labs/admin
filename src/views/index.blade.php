@@ -58,7 +58,7 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ user()->today()->sum('id') }}
+					{{ user()->today()->count() }}
 				</h3>
 
 				<p>
