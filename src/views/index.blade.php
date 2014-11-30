@@ -58,7 +58,7 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ user()->whereRaw('date(created_at) = date(now())')->sum('id') }}
+					{{ user()->today()->sum('id') }}
 				</h3>
 
 				<p>
