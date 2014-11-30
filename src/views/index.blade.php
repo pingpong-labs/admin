@@ -322,7 +322,7 @@
 		<!-- quick email widget -->
 		<div class="box box-info">
 			<div class="box-header">
-				<i class="fa fa-envelope"></i>
+				<i class="fa fa-book"></i>
 
 				<h3 class="box-title">Quick Post</h3>
 				<!-- tools box -->
@@ -338,7 +338,7 @@
 							<input type="title" class="form-control" name="title" placeholder="Title:"/>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="category" placeholder="Category:"/>
+							{{ Form::select('category_id', category()->options(), null, ['class' => 'form-control', 'placeholder' => 'Category:']) }}
 						</div>
 						<div>
 							<textarea class="textarea" placeholder="Content"
