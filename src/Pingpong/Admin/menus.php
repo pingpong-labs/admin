@@ -2,7 +2,7 @@
 
 Menu::create('admin-menu', function ($menu)
 {
-    $menu->route('admin.home', 'Home');
+    $menu->route('admin.home', 'Dashboard');
     $menu->dropdown('Articles', function ($sub)
     {
         $sub->route('admin.articles.index', 'All Articles');
