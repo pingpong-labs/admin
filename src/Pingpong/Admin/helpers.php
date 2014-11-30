@@ -1,6 +1,7 @@
 <?php
 
 use Pingpong\Admin\Entities\Option;
+use Pingpong\Admin\Entities\Category;
 
 if ( ! function_exists('pagination_links'))
 {
@@ -169,5 +170,18 @@ if( ! function_exists('page'))
     function page()
     {
         return article()->onlyPage();
+    }
+}
+
+if( ! function_exists('category'))
+{
+    /**
+     * Get category instance.
+     * 
+     * @return mixed
+     */
+    function category()
+    {
+        return new Category;
     }
 }
