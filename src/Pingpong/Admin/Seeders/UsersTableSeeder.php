@@ -9,7 +9,7 @@ class UsersTableSeeder extends \Seeder {
         $user = User::create([
             'name' => 'Administrator',
             'username' => 'pingpong',
-            'email' => 'info@pingpong.web.id',
+            'email' => 'pingpong.labs@gmail.com',
             'password' => 'secret',
         ]);
 
