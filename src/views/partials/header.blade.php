@@ -218,7 +218,7 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="glyphicon glyphicon-user"></i>
-        <span>{{ Auth::user()->name }} <i class="caret"></i></span>
+        <span>{{ Auth::user()->name }} <small>({{ Auth::user()->email }})</small><i class="caret"></i></span>
     </a>
     <ul class="dropdown-menu">
         <!-- User image -->
