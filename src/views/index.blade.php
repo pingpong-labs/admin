@@ -16,7 +16,7 @@
 		<div class="small-box bg-aqua">
 			<div class="inner">
 				<h3>
-					{{ Pingpong\Admin\Entities\User::count() }}
+					{{ user()->count() }}
 				</h3>
 
 				<p>
@@ -58,7 +58,7 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ User::whereRaw('date(created_at) = date(now())')->sum('id') }}
+					{{ user()->whereRaw('date(created_at) = date(now())')->sum('id') }}
 				</h3>
 
 				<p>

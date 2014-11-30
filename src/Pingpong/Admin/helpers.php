@@ -114,7 +114,7 @@ if ( ! function_exists('session_check'))
 {
     function session_check()
     {
-        if ( ! getenv('TESTING')) session_start();
+        if ( ! getenv('PINGPONG_ADMIN_TESTING')) session_start();
     }
 }
 
@@ -123,5 +123,18 @@ if ( ! function_exists('db_is'))
     function db_is($driver)
     {
         return Config::get('database.default') == $driver;
+    }
+}
+
+if ( ! function_exists('user'))
+{
+    /**
+     * Get user instance.
+     * 
+     * @return mixed
+     */
+    function user()
+    {
+        return app(Config::get('auth.model'));
     }
 }

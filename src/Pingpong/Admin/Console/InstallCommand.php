@@ -27,7 +27,7 @@ class InstallCommand extends Command {
      */
     public function fire()
     {
-        if (getenv('TESTING'))
+        if (getenv('PINGPONG_ADMIN_TESTING'))
         {
             $this->installPackageTest();
         }
