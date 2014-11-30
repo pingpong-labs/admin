@@ -112,6 +112,9 @@ if ( ! function_exists('script'))
 
 if ( ! function_exists('session_check'))
 {
+    /**
+     * @return void
+     */
     function session_check()
     {
         if ( ! getenv('PINGPONG_ADMIN_TESTING')) session_start();
@@ -120,6 +123,10 @@ if ( ! function_exists('session_check'))
 
 if ( ! function_exists('db_is'))
 {
+    /**
+     * @param  string $driver
+     * @return bool
+     */
     function db_is($driver)
     {
         return Config::get('database.default') == $driver;
