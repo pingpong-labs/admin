@@ -31,7 +31,7 @@ class LoginController extends BaseController {
             return $this->redirect('home')->withFlashMessage('Login Success!');
         }
 
-        if (getenv('TESTING'))
+        if (getenv('PINGPONG_ADMIN_TESTING'))
         {
             return \Redirect::to('admin/login')->withFlashMessage("Login failed!")->withFlashType('danger');
         }
