@@ -1,6 +1,8 @@
 <?php namespace Pingpong\Admin\Seeders;
 
-class AdminDatabaseSeeder extends \Seeder {
+use Illuminate\Database\Seeder;
+
+class AdminDatabaseSeeder extends Seeder {
 
     /**
      * Run the database seeds.
@@ -13,6 +15,7 @@ class AdminDatabaseSeeder extends \Seeder {
         $this->call(__NAMESPACE__ . '\\RolesTableSeeder');
         $this->call(__NAMESPACE__ . '\\PermissionsTableSeeder');
         $this->call(__NAMESPACE__ . '\\UsersTableSeeder');
+        $this->call(__NAMESPACE__ . '\\CategoriesTableSeeder');
     }
 
 }
