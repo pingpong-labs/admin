@@ -9,8 +9,6 @@
 
 ### What's New
 
-** Version 1.1.* **
-
 - Admin theme now using [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
 ### Installation
