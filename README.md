@@ -7,31 +7,37 @@
 
 - PHP 5.4 or higher
 
+### What's New
+
+** Version 1.1.* **
+
+- Admin theme now using [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
+
 ### Installation
 
 Open your composer.json file, and add the new required package.
 ```
-	"pingpong/admin": "1.*" 
+"pingpong/admin": "1.1.*" 
 ```
+
 Next, open a terminal and run.
 ```
-	composer update 
+composer update 
 ```
 
 Next, Add new service provider in `app/config/app.php`.
 
 ```php
-	'Pingpong\Admin\Providers\SupportServiceProvider',
-    'Pingpong\Admin\AdminServiceProvider',
+'Pingpong\Admin\Providers\SupportServiceProvider',
+'Pingpong\Admin\AdminServiceProvider',
 ```
 
 Next, update your user model to extend the `Pingpong\Admin\Entities\User` class. Looks like this.
+
 ```php
 // app/model/User.php
 
-use Pingpong\Admin\Entities\User as PingpongUser;
-
-class User extends PingpongUser {}
+class User extends \Pingpong\Admin\Entities\User {}
 ```
 
 Next, install the package.
