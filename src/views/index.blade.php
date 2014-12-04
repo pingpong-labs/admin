@@ -58,7 +58,7 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ User::whereRaw('date(created_at) = date(now())')->sum('id') }}
+					{{ Pingpong\Admin\Entities\User::today()->sum('id') }}
 				</h3>
 
 				<p>

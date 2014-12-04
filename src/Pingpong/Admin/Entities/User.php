@@ -55,4 +55,16 @@ class User extends Model implements UserInterface, RemindableInterface {
         return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . "?s={$size}&d={$default}&r={$rating}";
     }
 
+    public function scopeToday($query)
+    {
+        $sql = 'date(created_at) = date(now())';
+        
+        if(db_is('sqlite'))
+        {
+            $sql = "date(created_at) = date(date('now'))";
+        }
+
+        return $query->whereRaw($sql);
+    }
+
 }
