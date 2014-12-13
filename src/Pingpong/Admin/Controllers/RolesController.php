@@ -129,6 +129,10 @@ class RolesController extends BaseController {
                 $role->permissions()->attach(\Input::get('permissions'));
             }
 
+            if( $role->permissions->count() == 0 && count(\Input::get('permissions')) > 0 ) {
+                $role->permissions()->attach(\Input::get('permissions'));
+            }
+
             return $this->redirect('roles.index');
         }
         catch (ModelNotFoundException $e)
