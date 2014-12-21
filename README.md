@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pingpong-labs/admin.svg?branch=master)](https://travis-ci.org/pingpong-labs/admin)
 [![Latest Stable Version](https://poser.pugx.org/pingpong/admin/v/stable.svg)](https://packagist.org/packages/pingpong/admin) [![Total Downloads](https://poser.pugx.org/pingpong/admin/downloads.svg)](https://packagist.org/packages/pingpong/admin) [![Latest Unstable Version](https://poser.pugx.org/pingpong/admin/v/unstable.svg)](https://packagist.org/packages/pingpong/admin) [![License](https://poser.pugx.org/pingpong/admin/license.svg)](https://packagist.org/packages/pingpong/admin)
+[![HHVM Status](http://hhvm.h4cc.de/badge/pingpong/admin.svg)](http://hhvm.h4cc.de/package/pingpong/admin)
 
 ### Server Requirements
 
