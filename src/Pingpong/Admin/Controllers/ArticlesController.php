@@ -41,7 +41,9 @@ class ArticlesController extends BaseController {
      */
     protected function redirectNotFound()
     {
-        return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
+        return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index')
+            ->withFlashMessage('Post not found!')
+            ->withFlashType('danger');
     }
 
     /**
@@ -106,6 +108,7 @@ class ArticlesController extends BaseController {
         try
         {
             $article = $this->articles->findOrFail($id);
+
             return $this->view('articles.show', compact('article'));
         }
         catch (ModelNotFoundException $e)
@@ -125,6 +128,7 @@ class ArticlesController extends BaseController {
         try
         {
             $article = $this->articles->findOrFail($id);
+
             return $this->view('articles.edit', compact('article'));
         }
         catch (ModelNotFoundException $e)

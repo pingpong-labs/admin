@@ -1,6 +1,6 @@
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-    <a href="{{ route('admin.home') }}" class="logo">
+    <a href="{{ url('/') }}" target="_blank" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
         {{ option('site.name') }}
     </a>
@@ -218,7 +218,7 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="glyphicon glyphicon-user"></i>
-        <span>{{ Auth::user()->name }} <i class="caret"></i></span>
+        <span>{{ Auth::user()->name }} <small>({{ Auth::user()->email }})</small><i class="caret"></i></span>
     </a>
     <ul class="dropdown-menu">
         <!-- User image -->

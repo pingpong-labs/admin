@@ -4,14 +4,21 @@ use Pingpong\Validator\Validator;
 
 class Create extends Validator {
 
+	protected $rules = [
+        'title' => 'required',
+        'slug' => 'required|unique:articles,slug',
+        'body' => 'required',
+        'image' => 'required|image',
+	];
+
 	public function rules()
 	{
-		return [
-	        'title' => 'required',
-	        'slug' => 'required|unique:articles,slug',
-	        'body' => 'required',
-	        'image' => 'required|image',
-		];
+		if(isOnPages())
+		{
+			unset($this->rules['image']);
+		}
+
+		return $this->rules;
 	}
 
 }

@@ -3,8 +3,9 @@
 use DB;
 use Request;
 use URL;
+use Pingpong\Presenters\Model;
 
-class Visitor extends \Eloquent {
+class Visitor extends Model {
 
     /**
      * Fillable Property.

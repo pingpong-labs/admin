@@ -16,7 +16,7 @@
 		<div class="small-box bg-aqua">
 			<div class="inner">
 				<h3>
-					{{ Pingpong\Admin\Entities\User::count() }}
+					{{ user()->count() }}
 				</h3>
 
 				<p>
@@ -26,7 +26,7 @@
 			<div class="icon">
 				<i class="fa fa-users"></i>
 			</div>
-			<a href="#" class="small-box-footer">
+			<a href="{{ route('admin.users.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -47,7 +47,7 @@
 			<div class="icon">
 				<i class="fa fa-book"></i>
 			</div>
-			<a href="{{ route('admin.pages.index') }}" class="small-box-footer">
+			<a href="{{ route('admin.articles.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -58,17 +58,17 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ Pingpong\Admin\Entities\User::today()->sum('id') }}
+					{{ page()->count() }}
 				</h3>
 
 				<p>
-					User Registrations
+					All Pages
 				</p>
 			</div>
 			<div class="icon">
-				<i class="ion ion-person-add"></i>
+				<i class="fa fa-flag"></i>
 			</div>
-			<a href="{{ route('admin.users.index') }}" class="small-box-footer">
+			<a href="{{ route('admin.pages.index') }}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -322,9 +322,9 @@
 		<!-- quick email widget -->
 		<div class="box box-info">
 			<div class="box-header">
-				<i class="fa fa-envelope"></i>
+				<i class="fa fa-book"></i>
 
-				<h3 class="box-title">Quick Email</h3>
+				<h3 class="box-title">Quick Post</h3>
 				<!-- tools box -->
 				<div class="pull-right box-tools">
 					<button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove"><i
@@ -335,19 +335,19 @@
 				<div class="box-body">
 					<form action="#" method="post">
 						<div class="form-group">
-							<input type="email" class="form-control" name="emailto" placeholder="Email to:"/>
+							<input type="title" class="form-control" name="title" placeholder="Title:"/>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="subject" placeholder="Subject"/>
+							{{ Form::select('category_id', category()->options(), null, ['class' => 'form-control', 'placeholder' => 'Category:']) }}
 						</div>
 						<div>
-							<textarea class="textarea" placeholder="Message"
+							<textarea class="textarea" placeholder="Content"
 							style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 						</div>
 					</form>
 				</div>
 				<div class="box-footer clearfix">
-					<button class="pull-right btn btn-default" id="sendEmail">Send <i class="fa fa-arrow-circle-right"></i></button>
+					<button class="pull-right btn btn-default" id="sendEmail">Save <i class="fa fa-arrow-circle-right"></i></button>
 				</div>
 			</div>
 
@@ -528,3 +528,11 @@
 			<!-- /.row (main row) -->
 
 			@stop
+
+@section('script')
+	<script src="{{ admin_asset('components/raphael/raphael-min.js') }}"></script>
+	<script src="{{ admin_asset('adminlte/js/plugins/morris/morris.min.js') }}"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script src="{{ admin_asset('adminlte/js/AdminLTE/dashboard.js') }}" type="text/javascript"></script>
+
+@stop

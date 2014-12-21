@@ -7,14 +7,14 @@ function convertToSlug(Text)
         ;
 }
 
-$('[name=title]').on('keyup', function ()
+$('[name=title], [name=name]').on('keyup', function ()
 {
-	var title = $(this).val();
-	
-	var slug = convertToSlug(title);
-	
-	$('[name=slug]').val(slug);
+    var title = $(this).val();
 
-	$('.slug-preview').text(slug);
+    var slug = convertToSlug(title);
+
+    $('[name=slug]').val(slug);
+
+    $('.slug-preview').text(slug);
 
 });

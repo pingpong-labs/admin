@@ -1,6 +1,7 @@
 <?php
 
 use Pingpong\Admin\Entities\Option;
+use Pingpong\Admin\Entities\Category;
 
 if ( ! function_exists('pagination_links'))
 {
@@ -112,16 +113,75 @@ if ( ! function_exists('script'))
 
 if ( ! function_exists('session_check'))
 {
+    /**
+     * @return void
+     */
     function session_check()
     {
-        if ( ! getenv('TESTING')) session_start();
+        if ( ! getenv('PINGPONG_ADMIN_TESTING')) session_start();
     }
 }
 
 if ( ! function_exists('db_is'))
 {
+    /**
+     * @param  string $driver
+     * @return bool
+     */
     function db_is($driver)
     {
         return Config::get('database.default') == $driver;
+    }
+}
+
+if ( ! function_exists('user'))
+{
+    /**
+     * Get user instance.
+     * 
+     * @return mixed
+     */
+    function user()
+    {
+        return app(Config::get('auth.model'));
+    }
+}
+
+if( ! function_exists('article'))
+{
+    /**
+     * Get article instance.
+     * 
+     * @return mixed
+     */
+    function article()
+    {
+        return new Pingpong\Admin\Entities\Article;
+    }
+}
+
+if( ! function_exists('page'))
+{
+    /**
+     * Get page instance.
+     * 
+     * @return mixed
+     */
+    function page()
+    {
+        return article()->onlyPage();
+    }
+}
+
+if( ! function_exists('category'))
+{
+    /**
+     * Get category instance.
+     * 
+     * @return mixed
+     */
+    function category()
+    {
+        return new Category;
     }
 }

@@ -30,7 +30,7 @@ abstract class AdminTestCase extends Pingpong\Testing\TestCase {
 
     protected function setupEnvironment($app)
     {
-        putenv('TESTING=1');
+        putenv('PINGPONG_ADMIN_TESTING=1');
 
         if(gethostname() == 'gravitano-desktop')
         {

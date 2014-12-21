@@ -12,13 +12,6 @@ class User extends Model implements UserInterface, RemindableInterface {
     use UserTrait, RemindableTrait, TrustyTrait;
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
-
-    /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
@@ -56,7 +49,7 @@ class User extends Model implements UserInterface, RemindableInterface {
     }
 
     /**
-     * Scope today.
+     * Scope "today"
      * 
      * @param  mixed $query
      * @return mixed
@@ -67,7 +60,7 @@ class User extends Model implements UserInterface, RemindableInterface {
         
         if(db_is('sqlite'))
         {
-            $sql = "date(created_at) = date(date('now'))";
+            $sql = "date(created_at) = date('now')";
         }
 
         return $query->whereRaw($sql);

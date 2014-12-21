@@ -1,6 +1,9 @@
 <?php namespace Pingpong\Admin\Entities;
 
-class Option extends \Eloquent {
+use Illuminate\Database\Eloquent\Model;
+use Pingpong\Admin\Entities\Option;
+
+class Option extends Model {
 
     /**
      * @var array
