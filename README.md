@@ -1,4 +1,4 @@
-## Simple Administrator Package for Laravel 4+
+## Simple Administrator Package for Laravel 5
 
 [![Build Status](https://travis-ci.org/pingpong-labs/admin.svg?branch=master)](https://travis-ci.org/pingpong-labs/admin)
 [![Latest Stable Version](https://poser.pugx.org/pingpong/admin/v/stable.svg)](https://packagist.org/packages/pingpong/admin) [![Total Downloads](https://poser.pugx.org/pingpong/admin/downloads.svg)](https://packagist.org/packages/pingpong/admin) [![Latest Unstable Version](https://poser.pugx.org/pingpong/admin/v/unstable.svg)](https://packagist.org/packages/pingpong/admin) [![License](https://poser.pugx.org/pingpong/admin/license.svg)](https://packagist.org/packages/pingpong/admin)
@@ -14,9 +14,11 @@
 
 ### Installation
 
+> For Laravel 4, use version `~1`.
+
 Open your composer.json file, and add the new required package.
 ```
-"pingpong/admin": "1.1.*" 
+"pingpong/admin": "dev-develop" 
 ```
 
 Next, open a terminal and run.
@@ -34,9 +36,14 @@ Next, Add new service provider in `app/config/app.php`.
 Next, update your user model to extend the `Pingpong\Admin\Entities\User` class. Looks like this.
 
 ```php
-// app/model/User.php
+// app/User.php
 
 class User extends \Pingpong\Admin\Entities\User {}
+```
+
+Next, publish the admin's assets.
+```
+php artisan vendor:publish
 ```
 
 Next, install the package.
