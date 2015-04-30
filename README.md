@@ -59,7 +59,7 @@ Done.
 
 ### Usage
 
-Browse your app to the url : `http://your-host.com/admin`. By default the login credentials is `pingpong` for the username and `secret` for the password.
+Browse your app to the url : `http://your-host.com/admin`. By default the login credentials is `pingpong.labs@gmail` for the email and `secret` for the password.
 
 ### Documentation
 
