@@ -65,15 +65,6 @@ Browse your app to the url : `http://your-host.com/admin`. By default the login 
 
 For more documentation please see [wiki](https://github.com/pingpong-labs/admin/wiki) part of this repo.
 
-### Screencasts
-
-https://www.dropbox.com/s/foyidbk7fzqywco/pingpong-admin-tutorial.mp4
-
-### Todos
-
-- Add support for all database drivers.
-- Add more tests.
-
 ### License
 
 This package is open-sourced software licensed under [The BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause)
