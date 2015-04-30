@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Pingpong\Admin\Repositories\ArticleRepository;
 use Pingpong\Admin\Repositories\PagesRepository;
 use Pingpong\Admin\Uploader\ImageUploader;
+use Pingpong\Admin\Validation\Article\Create;
+use Pingpong\Admin\Validation\Article\Update;
 
 class ArticlesController extends BaseController {
 
@@ -76,9 +78,9 @@ class ArticlesController extends BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function store(Create $request)
     {
-        app('Pingpong\Admin\Validation\Article\Create')->validate($data = $this->inputAll());
+        $data = $request->all();
 
         unset($data['image']);
 
@@ -144,13 +146,13 @@ class ArticlesController extends BaseController {
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Update $request, $id)
     {
         try
         {
             $article = $this->articles->findOrFail($id);
 
-            app('Pingpong\Admin\Validation\Article\Update')->validate($data = $this->inputAll());
+            $data = $request->all();
 
             unset($data['image']);
             unset($data['type']);

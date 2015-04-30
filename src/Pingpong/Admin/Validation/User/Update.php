@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Validation\User;
 
-use Pingpong\Validator\Validator;
+use Pingpong\Admin\Validation\Validator;
 use Illuminate\Support\Facades\Request;
 
 class Update extends Validator {

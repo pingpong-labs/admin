@@ -1,7 +1,9 @@
 <?php namespace Pingpong\Admin\Controllers;
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Config;
+use Pingpong\Admin\Validation\User\Create;
+use Pingpong\Admin\Validation\User\Update;
 
 class UsersController extends BaseController {
 
@@ -56,13 +58,13 @@ class UsersController extends BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function store(Create $request)
     {
-        app('Pingpong\Admin\Validation\User\Create')->validate($data = $this->inputAll());
+        $data = $request->all();
 
         $user = $this->users->create($data);
 
-        $user->addRole(\Input::get('role'));
+        $user->addRole($request->get('role'));
 
         return $this->redirect('users.index');
     }
@@ -114,15 +116,13 @@ class UsersController extends BaseController {
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Update $request, $id)
     {
         try
         {   
-            $data = ! \Input::has('password') ? \Input::except('password') : $this->inputAll();
+            $data = ! $request->has('password') ? $request->except('password') : $this->inputAll();
             
-            $user = $this->users->findOrFail($id);
-                
-            app('Pingpong\Admin\Validation\User\Update')->validate($data);
+            $user = $this->users->findOrFail($id);                
             
             $user->update($data);
 

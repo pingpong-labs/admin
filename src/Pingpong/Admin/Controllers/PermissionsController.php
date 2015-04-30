@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Admin\Entities\Permission;
+use Pingpong\Admin\Validation\Permission\Create;
+use Pingpong\Admin\Validation\Permission\Update;
 
 class PermissionsController extends BaseController {
 
@@ -57,9 +59,9 @@ class PermissionsController extends BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function store(Create $request)
     {
-        app('Pingpong\Admin\Validation\Permission\Create')->validate($data = $this->inputAll());   
+        $data = $request->all();
 
         $this->permissions->create($data);
 
@@ -112,14 +114,14 @@ class PermissionsController extends BaseController {
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Update $request, $id)
     {
         try
         {
             $permission = $this->permissions->findOrFail($id);
+                
+            $data = $request->all();
             
-            app('Pingpong\Admin\Validation\Permission\Update')->validate($data = $this->inputAll());
-
             $permission->update($data);
 
             return $this->redirect('permissions.index');

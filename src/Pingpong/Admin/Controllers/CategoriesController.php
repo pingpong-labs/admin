@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Admin\Entities\Category;
+use Pingpong\Admin\Validation\Category\Create;
+use Pingpong\Admin\Validation\Category\Update;
 
 class CategoriesController extends BaseController {
 
@@ -43,10 +45,9 @@ class CategoriesController extends BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function store(Create $request)
     {
-        app('Pingpong\Admin\Validation\Category\Create')
-            ->validate($data = $this->inputAll());
+        $data = $request->all();
 
         $category = Category::create($data);
 
@@ -99,12 +100,11 @@ class CategoriesController extends BaseController {
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Update $request, $id)
     {
         try
         {
-            app('Pingpong\Admin\Validation\Category\Update')
-                ->validate($data = $this->inputAll());
+            $data = $request->all();
 
             $category = Category::findOrFail($id);
 

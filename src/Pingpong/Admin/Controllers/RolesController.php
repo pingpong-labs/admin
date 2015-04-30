@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Admin\Entities\Role;
+use Pingpong\Admin\Validation\Role\Create;
+use Pingpong\Admin\Validation\Role\Update;
 
 class RolesController extends BaseController {
 
@@ -56,9 +58,9 @@ class RolesController extends BaseController {
      *
      * @return Response
      */
-    public function store()
+    public function store(Create $request)
     {   
-        app('Pingpong\Admin\Validation\Role\Create')->validate($data = $this->inputAll());
+        $data = $request->all();
 
         $this->roles->create($data);
 
@@ -112,13 +114,13 @@ class RolesController extends BaseController {
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Update $request, $id)
     {
         try
         {
             $role = $this->roles->findOrFail($id);
             
-            app('Pingpong\Admin\Validation\Role\Update')->validate($data = $this->inputAll());
+            $data = $request->all();            
 
             $role->update($data);
 

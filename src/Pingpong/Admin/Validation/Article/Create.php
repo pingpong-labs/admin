@@ -1,6 +1,6 @@
 <?php namespace Pingpong\Admin\Validation\Article;
 
-use Pingpong\Validator\Validator;
+use Pingpong\Admin\Validation\Validator;
 
 class Create extends Validator {
 

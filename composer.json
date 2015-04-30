@@ -13,7 +13,6 @@
         "php": ">=5.4.0",
         "laravel/framework": "~5.0",
         "pingpong/testing": "2.0.*@dev",
-        "pingpong/validator": "2.0.*@dev",
         "pingpong/menus": "2.0.*@dev",
         "pingpong/presenters": "2.0.*@dev",
         "pingpong/trusty": "2.0.*@dev",
