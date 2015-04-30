@@ -6,7 +6,7 @@ abstract class DatabaseTestCase extends AdminTestCase {
     {
         parent::setUp();
 
-        $this->app['artisan']->call('admin:install');
+        // $this->app['artisan']->call('admin:install');
     }
 
     public function tearDown()
@@ -15,7 +15,7 @@ abstract class DatabaseTestCase extends AdminTestCase {
 
         Mockery::close();
 
-        $this->app['artisan']->call('migrate:reset');
+        // $this->app['artisan']->call('migrate:reset');
     }
 
 } 

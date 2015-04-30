@@ -2,6 +2,11 @@
 
 abstract class AdminTestCase extends Pingpong\Testing\TestCase {
 
+    public function getBasePath()
+    {
+        return __DIR__ . '/../fixture';
+    }
+
     protected function getPackageProviders()
     {
         return [
