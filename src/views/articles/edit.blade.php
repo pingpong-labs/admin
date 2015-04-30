@@ -5,9 +5,9 @@
 		Edit
 		&middot;
 		@if(isOnPages())
-		<small>{{ link_to_route('admin.pages.index', 'Back') }}</small>
+		<small>{!! link_to_route('admin.pages.index', 'Back') !!}</small>
 		@else
-		<small>{{ link_to_route('admin.articles.index', 'Back') }}</small>
+		<small>{!! link_to_route('admin.articles.index', 'Back') !!}</small>
 		@endif
 	</h1>
 @stop

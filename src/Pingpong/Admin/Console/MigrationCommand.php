@@ -29,7 +29,10 @@ class MigrationCommand extends Command {
     {
         $path = realpath(__DIR__ . '/../../../../src/migrations/');
 
-        $this->laravel['files']->copyDirectory($path, $this->laravel['path'] . '/database/migrations');
+        $this->laravel['files']->copyDirectory(
+            $path,
+            $this->laravel['path.database'] . '/migrations/'
+        );
 
         $this->info("Migrations published successfully.");
     }

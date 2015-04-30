@@ -36,7 +36,7 @@ class RolesController extends BaseController {
     public function index()
     {
         $roles = $this->roles->paginate(10);
-        $no = $roles->getFrom();
+        $no = $roles->firstItem();
 
         return $this->view('roles.index', compact('roles', 'no'));
     }

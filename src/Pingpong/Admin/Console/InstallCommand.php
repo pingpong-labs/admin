@@ -71,14 +71,9 @@ class InstallCommand extends Command {
 
         if ($this->confirm('Do you want publish the pingpong/trusty\'s migrations ?'))
         {
-            if ($this->option('bench'))
-            {
-                $this->publishTrustyMigrations();
-            }
-            else
-            {
-                $this->call('migrate:publish', ['package' => 'pingpong/trusty']);
-            }
+            $this->call('vendor:publish', [
+                '--provider' => 'Pingpong\Trusty\TrustyServiceProvider'
+            ]);            
         }
 
         if ($this->confirm('Do you want run all migrations now ?'))
@@ -93,22 +88,18 @@ class InstallCommand extends Command {
 
         if ($this->confirm('Do you want publish configuration files from pingpong/admin package ?'))
         {
-            if( ! $this->option('bench'))
-            {
-                $this->call('config:publish', ['package' => 'pingpong/admin']);
-            }
+            $this->call('vendor:publish', [
+                '--provider' => 'Pingpong\Admin\AdminServiceProvider',
+                '--tag' => 'config'
+            ]);
         }
 
         if ($this->confirm('Do you want publish assets from pingpong/admin package ?'))
         {
-            if($this->option('bench'))
-            {
-                $this->call('asset:publish', ['--bench' => 'pingpong/admin']);
-            }
-            else
-            {
-                $this->call('asset:publish', ['package' => 'pingpong/admin']);
-            }
+            $this->call('vendor:publish', [
+                '--provider' => 'Pingpong\Admin\AdminServiceProvider',
+                '--tag' => 'assets'
+            ]);
         }
 
         if ($this->confirm('Do you want create the app/menus.php file ?'))
@@ -116,7 +107,7 @@ class InstallCommand extends Command {
             $this->installMenus();
         }
 
-        $this->call('dump-autoload');
+        $this->call('optimize');
     }
 
     public function publishTrustyMigrations()
@@ -154,19 +145,6 @@ class InstallCommand extends Command {
         {
             $this->error("File already exists at path : {$file}");
         }
-    }
-
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return array(
-            array('--bench', null, InputOption::VALUE_NONE, 'Indicates the package is used in workbench.'),
-        );
     }
 
 }

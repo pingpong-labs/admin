@@ -6,7 +6,7 @@
 	<h1>
 		Edit
 		&middot;
-		<small>{{ link_to_route('admin.roles.index', 'Back') }}</small>
+		<small>{!! link_to_route('admin.roles.index', 'Back') !!}</small>
 	</h1>
 @stop
 

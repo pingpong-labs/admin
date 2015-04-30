@@ -16,7 +16,7 @@
 		<div class="small-box bg-aqua">
 			<div class="inner">
 				<h3>
-					{{ user()->count() }}
+					{!! user()->count() !!}
 				</h3>
 
 				<p>
@@ -26,7 +26,7 @@
 			<div class="icon">
 				<i class="fa fa-users"></i>
 			</div>
-			<a href="{{ route('admin.users.index') }}" class="small-box-footer">
+			<a href="{!! route('admin.users.index') !!}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -37,7 +37,7 @@
 		<div class="small-box bg-green">
 			<div class="inner">
 				<h3>
-					{{ Pingpong\Admin\Entities\Article::onlyPost()->count() }}
+					{!! Pingpong\Admin\Entities\Article::onlyPost()->count() !!}
 				</h3>
 
 				<p>
@@ -47,7 +47,7 @@
 			<div class="icon">
 				<i class="fa fa-book"></i>
 			</div>
-			<a href="{{ route('admin.articles.index') }}" class="small-box-footer">
+			<a href="{!! route('admin.articles.index') !!}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -58,7 +58,7 @@
 		<div class="small-box bg-yellow">
 			<div class="inner">
 				<h3>
-					{{ page()->count() }}
+					{!! page()->count() !!}
 				</h3>
 
 				<p>
@@ -68,7 +68,7 @@
 			<div class="icon">
 				<i class="fa fa-flag"></i>
 			</div>
-			<a href="{{ route('admin.pages.index') }}" class="small-box-footer">
+			<a href="{!! route('admin.pages.index') !!}" class="small-box-footer">
 				More info <i class="fa fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -138,7 +138,7 @@
 			<div class="box-body chat" id="chat-box">
 				<!-- chat item -->
 				<div class="item">
-					<img src="{{ admin_asset('adminlte/img/avatar.png') }}" alt="user image" class="online"/>
+					<img src="{!! admin_asset('adminlte/img/avatar.png') !!}" alt="user image" class="online"/>
 
 					<p class="message">
 						<a href="#" class="name">
@@ -165,7 +165,7 @@
 				<!-- /.item -->
 				<!-- chat item -->
 				<div class="item">
-					<img src="{{ admin_asset('adminlte/img/avatar2.png') }}" alt="user image" class="offline"/>
+					<img src="{!! admin_asset('adminlte/img/avatar2.png') !!}" alt="user image" class="offline"/>
 
 					<p class="message">
 						<a href="#" class="name">
@@ -180,7 +180,7 @@
 				<!-- /.item -->
 				<!-- chat item -->
 				<div class="item">
-					<img src="{{ admin_asset('adminlte/img/avatar3.png') }}" alt="user image" class="offline"/>
+					<img src="{!! admin_asset('adminlte/img/avatar3.png') !!}" alt="user image" class="offline"/>
 
 					<p class="message">
 						<a href="#" class="name">
@@ -338,7 +338,7 @@
 							<input type="title" class="form-control" name="title" placeholder="Title:"/>
 						</div>
 						<div class="form-group">
-							{{ Form::select('category_id', category()->options(), null, ['class' => 'form-control', 'placeholder' => 'Category:']) }}
+							{!! Form::select('category_id', category()->options(), null, ['class' => 'form-control', 'placeholder' => 'Category:']) !!}
 						</div>
 						<div>
 							<textarea class="textarea" placeholder="Content"
@@ -530,9 +530,9 @@
 			@stop
 
 @section('script')
-	<script src="{{ admin_asset('components/raphael/raphael-min.js') }}"></script>
-	<script src="{{ admin_asset('adminlte/js/plugins/morris/morris.min.js') }}"></script>
+	<script src="{!! admin_asset('components/raphael/raphael-min.js') !!}"></script>
+	<script src="{!! admin_asset('adminlte/js/plugins/morris/morris.min.js') !!}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="{{ admin_asset('adminlte/js/AdminLTE/dashboard.js') }}" type="text/javascript"></script>
+	<script src="{!! admin_asset('adminlte/js/AdminLTE/dashboard.js') !!}" type="text/javascript"></script>
 
 @stop

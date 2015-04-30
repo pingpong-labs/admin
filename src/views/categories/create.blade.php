@@ -4,7 +4,7 @@
 	<h1>
 		Add New
 		&middot;
-		<small>{{ link_to_route('admin.categories.index', 'Back') }}</small>
+		<small>{!! link_to_route('admin.categories.index', 'Back') !!}</small>
 	</h1>
 @stop
 

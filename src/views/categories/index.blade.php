@@ -2,9 +2,9 @@
 
 @section('content-header')
 	<h1>
-		All Categories ({{ $categories->getTotal() }})
+		All Categories ({!! $categories->count() !!})
 		&middot;
-		<small>{{ link_to_route('admin.categories.create', 'Add New') }}</small>
+		<small>{!! link_to_route('admin.categories.create', 'Add New') !!}</small>
 	</h1>
 @stop
 
@@ -22,13 +22,13 @@
 		<tbody>
 			@foreach ($categories as $category)
 			<tr>
-				<td>{{ $no }}</td>
-				<td>{{ $category->name }}</td>
-				<td>{{ $category->slug }}</td>
-				<td>{{ $category->description }}</td>
-				<td>{{ $category->created_at }}</td>
+				<td>{!! $no !!}</td>
+				<td>{!! $category->name !!}</td>
+				<td>{!! $category->slug !!}</td>
+				<td>{!! $category->description !!}</td>
+				<td>{!! $category->created_at !!}</td>
 				<td class="text-center">
-					<a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a>
+					<a href="{!! route('admin.categories.edit', $category->id) !!}">Edit</a>
 					&middot;
 					@include('admin::partials.modal', ['data' => $category, 'name' => 'categories'])
 				</td>
@@ -39,6 +39,6 @@
 	</table>
 
 	<div class="text-center">
-		{{ pagination_links($categories) }}
+		{!! pagination_links($categories) !!}
 	</div>
 @stop

@@ -21,7 +21,6 @@ class AdminServiceProvider extends ServiceProvider {
         'Pingpong\Menus\MenusServiceProvider',
         'Pingpong\Trusty\TrustyServiceProvider',
         'Pingpong\Admin\Providers\ConsoleServiceProvider',
-        'Pingpong\Admin\Providers\ErrorServiceProvider',
     ];
 
     /**
@@ -30,7 +29,7 @@ class AdminServiceProvider extends ServiceProvider {
      * @var array
      */
     protected $facades = [
-        'Menu' => 'Pingpong\Menus\Facades\Menu',
+        'Menu' => 'Pingpong\Menus\MenuFacade',
         'Role' => 'Pingpong\Trusty\Entities\Role',
         'Permission' => 'Pingpong\Trusty\Entities\Permission',
         'Trusty' => 'Pingpong\Trusty\Facades\Trusty',
@@ -66,7 +65,19 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('pingpong/admin');
+        $configPath = config_path('admin.php');
+
+        $this->publishes([
+            __DIR__ . '/../../config/config.php' => $configPath,
+            __DIR__ . '/../../../public/' => public_path('packages/pingpong/admin/')
+        ]);
+
+        if (file_exists($configPath))
+        {
+            $this->mergeConfigFrom($configPath, 'admin');
+        }
+
+        $this->loadViewsFrom(__DIR__.'/../../views', 'admin');
     }
 
     /**

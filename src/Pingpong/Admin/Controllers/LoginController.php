@@ -21,7 +21,7 @@ class LoginController extends BaseController {
      */
     public function store()
     {
-        $credentials = \Input::only('username', 'password');
+        $credentials = \Input::only('email', 'password');
         $remember = \Input::has('remember');
 
         if (\Auth::attempt($credentials, $remember))

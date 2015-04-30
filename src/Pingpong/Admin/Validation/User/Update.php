@@ -11,8 +11,7 @@ class Update extends Validator {
 
 		return [
 	        'name' => 'required',
-	        'username' => 'required|unique:users,username,' . $id,
-	        'email' => 'required|email|unique:users,email,' . $id,
+	        'email' => 'required|unique:users,email,' . $id,
 	        'password' => 'required|min:6|max:20',
 	    ];
 	}

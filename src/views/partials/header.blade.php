@@ -1,8 +1,8 @@
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-    <a href="{{ url('/') }}" target="_blank" class="logo">
+    <a href="{!! url('/') !!}" target="_blank" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
-        {{ option('site.name') }}
+        {!! option('site.name') !!}
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -30,7 +30,7 @@
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ admin_asset('adminlte/img/avatar3.png') }}" class="img-circle" alt="User Image"/>
+                                            <img src="{!! admin_asset('adminlte/img/avatar3.png') !!}" class="img-circle" alt="User Image"/>
                                         </div>
                                         <h1>
                                             Support Team
@@ -43,7 +43,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ admin_asset('adminlte/img/avatar2.png') }}" class="img-circle" alt="user image"/>
+                                            <img src="{!! admin_asset('adminlte/img/avatar2.png') !!}" class="img-circle" alt="user image"/>
                                         </div>
                                         <h1>
                                             AdminLTE Design Team
@@ -55,7 +55,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ admin_asset('adminlte/img/avatar.png') }}" class="img-circle" alt="user image"/>
+                                            <img src="{!! admin_asset('adminlte/img/avatar.png') !!}" class="img-circle" alt="user image"/>
                                         </div>
                                         <h1>
                                             Developers
@@ -67,7 +67,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ admin_asset('adminlte/img/avatar2.png') }}" class="img-circle" alt="user image"/>
+                                            <img src="{!! admin_asset('adminlte/img/avatar2.png') !!}" class="img-circle" alt="user image"/>
                                         </div>
                                         <h1>
                                             Sales Department
@@ -79,7 +79,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="{{ admin_asset('adminlte/img/avatar.png') }}" class="img-circle" alt="user image"/>
+                                            <img src="{!! admin_asset('adminlte/img/avatar.png') !!}" class="img-circle" alt="user image"/>
                                         </div>
                                         <h1>
                                             Reviewers
@@ -218,16 +218,16 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="glyphicon glyphicon-user"></i>
-        <span>{{ Auth::user()->name }} <small>({{ Auth::user()->email }})</small><i class="caret"></i></span>
+        <span>{!! Auth::user()->name !!} <small>({!! Auth::user()->email !!})</small><i class="caret"></i></span>
     </a>
     <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header bg-light-blue">
-            <img src="{{ Auth::user()->gravatar(100) }}" class="img-circle" alt="User Image"/>
+            <img src="{!! Auth::user()->gravatar(100) !!}" class="img-circle" alt="User Image"/>
 
             <p>
-                {{ Auth::user()->name }} - {{ Auth::user()->getRole()->name }}
-                <small>Member since {{ Auth::user()->created_at->format('M, Y') }}</small>
+                {!! Auth::user()->name !!}
+                <small>Member since {!! Auth::user()->created_at->format('M, Y') !!}</small>
             </p>
         </li>
         <!-- Menu Body -->
@@ -245,10 +245,10 @@
         <!-- Menu Footer-->
         <li class="user-footer">
             <div class="pull-left">
-                <a href="{{ route('admin.settings') }}" class="btn btn-default btn-flat">Settings</a>
+                <a href="{!! route('admin.settings') !!}" class="btn btn-default btn-flat">Settings</a>
             </div>
             <div class="pull-right">
-                <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                <a href="{!! route('admin.logout') !!}" class="btn btn-default btn-flat">Sign out</a>
             </div>
         </li>
     </ul>

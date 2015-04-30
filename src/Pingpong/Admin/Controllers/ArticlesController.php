@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 use Pingpong\Admin\Repositories\ArticleRepository;
 use Pingpong\Admin\Repositories\PagesRepository;
 use Pingpong\Admin\Uploader\ImageUploader;
@@ -55,7 +56,7 @@ class ArticlesController extends BaseController {
     {
         $articles = $this->articles->searchOrAllPaginated(Input::get('q'));
 
-        $no = $articles->getFrom();
+        $no = $articles->firstItem();
 
         return $this->view('articles.index', compact('articles', 'no'));
     }
@@ -90,7 +91,7 @@ class ArticlesController extends BaseController {
         }
 
         $data['user_id'] = \Auth::id();
-        $data['slug'] = \Str::slug($data['title']);
+        $data['slug'] = Str::slug($data['title']);
 
         $this->articles->getArticle()->create($data);
 
@@ -164,7 +165,7 @@ class ArticlesController extends BaseController {
             }
 
             $data['user_id'] = \Auth::id();
-            $data['slug'] = \Str::slug($data['title']);
+            $data['slug'] = Str::slug($data['title']);
             $article->update($data);
 
             return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');

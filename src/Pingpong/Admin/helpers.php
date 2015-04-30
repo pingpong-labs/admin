@@ -15,9 +15,9 @@ if ( ! function_exists('pagination_links'))
         if ($query = Request::query())
         {
             $request = array_except($query, 'page');
-            return $data->appends($request)->links($view);
+            return $data->appends($request)->render($view);
         }
-        return $data->links($view);
+        return $data->render($view);
     }
 }
 

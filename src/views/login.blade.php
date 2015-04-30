@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <title>Administrator| Login</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <link href="{{ admin_asset('components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ admin_asset('components/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet"
+        <link href="{!! admin_asset('components/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet" type="text/css"/>
+        <link href="{!! admin_asset('components/fontawesome/css/font-awesome.min.css') !!}" rel="stylesheet"
 type="text/css"/>
         <!-- Theme style -->
-        <link href="{{ admin_asset('adminlte/css/AdminLTE.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{!! admin_asset('adminlte/css/AdminLTE.css') !!}" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,10 +21,10 @@ type="text/css"/>
 
         <div class="form-box" id="login-box">
             <div class="header">Sign In</div>
-            {{ Form::open(['route' => 'admin.login.store']) }}
+            {!! Form::open(['route' => 'admin.login.store']) !!}
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Username"/>
+                        <input type="text" name="email" class="form-control" placeholder="Email"/>
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password"/>
@@ -40,7 +40,7 @@ type="text/css"/>
                     
                     <a href="register.html" class="text-center">Register a new membership</a> -->
                 </div>
-            {{ Form::close() }}
+            {!! Form::close() !!}
 
             <div class="margin hidden text-center">
                 <span>Sign in using social networks</span>
@@ -52,8 +52,8 @@ type="text/css"/>
             </div>
         </div>
 
-        <script src="{{ admin_asset('components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ admin_asset('components/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{!! admin_asset('components/jquery/dist/jquery.min.js') !!}"></script>
+        <script src="{!! admin_asset('components/bootstrap/dist/js/bootstrap.min.js') !!}" type="text/javascript"></script>
 
     </body>
 </html>

@@ -2,9 +2,9 @@
 
 @section('content-header')
 	<h1>
-		{{{ $title or 'All Users' }}} ({{ $users->getTotal() }})
+		{!! $title or 'All Users' !!} ({!! $users->count() !!})
 		&middot;
-		<small>{{ link_to_route('admin.users.create', 'Add New') }}</small>
+		<small>{!! link_to_route('admin.users.create', 'Add New') !!}</small>
 	</h1>
 @stop
 
@@ -18,7 +18,6 @@
 		<thead>
 			<th>No</th>
 			<th>Name</th>
-			<th>Username</th>
 			<th>Email</th>
 			<th>Created At</th>
 			<th class="text-center">Action</th>
@@ -26,13 +25,12 @@
 		<tbody>
 			@foreach ($users as $user)
 			<tr>
-				<td>{{ $no }}</td>
-				<td>{{ $user->name }}</td>
-				<td>{{ $user->username }}</td>
-				<td>{{ $user->email }}</td>
-				<td>{{ $user->created_at }}</td>
+				<td>{!! $no !!}</td>
+				<td>{!! $user->name !!}</td>
+				<td>{!! $user->email !!}</td>
+				<td>{!! $user->created_at !!}</td>
 				<td class="text-center">
-					<a href="{{ route('admin.users.edit', $user->id) }}">Edit</a>
+					<a href="{!! route('admin.users.edit', $user->id) !!}">Edit</a>
 					&middot;
 					@include('admin::partials.modal', ['data' => $user, 'name' => 'users'])
 				</td>
@@ -43,6 +41,6 @@
 	</table>
 
 	<div class="text-center">
-		{{ pagination_links($users) }}
+		{!! pagination_links($users) !!}
 	</div>
 @stop

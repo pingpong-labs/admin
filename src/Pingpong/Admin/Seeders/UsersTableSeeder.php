@@ -9,12 +9,11 @@ class UsersTableSeeder extends Seeder {
     {
         $user = User::create([
             'name' => 'Administrator',
-            'username' => 'pingpong',
             'email' => 'pingpong.labs@gmail.com',
             'password' => 'secret',
         ]);
 
-        if ( ! $user->hasRole('admin')->first()) $user->roles()->attach(1);
+        $user->addRole(1);
     }
 
 }

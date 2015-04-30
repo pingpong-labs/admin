@@ -6,7 +6,7 @@
 	<h1>
 		Add New
 		&middot;
-		<small>{{ link_to_route('admin.users.index', 'Back') }}</small>
+		<small>{!! link_to_route('admin.users.index', 'Back') !!}</small>
 	</h1>
 
 @stop

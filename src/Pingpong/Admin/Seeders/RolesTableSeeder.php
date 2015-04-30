@@ -1,7 +1,7 @@
 <?php namespace Pingpong\Admin\Seeders;
 
 use Illuminate\Database\Seeder;
-use Pingpong\Trusty\Entities\Role;
+use Pingpong\Trusty\Role;
 
 class RolesTableSeeder extends Seeder {
 

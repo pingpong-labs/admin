@@ -36,7 +36,7 @@ class UsersController extends BaseController {
     public function index()
     {
         $users = $this->users->paginate(10);
-        $no = $users->getFrom();
+        $no = $users->firstItem();
 
         return $this->view('users.index', compact('users', 'no'));
     }
@@ -98,7 +98,7 @@ class UsersController extends BaseController {
         {
             $user = $this->users->findOrFail($id);
 
-            $role = $user->getRole() ? $user->getRole()->id : null;
+            $role = $user->roles->lists('id');
 
             return $this->view('users.edit', compact('user', 'role'));
         }
@@ -126,7 +126,7 @@ class UsersController extends BaseController {
             
             $user->update($data);
 
-            $user->updateRole(\Input::get('role'));
+            $user->roles()->sync((array) \Input::get('role'));
 
             return $this->redirect('users.index');
         }

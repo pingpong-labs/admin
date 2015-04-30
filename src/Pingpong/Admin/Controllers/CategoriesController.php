@@ -23,7 +23,7 @@ class CategoriesController extends BaseController {
     public function index()
     {
         $categories = Category::paginate(10);
-        $no = $categories->getFrom();
+        $no = $categories->firstItem();
 
         return $this->view('categories.index', compact('categories', 'no'));
     }

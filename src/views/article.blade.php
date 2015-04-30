@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="page-content">
-		{{ $post->body }}
+		{!! $post->body !!}
 	</div>
 
 @endsection

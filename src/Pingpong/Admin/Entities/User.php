@@ -1,15 +1,15 @@
 <?php namespace Pingpong\Admin\Entities;
 
-use Illuminate\Auth\Reminders\RemindableInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Pingpong\Trusty\Traits\TrustyTrait;
 
-class User extends Model implements UserInterface, RemindableInterface {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-    use UserTrait, RemindableTrait, TrustyTrait;
+    use Authenticatable, CanResetPassword, TrustyTrait;
 
     /**
      * The attributes excluded from the model's JSON form.

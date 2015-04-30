@@ -37,7 +37,7 @@ class PermissionsController extends BaseController {
     {
         $permissions = $this->permissions->paginate(10);
 
-        $no = $permissions->getFrom();
+        $no = $permissions->firstItem();
 
         return $this->view('permissions.index', compact('permissions', 'no'));
     }
