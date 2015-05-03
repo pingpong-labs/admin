@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
-use Pingpong\Admin\Repositories\Articles\ArticleRepository;
 use Pingpong\Admin\Repositories\PagesRepository;
 use Pingpong\Admin\Uploader\ImageUploader;
 use Pingpong\Admin\Validation\Article\Create;
@@ -24,11 +23,27 @@ class ArticlesController extends BaseController
     /**
      * @param ImageUploader $uploader
      */
-    public function __construct(ImageUploader $uploader, ArticleRepository $repository)
+    public function __construct(ImageUploader $uploader)
     {
         $this->uploader = $uploader;
 
-        $this->repository = $repository;
+        $this->repository = $this->getRepository();
+    }
+
+    /**
+     * Get repository instance.
+     * 
+     * @return mixed
+     */
+    public function getRepository()
+    {
+        if (isOnPages()) {
+            $repository = 'Pingpong\Admin\Repositories\Pages\PageRepository';
+        } else {
+            $repository = 'Pingpong\Admin\Repositories\Articles\ArticleRepository';
+        }
+
+        return app($repository);
     }
 
     /**
