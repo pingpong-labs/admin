@@ -17,6 +17,7 @@ class RepositoriesServiceProvider extends ServiceProvider
     protected $entities = [
         'User',
         'Article',
+        'Page',
         'Category',
         'Role',
         'Permission',
@@ -71,6 +72,14 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(
             'Pingpong\Admin\Repositories\Permissions\PermissionRepository',
             'Pingpong\Admin\Repositories\Permissions\EloquentPermissionRepository'
+        );
+    }
+
+    protected function bindPageRepository()
+    {
+        $this->app->bind(
+            'Pingpong\Admin\Repositories\Pages\PageRepository',
+            'Pingpong\Admin\Repositories\Pages\EloquentPageRepository'
         );
     }
 }
