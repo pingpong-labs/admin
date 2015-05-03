@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 
-@section('content-header')	
+@section('content-header')
 	<h1>
 		Edit
 		&middot;

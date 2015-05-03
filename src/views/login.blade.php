@@ -28,14 +28,14 @@ type="text/css"/>
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password"/>
-                    </div>          
+                    </div>
                     <div class="form-group checkbox" style="margin-left:20px;">
                         <input type="checkbox" name="rememner" value="1" /> Remember me
                     </div>
                 </div>
-                <div class="footer">                                                               
-                    <button type="submit" class="btn bg-olive btn-block">Sign me in</button>  
-                    <!-- 
+                <div class="footer">
+                    <button type="submit" class="btn bg-olive btn-block">Sign me in</button>
+                    <!--
                     <p><a href="#">I forgot my password</a></p>
                     
                     <a href="register.html" class="text-center">Register a new membership</a> -->

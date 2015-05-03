@@ -39,7 +39,7 @@
 		{!! Form::label('image', 'Image:') !!}
 		{!! Form::file('image', ['class' => 'form-control']) !!}
 		{!! $errors->first('image', '<div class="text-danger">:message</div>') !!}
-	</div>	
+	</div>
 	@if(isset($model))
 	<div class="form-group">
 		@if($model->image)

@@ -6,5 +6,4 @@ use Pingpong\Admin\Repositories\Repository;
 
 interface CategoryRepository extends Repository
 {
-	
 }

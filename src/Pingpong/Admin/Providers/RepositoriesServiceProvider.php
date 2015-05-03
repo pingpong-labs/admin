@@ -55,5 +55,4 @@ class RepositoriesServiceProvider extends ServiceProvider
             'Pingpong\Admin\Repositories\Users\EloquentUserRepository'
         );
     }
-
 }
