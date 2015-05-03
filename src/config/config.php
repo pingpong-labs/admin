@@ -15,4 +15,7 @@ return [
         'model' => 'Pingpong\Admin\Entities\User',
         'perpage' => 10
     ],
+    'role' => [
+        'perpage' => 10
+    ],
 ];
