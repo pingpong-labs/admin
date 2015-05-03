@@ -18,4 +18,7 @@ return [
     'role' => [
         'perpage' => 10
     ],
+    'permission' => [
+        'perpage' => 10
+    ],
 ];

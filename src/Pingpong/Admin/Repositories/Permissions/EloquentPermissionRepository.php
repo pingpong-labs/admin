@@ -8,7 +8,7 @@ class EloquentPermissionRepository implements PermissionRepository
 {
     public function perPage()
     {
-        return config('admin.role.perpage');
+        return config('admin.permission.perpage');
     }
 
     public function allOrSearch($searchQuery = null)
