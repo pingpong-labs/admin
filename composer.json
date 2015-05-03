@@ -29,10 +29,5 @@
             "Pingpong\\Admin\\": "src/Pingpong/Admin"
         }
     },
-    "autoload-dev": {
-        "files": [
-            "tests/AdminTestCase.php"
-        ]
-    },
     "minimum-stability": "stable"
 }
