@@ -1,5 +1,5 @@
 <?php namespace Pingpong\Admin\Repositories;
 
-class DbUserRepository implements UserRepository {
-	
+class DbUserRepository implements UserRepository
+{
 }

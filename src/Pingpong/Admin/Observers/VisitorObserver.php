@@ -3,7 +3,8 @@
 use Pingpong\Admin\Entities\Visitor;
 use Illuminate\Support\Facades\Request;
 
-class VisitorObserver {
+class VisitorObserver
+{
 
     /**
      * Handle the specified event.
@@ -14,7 +15,8 @@ class VisitorObserver {
     {
         $isOnAdmin = Request::is('admin') || Request::is('admin/*');
 
-        if ( ! $isOnAdmin) Visitor::track();
+        if (! $isOnAdmin) {
+            Visitor::track();
+        }
     }
-
-} 
+}

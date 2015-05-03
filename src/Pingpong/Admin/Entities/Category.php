@@ -2,7 +2,8 @@
 
 use Pingpong\Presenters\Model;
 
-class Category extends Model {
+class Category extends Model
+{
 
     /**
      * @var array

@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Composers;
 
-class SettingFormComposer {
+class SettingFormComposer
+{
 
     public function compose($view)
     {
@@ -11,5 +12,4 @@ class SettingFormComposer {
 
         $view->with(compact('themes'));
     }
-
 }

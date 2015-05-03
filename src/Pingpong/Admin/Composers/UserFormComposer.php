@@ -2,7 +2,8 @@
 
 use Pingpong\Admin\Entities\Role;
 
-class UserFormComposer {
+class UserFormComposer
+{
 
     public function compose($view)
     {
@@ -10,5 +11,4 @@ class UserFormComposer {
 
         $view->with(compact('roles'));
     }
-
 }

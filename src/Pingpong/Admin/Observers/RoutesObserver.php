@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-class RoutesObserver {
+class RoutesObserver
+{
 
     /**
      * Handle the specified event.
@@ -17,5 +18,4 @@ class RoutesObserver {
 
         Route::get($permalink, ['as' => 'articles.show', 'uses' => $controller . '@showArticle']);
     }
-
-} 
+}

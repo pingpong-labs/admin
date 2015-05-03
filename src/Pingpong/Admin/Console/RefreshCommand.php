@@ -4,7 +4,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class RefreshCommand extends Command {
+class RefreshCommand extends Command
+{
 
     /**
      * The console command name.
@@ -31,5 +32,4 @@ class RefreshCommand extends Command {
 
         $this->call('admin:seed');
     }
-
 }

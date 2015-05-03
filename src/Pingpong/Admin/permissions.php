@@ -1,13 +1,9 @@
 <?php
 
-if (Auth::check())
-{
-    try
-    {
+if (Auth::check()) {
+    try {
         Trusty::registerPermissions();
-    }
-    catch (PDOException $e)
-    {
+    } catch (PDOException $e) {
         //
     }
 

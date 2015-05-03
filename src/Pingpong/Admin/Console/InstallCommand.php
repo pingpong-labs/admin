@@ -4,7 +4,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class InstallCommand extends Command {
+class InstallCommand extends Command
+{
 
     /**
      * The console command name.
@@ -27,12 +28,9 @@ class InstallCommand extends Command {
      */
     public function fire()
     {
-        if (getenv('PINGPONG_ADMIN_TESTING'))
-        {
+        if (getenv('PINGPONG_ADMIN_TESTING')) {
             $this->installPackageTest();
-        }
-        else
-        {
+        } else {
             $this->installPackage();
         }
     }
@@ -64,46 +62,39 @@ class InstallCommand extends Command {
      */
     protected function installPackage()
     {
-        if ($this->confirm('Do you want publish the pingpong/admin\'s migrations ?'))
-        {
+        if ($this->confirm('Do you want publish the pingpong/admin\'s migrations ?')) {
             $this->call('admin:migration');
         }
 
-        if ($this->confirm('Do you want publish the pingpong/trusty\'s migrations ?'))
-        {
+        if ($this->confirm('Do you want publish the pingpong/trusty\'s migrations ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Trusty\TrustyServiceProvider'
-            ]);            
+            ]);
         }
 
-        if ($this->confirm('Do you want run all migrations now ?'))
-        {
+        if ($this->confirm('Do you want run all migrations now ?')) {
             $this->call('migrate');
         }
 
-        if ($this->confirm('Do you want run the pingpong/admin\'s seeders now ?'))
-        {
+        if ($this->confirm('Do you want run the pingpong/admin\'s seeders now ?')) {
             $this->call('admin:seed');
         }
 
-        if ($this->confirm('Do you want publish configuration files from pingpong/admin package ?'))
-        {
+        if ($this->confirm('Do you want publish configuration files from pingpong/admin package ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Admin\AdminServiceProvider',
                 '--tag' => 'config'
             ]);
         }
 
-        if ($this->confirm('Do you want publish assets from pingpong/admin package ?'))
-        {
+        if ($this->confirm('Do you want publish assets from pingpong/admin package ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Admin\AdminServiceProvider',
                 '--tag' => 'assets'
             ]);
         }
 
-        if ($this->confirm('Do you want create the app/menus.php file ?'))
-        {
+        if ($this->confirm('Do you want create the app/menus.php file ?')) {
             $this->installMenus();
         }
 
@@ -118,8 +109,7 @@ class InstallCommand extends Command {
             $path, $this->laravel['path'] . '/database/migrations'
         );
 
-        foreach ($published as $migration)
-        {
+        foreach ($published as $migration) {
             $this->line('<info>Published:</info> ' . basename($migration));
         }
     }
@@ -133,18 +123,14 @@ class InstallCommand extends Command {
     {
         $file = app_path('menus.php');
 
-        if ( ! file_exists($file))
-        {
+        if (! file_exists($file)) {
             $contents = $this->laravel['files']->get(__DIR__ . '/stubs/menus.txt');
 
             $this->laravel['files']->put($file, $contents);
 
             $this->info("Created : {$file}");
-        }
-        else
-        {
+        } else {
             $this->error("File already exists at path : {$file}");
         }
     }
-
 }

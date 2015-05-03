@@ -2,7 +2,8 @@
 
 use Pingpong\Presenters\Model;
 
-class Article extends Model {
+class Article extends Model
+{
 
     /**
      * @var string
@@ -113,8 +114,7 @@ class Article extends Model {
     {
         parent::boot();
 
-        static::deleting(function ($data)
-        {
+        static::deleting(function ($data) {
             $data->deleteImage();
         });
     }
@@ -126,8 +126,7 @@ class Article extends Model {
     {
         $file = $this->present()->image_path;
 
-        if (file_exists($file))
-        {
+        if (file_exists($file)) {
             @unlink($file);
 
             return true;

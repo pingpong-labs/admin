@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateArticlesTable extends Migration {
+class CreateArticlesTable extends Migration
+{
 
     /**
      * Run the migrations.
@@ -12,8 +13,7 @@ class CreateArticlesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table)
-        {
+        Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type')->default('post'); // post, page
             $table->integer('user_id');
@@ -37,5 +37,4 @@ class CreateArticlesTable extends Migration {
     {
         Schema::drop('articles');
     }
-
 }

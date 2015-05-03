@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Pingpong\Admin\Entities\Article;
 use Pingpong\Admin\Entities\Option;
 
-class SiteController extends BaseController {
+class SiteController extends BaseController
+{
 
     /**
      * Admin dashboard.
@@ -39,8 +40,7 @@ class SiteController extends BaseController {
      */
     public function settings()
     {
-        if ( ! defined('STDIN'))
-        {
+        if (! defined('STDIN')) {
             define('STDIN', fopen("php://stdin", "r"));
         }
 
@@ -82,8 +82,7 @@ class SiteController extends BaseController {
     {
         $settings = \Input::all();
 
-        foreach ($settings as $key => $value)
-        {
+        foreach ($settings as $key => $value) {
             $option = str_replace('_', '.', $key);
 
             Option::findByKey($option)->update([
@@ -102,8 +101,7 @@ class SiteController extends BaseController {
      */
     public function showArticle($id)
     {
-        try
-        {
+        try {
             $post = Article::with('user', 'category')
                            ->whereId(intval($id))
                            ->orWhere('slug', $id)
@@ -112,10 +110,7 @@ class SiteController extends BaseController {
             $view = \Config::get('admin::post.view');
 
             return \View::make($view, compact('post'));
-        }
-
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return \App::abort(404);
         }
     }

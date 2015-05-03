@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Controller;
 
-class BaseController extends Controller {
+class BaseController extends Controller
+{
 
     /**
      * Show view.

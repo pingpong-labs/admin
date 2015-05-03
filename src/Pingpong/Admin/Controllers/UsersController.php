@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Config;
 use Pingpong\Admin\Validation\User\Create;
 use Pingpong\Admin\Validation\User\Update;
 
-class UsersController extends BaseController {
+class UsersController extends BaseController
+{
 
     /**
      * @var \User
@@ -77,13 +78,10 @@ class UsersController extends BaseController {
      */
     public function show($id)
     {
-        try
-        {
+        try {
             $user = $this->users->findOrFail($id);
             return $this->view('users.show', compact('user'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -96,16 +94,13 @@ class UsersController extends BaseController {
      */
     public function edit($id)
     {
-        try
-        {
+        try {
             $user = $this->users->findOrFail($id);
 
             $role = $user->roles->lists('id');
 
             return $this->view('users.edit', compact('user', 'role'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -118,20 +113,17 @@ class UsersController extends BaseController {
      */
     public function update(Update $request, $id)
     {
-        try
-        {   
+        try {
             $data = ! $request->has('password') ? $request->except('password') : $this->inputAll();
             
-            $user = $this->users->findOrFail($id);                
+            $user = $this->users->findOrFail($id);
             
             $user->update($data);
 
             $user->roles()->sync((array) \Input::get('role'));
 
             return $this->redirect('users.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -144,16 +136,12 @@ class UsersController extends BaseController {
      */
     public function destroy($id)
     {
-        try
-        {
+        try {
             $this->users->destroy($id);
 
             return $this->redirect('users.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
-
 }

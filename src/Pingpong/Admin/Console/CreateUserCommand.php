@@ -6,7 +6,8 @@ use Pingpong\Admin\Entities\User;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class CreateUserCommand extends Command {
+class CreateUserCommand extends Command
+{
 
     /**
      * The console command name.
@@ -38,8 +39,7 @@ class CreateUserCommand extends Command {
 
         $this->line('Select role:');
 
-        foreach (Role::all() as $role)
-        {
+        foreach (Role::all() as $role) {
             $this->line($role->id . '. ' . $role->name);
         }
 
@@ -49,5 +49,4 @@ class CreateUserCommand extends Command {
 
         $this->info("User [{$user->name}] created successfully.");
     }
-
 }

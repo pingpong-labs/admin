@@ -11,7 +11,8 @@ use Pingpong\Admin\Uploader\ImageUploader;
 use Pingpong\Admin\Validation\Article\Create;
 use Pingpong\Admin\Validation\Article\Update;
 
-class ArticlesController extends BaseController {
+class ArticlesController extends BaseController
+{
 
     protected $articles;
 
@@ -27,12 +28,9 @@ class ArticlesController extends BaseController {
     {
         $this->uploader = $uploader;
 
-        if (Request::is('admin/pages'))
-        {
+        if (Request::is('admin/pages')) {
             $this->articles = App::make(PagesRepository::className());
-        }
-        else
-        {
+        } else {
             $this->articles = App::make(ArticleRepository::className());
         }
     }
@@ -84,8 +82,7 @@ class ArticlesController extends BaseController {
 
         unset($data['image']);
 
-        if (\Input::hasFile('image'))
-        {
+        if (\Input::hasFile('image')) {
             // upload image
             $this->uploader->upload('image')->save('images/articles');
 
@@ -108,14 +105,11 @@ class ArticlesController extends BaseController {
      */
     public function show($id)
     {
-        try
-        {
+        try {
             $article = $this->articles->findOrFail($id);
 
             return $this->view('articles.show', compact('article'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -128,14 +122,11 @@ class ArticlesController extends BaseController {
      */
     public function edit($id)
     {
-        try
-        {
+        try {
             $article = $this->articles->findOrFail($id);
 
             return $this->view('articles.edit', compact('article'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -148,8 +139,7 @@ class ArticlesController extends BaseController {
      */
     public function update(Update $request, $id)
     {
-        try
-        {
+        try {
             $article = $this->articles->findOrFail($id);
 
             $data = $request->all();
@@ -157,8 +147,7 @@ class ArticlesController extends BaseController {
             unset($data['image']);
             unset($data['type']);
 
-            if (\Input::hasFile('image'))
-            {
+            if (\Input::hasFile('image')) {
                 $article->deleteImage();
 
                 $this->uploader->upload('image')->save('images/articles');
@@ -171,9 +160,7 @@ class ArticlesController extends BaseController {
             $article->update($data);
 
             return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -186,16 +173,12 @@ class ArticlesController extends BaseController {
      */
     public function destroy($id)
     {
-        try
-        {
+        try {
             $this->articles->getArticle()->destroy($id);
 
             return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
-
 }

@@ -2,7 +2,8 @@
 
 use Pingpong\Admin\Entities\Permission;
 
-class RoleFormComposer {
+class RoleFormComposer
+{
 
     public function compose($view)
     {
@@ -10,5 +11,4 @@ class RoleFormComposer {
 
         $view->with(compact('permissions'));
     }
-
 }

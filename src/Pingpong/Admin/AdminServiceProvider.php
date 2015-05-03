@@ -3,7 +3,8 @@
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-class AdminServiceProvider extends ServiceProvider {
+class AdminServiceProvider extends ServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -42,8 +43,7 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function registerProviders()
     {
-        foreach ($this->providers as $provider)
-        {
+        foreach ($this->providers as $provider) {
             $this->app->register($provider);
         }
     }
@@ -72,8 +72,7 @@ class AdminServiceProvider extends ServiceProvider {
             __DIR__ . '/../../../public/' => public_path('packages/pingpong/admin/')
         ]);
 
-        if (file_exists($configPath))
-        {
+        if (file_exists($configPath)) {
             $this->mergeConfigFrom($configPath, 'admin');
         }
 
@@ -96,15 +95,14 @@ class AdminServiceProvider extends ServiceProvider {
 
     /**
      * Register events.
-     * 
+     *
      * @return void
      */
     public function registerRoutes()
     {
-        $this->app->booted(function ()
-        {
-            $this->app['events']->fire('admin::routes'); 
-        });   
+        $this->app->booted(function () {
+            $this->app['events']->fire('admin::routes');
+        });
     }
 
     /**
@@ -116,5 +114,4 @@ class AdminServiceProvider extends ServiceProvider {
     {
         return array();
     }
-
 }

@@ -3,7 +3,8 @@
 use Illuminate\Database\Seeder;
 use Pingpong\Admin\Entities\Option;
 
-class OptionsTableSeeder extends Seeder {
+class OptionsTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -56,10 +57,8 @@ class OptionsTableSeeder extends Seeder {
             ),
         );
 
-        foreach ($options as $option)
-        {
+        foreach ($options as $option) {
             Option::create($option);
         }
     }
-
 }

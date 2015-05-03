@@ -5,7 +5,8 @@ use Pingpong\Admin\Entities\Category;
 use Pingpong\Admin\Validation\Category\Create;
 use Pingpong\Admin\Validation\Category\Update;
 
-class CategoriesController extends BaseController {
+class CategoriesController extends BaseController
+{
 
     /**
      * Redirect not found.
@@ -62,14 +63,11 @@ class CategoriesController extends BaseController {
      */
     public function show($id)
     {
-        try
-        {
+        try {
             $category = Category::findOrFail($id);
 
             return $this->view('categories.show', compact('category'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -82,14 +80,11 @@ class CategoriesController extends BaseController {
      */
     public function edit($id)
     {
-        try
-        {
+        try {
             $category = Category::findOrFail($id);
 
             return $this->view('categories.edit', compact('category'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -102,8 +97,7 @@ class CategoriesController extends BaseController {
      */
     public function update(Update $request, $id)
     {
-        try
-        {
+        try {
             $data = $request->all();
 
             $category = Category::findOrFail($id);
@@ -111,9 +105,7 @@ class CategoriesController extends BaseController {
             $category->update($data);
 
             return $this->redirect('categories.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -126,16 +118,12 @@ class CategoriesController extends BaseController {
      */
     public function destroy($id)
     {
-        try
-        {
+        try {
             Category::destroy($id);
 
             return $this->redirect('categories.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
-
 }

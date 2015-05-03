@@ -5,7 +5,8 @@ use Pingpong\Admin\Entities\Role;
 use Pingpong\Admin\Validation\Role\Create;
 use Pingpong\Admin\Validation\Role\Update;
 
-class RolesController extends BaseController {
+class RolesController extends BaseController
+{
 
     /**
      * @var \Pingpong\Admin\Entities\Role
@@ -59,7 +60,7 @@ class RolesController extends BaseController {
      * @return Response
      */
     public function store(Create $request)
-    {   
+    {
         $data = $request->all();
 
         $this->roles->create($data);
@@ -75,13 +76,10 @@ class RolesController extends BaseController {
      */
     public function show($id)
     {
-        try
-        {
+        try {
             $role = $this->roles->findOrFail($id);
             return $this->view('roles.show', compact('role'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -94,16 +92,13 @@ class RolesController extends BaseController {
      */
     public function edit($id)
     {
-        try
-        {
+        try {
             $role = $this->roles->findOrFail($id);
 
             $permission_role = $role->permissions->lists('id');
 
             return $this->view('roles.edit', compact('role', 'permission_role'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -116,29 +111,25 @@ class RolesController extends BaseController {
      */
     public function update(Update $request, $id)
     {
-        try
-        {
+        try {
             $role = $this->roles->findOrFail($id);
             
-            $data = $request->all();            
+            $data = $request->all();
 
             $role->update($data);
 
-            if($role->permissions->count())
-            {
+            if ($role->permissions->count()) {
                 $role->permissions()->detach($role->permissions->lists('id'));
 
                 $role->permissions()->attach(\Input::get('permissions'));
             }
 
-            if( $role->permissions->count() == 0 && count(\Input::get('permissions')) > 0 ) {
+            if ($role->permissions->count() == 0 && count(\Input::get('permissions')) > 0) {
                 $role->permissions()->attach(\Input::get('permissions'));
             }
 
             return $this->redirect('roles.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -151,16 +142,12 @@ class RolesController extends BaseController {
      */
     public function destroy($id)
     {
-        try
-        {
+        try {
             $this->roles->destroy($id);
 
             return $this->redirect('roles.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
-
 }

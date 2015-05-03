@@ -7,7 +7,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Pingpong\Trusty\Traits\TrustyTrait;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+{
 
     use Authenticatable, CanResetPassword, TrustyTrait;
 
@@ -35,7 +36,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     /**
      * Get gravatar url.
-     * 
+     *
      * @param  integer $size
      * @param  string  $default
      * @param  string  $rating
@@ -50,7 +51,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     /**
      * Scope "today"
-     * 
+     *
      * @param  mixed $query
      * @return mixed
      */
@@ -58,12 +59,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $sql = 'date(created_at) = date(now())';
         
-        if(db_is('sqlite'))
-        {
+        if (db_is('sqlite')) {
             $sql = "date(created_at) = date('now')";
         }
 
         return $query->whereRaw($sql);
     }
-
 }

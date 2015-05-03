@@ -3,7 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 use Pingpong\Admin\Entities\Option;
 
-class Option extends Model {
+class Option extends Model
+{
 
     /**
      * @var array

@@ -2,7 +2,8 @@
 
 use Pingpong\Admin\Traits\ClassNameTrait;
 
-abstract class Filter {
+abstract class Filter
+{
 
     use ClassNameTrait;
 
@@ -12,5 +13,4 @@ abstract class Filter {
      * @return mixed
      */
     abstract public function filter();
-
 }

@@ -4,7 +4,8 @@ use Illuminate\Database\Seeder;
 use Pingpong\Trusty\Role;
 use Pingpong\Trusty\Permission;
 
-class PermissionsTableSeeder extends Seeder {
+class PermissionsTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -18,8 +19,7 @@ class PermissionsTableSeeder extends Seeder {
             'Manage Permissions',
         );
 
-        foreach ($permissions as $permission)
-        {
+        foreach ($permissions as $permission) {
             Permission::create([
                 'name' => $permission,
                 'slug' => $permission,
@@ -30,7 +30,5 @@ class PermissionsTableSeeder extends Seeder {
         $permissions = Permission::lists('id');
 
         Role::find(1)->permissions()->attach($permissions);
-
     }
-
 }

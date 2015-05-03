@@ -3,7 +3,8 @@
 use Illuminate\Database\Seeder;
 use Pingpong\Trusty\Role;
 
-class RolesTableSeeder extends Seeder {
+class RolesTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -17,5 +18,4 @@ class RolesTableSeeder extends Seeder {
             'slug' => 'user'
         ]);
     }
-
 }

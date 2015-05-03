@@ -3,7 +3,8 @@
 use Pingpong\Admin\Entities\Article;
 use Pingpong\Admin\Traits\ClassNameTrait;
 
-class ArticleRepository implements RepositoryInterface {
+class ArticleRepository implements RepositoryInterface
+{
 
     use ClassNameTrait;
 
@@ -26,10 +27,11 @@ class ArticleRepository implements RepositoryInterface {
      */
     public function init()
     {
-        if(isOnPages())
+        if (isOnPages()) {
             $this->article = $this->article->onlyPage();
-        else
+        } else {
             $this->article = $this->article->onlyPost();
+        }
     }
 
     /**
@@ -50,7 +52,9 @@ class ArticleRepository implements RepositoryInterface {
      */
     public function allOrSearch($search = null)
     {
-        if ( ! is_null($search)) return $this->search($search);
+        if (! is_null($search)) {
+            return $this->search($search);
+        }
 
         return $this->all();
     }
@@ -62,7 +66,9 @@ class ArticleRepository implements RepositoryInterface {
      */
     public function searchOrAllPaginated($search = null, $perPage = 10)
     {
-        if ( ! is_null($search)) return $this->search($search);
+        if (! is_null($search)) {
+            return $this->search($search);
+        }
 
         return $this->allPaginated($perPage);
     }
@@ -80,7 +86,7 @@ class ArticleRepository implements RepositoryInterface {
 
     /**
      * Alias for "find" method.
-     * 
+     *
      * @param  int $id
      * @return mixed
      */
@@ -98,8 +104,7 @@ class ArticleRepository implements RepositoryInterface {
      */
     public function search($search, $perPage = 10)
     {
-        return $this->article->where(function ($query) use ($search)
-        {
+        return $this->article->where(function ($query) use ($search) {
             $q = "%{$search}%";
 
             return $query->where('title', 'like', $q)->where('body', 'like', $q);
@@ -135,5 +140,4 @@ class ArticleRepository implements RepositoryInterface {
 
         return $this;
     }
-
 }

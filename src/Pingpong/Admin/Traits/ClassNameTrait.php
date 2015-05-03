@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Traits;
 
-trait ClassNameTrait {
+trait ClassNameTrait
+{
 
     /**
      * Get called classname.
@@ -11,5 +12,4 @@ trait ClassNameTrait {
     {
         return get_called_class();
     }
-
-} 
+}

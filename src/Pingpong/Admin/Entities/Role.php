@@ -2,4 +2,6 @@
 
 use Pingpong\Trusty\Role as BaseRole;
 
-class Role extends BaseRole {}
+class Role extends BaseRole
+{
+}

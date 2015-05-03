@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
 
-class ImageUploader {
+class ImageUploader
+{
 
     /**
      * @var string
@@ -80,10 +81,11 @@ class ImageUploader {
      */
     public function save($path = null)
     {
-        if ( ! is_null($path)) $this->path = $path;
+        if (! is_null($path)) {
+            $this->path = $path;
+        }
 
-        if( ! is_dir($path = $this->getDestinationDirectory()))
-        {
+        if (! is_dir($path = $this->getDestinationDirectory())) {
             File::makeDirectory($path, 0777, true);
         }
 

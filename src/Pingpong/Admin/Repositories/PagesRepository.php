@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Repositories;
 
-class PagesRepository extends ArticleRepository {
+class PagesRepository extends ArticleRepository
+{
 
     /**
      * Init
@@ -9,5 +10,4 @@ class PagesRepository extends ArticleRepository {
     {
         $this->article = $this->article->onlyPage();
     }
-
 }

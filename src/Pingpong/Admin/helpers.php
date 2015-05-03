@@ -3,8 +3,7 @@
 use Pingpong\Admin\Entities\Option;
 use Pingpong\Admin\Entities\Category;
 
-if ( ! function_exists('pagination_links'))
-{
+if (! function_exists('pagination_links')) {
     /**
      * @param $data
      * @param null $view
@@ -12,8 +11,7 @@ if ( ! function_exists('pagination_links'))
      */
     function pagination_links($data, $view = null)
     {
-        if ($query = Request::query())
-        {
+        if ($query = Request::query()) {
             $request = array_except($query, 'page');
             return $data->appends($request)->render($view);
         }
@@ -21,8 +19,7 @@ if ( ! function_exists('pagination_links'))
     }
 }
 
-if ( ! function_exists('modal_popup'))
-{
+if (! function_exists('modal_popup')) {
     /**
      * @param $url
      * @param $title
@@ -35,8 +32,7 @@ if ( ! function_exists('modal_popup'))
     }
 }
 
-if ( ! function_exists('isOnPages'))
-{
+if (! function_exists('isOnPages')) {
     /**
      * @return bool
      */
@@ -46,8 +42,7 @@ if ( ! function_exists('isOnPages'))
     }
 }
 
-if ( ! function_exists('option'))
-{
+if (! function_exists('option')) {
     /**
      * @param $key
      * @param null $default
@@ -55,21 +50,17 @@ if ( ! function_exists('option'))
      */
     function option($key, $default = null)
     {
-        try
-        {
+        try {
             $option = Option::findByKey($key)->first();
 
             return ! empty($option) ? $option->value : $default;
-        }
-        catch (PDOException $e)
-        {
+        } catch (PDOException $e) {
             return $default;
         }
     }
 }
 
-if ( ! function_exists('style'))
-{
+if (! function_exists('style')) {
     /**
      * @param $url
      * @param array $attributes
@@ -82,11 +73,10 @@ if ( ! function_exists('style'))
     }
 }
 
-if ( ! function_exists('admin_asset'))
-{
+if (! function_exists('admin_asset')) {
     /**
      * Get admin asset url.
-     * 
+     *
      * @param  string  $url
      * @param  boolean $secure
      * @return string
@@ -97,8 +87,7 @@ if ( ! function_exists('admin_asset'))
     }
 }
 
-if ( ! function_exists('script'))
-{
+if (! function_exists('script')) {
     /**
      * @param $url
      * @param array $attributes
@@ -111,20 +100,19 @@ if ( ! function_exists('script'))
     }
 }
 
-if ( ! function_exists('session_check'))
-{
+if (! function_exists('session_check')) {
     /**
      * @return void
      */
     function session_check()
     {
-        if ( ! getenv('PINGPONG_ADMIN_TESTING') && ! app()->runningInConsole())
+        if (! getenv('PINGPONG_ADMIN_TESTING') && ! app()->runningInConsole()) {
             session_start();
+        }
     }
 }
 
-if ( ! function_exists('db_is'))
-{
+if (! function_exists('db_is')) {
     /**
      * @param  string $driver
      * @return bool
@@ -135,11 +123,10 @@ if ( ! function_exists('db_is'))
     }
 }
 
-if ( ! function_exists('user'))
-{
+if (! function_exists('user')) {
     /**
      * Get user instance.
-     * 
+     *
      * @return mixed
      */
     function user()
@@ -148,11 +135,10 @@ if ( ! function_exists('user'))
     }
 }
 
-if( ! function_exists('article'))
-{
+if (! function_exists('article')) {
     /**
      * Get article instance.
-     * 
+     *
      * @return mixed
      */
     function article()
@@ -161,11 +147,10 @@ if( ! function_exists('article'))
     }
 }
 
-if( ! function_exists('page'))
-{
+if (! function_exists('page')) {
     /**
      * Get page instance.
-     * 
+     *
      * @return mixed
      */
     function page()
@@ -174,11 +159,10 @@ if( ! function_exists('page'))
     }
 }
 
-if( ! function_exists('category'))
-{
+if (! function_exists('category')) {
     /**
      * Get category instance.
-     * 
+     *
      * @return mixed
      */
     function category()

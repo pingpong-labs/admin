@@ -2,7 +2,8 @@
 
 use Pingpong\Menus\Presenters\Bootstrap\NavbarRightPresenter;
 
-class NavbarRight extends NavbarRightPresenter {
+class NavbarRight extends NavbarRightPresenter
+{
 
     /**
      * {@inheritdoc }
@@ -18,6 +19,7 @@ class NavbarRight extends NavbarRightPresenter {
 			      	' . $this->getChildMenuItems($item) . '
 			      </ul>
 		      	</li>'
-        . PHP_EOL;;
+        . PHP_EOL;
+        ;
     }
 }

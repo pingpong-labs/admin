@@ -5,7 +5,8 @@ use Request;
 use URL;
 use Pingpong\Presenters\Model;
 
-class Visitor extends Model {
+class Visitor extends Model
+{
 
     /**
      * Fillable Property.
@@ -27,17 +28,14 @@ class Visitor extends Model {
         $path = Request::path();
 
         $visited = static::whereIp($ip)->today()->first();
-        if ( ! empty($visited))
-        {
+        if (! empty($visited)) {
             $visited->update([
                 'online' => $online,
                 'hits' => $visited->hits + 1,
                 'url' => $url,
                 'path' => $path
             ]);
-        }
-        else
-        {
+        } else {
             static::createNewVisitor();
         }
     }
@@ -65,12 +63,11 @@ class Visitor extends Model {
      */
     public function scopeToday($query)
     {
-        // mysql 
+        // mysql
         $raw = "date(created_at) = date(now())";
         
-        if(db_is('sqlite'))
-        {
-            $raw = "date(created_at) = date(date('now'))"; 
+        if (db_is('sqlite')) {
+            $raw = "date(created_at) = date(date('now'))";
         }
 
         return $query->whereRaw($raw);

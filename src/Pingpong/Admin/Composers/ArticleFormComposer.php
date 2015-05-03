@@ -2,7 +2,8 @@
 
 use Pingpong\Admin\Entities\Category;
 
-class ArticleFormComposer {
+class ArticleFormComposer
+{
 
     public function compose($view)
     {
@@ -10,5 +11,4 @@ class ArticleFormComposer {
 
         $view->with(compact('categories'));
     }
-
 }

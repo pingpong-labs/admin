@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Observers;
 
-class MenusObserver {
+class MenusObserver
+{
 
     /**
      * Handle the specified event.
@@ -11,5 +12,4 @@ class MenusObserver {
     {
         require __DIR__ . '/../menus.php';
     }
-
-} 
+}

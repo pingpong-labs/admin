@@ -5,7 +5,8 @@ use Pingpong\Admin\Entities\Permission;
 use Pingpong\Admin\Validation\Permission\Create;
 use Pingpong\Admin\Validation\Permission\Update;
 
-class PermissionsController extends BaseController {
+class PermissionsController extends BaseController
+{
 
     /**
      * @var \Permission
@@ -76,14 +77,11 @@ class PermissionsController extends BaseController {
      */
     public function show($id)
     {
-        try
-        {
+        try {
             $permission = $this->permissions->findOrFail($id);
 
             return $this->view('permissions.show', compact('permission'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -96,14 +94,11 @@ class PermissionsController extends BaseController {
      */
     public function edit($id)
     {
-        try
-        {
+        try {
             $permission = $this->permissions->findOrFail($id);
 
             return $this->view('permissions.edit', compact('permission'));
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -116,8 +111,7 @@ class PermissionsController extends BaseController {
      */
     public function update(Update $request, $id)
     {
-        try
-        {
+        try {
             $permission = $this->permissions->findOrFail($id);
                 
             $data = $request->all();
@@ -125,9 +119,7 @@ class PermissionsController extends BaseController {
             $permission->update($data);
 
             return $this->redirect('permissions.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
@@ -140,16 +132,12 @@ class PermissionsController extends BaseController {
      */
     public function destroy($id)
     {
-        try
-        {
+        try {
             $this->permissions->destroy($id);
 
             return $this->redirect('permissions.index');
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
         }
     }
-
 }

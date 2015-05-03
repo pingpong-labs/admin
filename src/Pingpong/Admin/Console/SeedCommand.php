@@ -4,7 +4,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class SeedCommand extends Command {
+class SeedCommand extends Command
+{
 
     /**
      * The console command name.
@@ -29,5 +30,4 @@ class SeedCommand extends Command {
     {
         $this->call('db:seed', ['--class' => 'Pingpong\\Admin\\Seeders\\AdminDatabaseSeeder']);
     }
-
 }

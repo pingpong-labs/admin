@@ -1,6 +1,7 @@
 <?php namespace Pingpong\Admin\Repositories;
 
-interface RepositoryInterface {
+interface RepositoryInterface
+{
 
     /**
      * Get all resources.
@@ -48,5 +49,4 @@ interface RepositoryInterface {
      * @return mixed
      */
     public function search($search, $perPage = 10);
-
 }

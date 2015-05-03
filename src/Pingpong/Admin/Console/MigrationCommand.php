@@ -4,7 +4,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class MigrationCommand extends Command {
+class MigrationCommand extends Command
+{
 
     /**
      * The console command name.
@@ -36,5 +37,4 @@ class MigrationCommand extends Command {
 
         $this->info("Migrations published successfully.");
     }
-
 }

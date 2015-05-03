@@ -2,4 +2,6 @@
 
 use Pingpong\Trusty\Permission as BasePermission;
 
-class Permission extends BasePermission {}
+class Permission extends BasePermission
+{
+}
