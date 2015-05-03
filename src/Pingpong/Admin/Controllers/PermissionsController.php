@@ -1,24 +1,19 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Input;
 use Pingpong\Admin\Entities\Permission;
+use Pingpong\Admin\Repositories\Permissions\PermissionRepository;
 use Pingpong\Admin\Validation\Permission\Create;
 use Pingpong\Admin\Validation\Permission\Update;
 
 class PermissionsController extends BaseController
 {
+    protected $repository;
 
-    /**
-     * @var \Permission
-     */
-    protected $permissions;
-
-    /**
-     * @param \Permission $permissions
-     */
-    public function __construct(Permission $permissions)
+    public function __construct(PermissionRepository $repository)
     {
-        $this->permissions = $permissions;
+        $this->repository = $repository;
     }
 
     /**
@@ -38,7 +33,7 @@ class PermissionsController extends BaseController
      */
     public function index()
     {
-        $permissions = $this->permissions->paginate(10);
+        $permissions = $this->repository->allOrSearch(Input::get('q'));
 
         $no = $permissions->firstItem();
 
@@ -64,7 +59,7 @@ class PermissionsController extends BaseController
     {
         $data = $request->all();
 
-        $this->permissions->create($data);
+        $this->repository->create($data);
 
         return $this->redirect('permissions.index');
     }
@@ -78,7 +73,7 @@ class PermissionsController extends BaseController
     public function show($id)
     {
         try {
-            $permission = $this->permissions->findOrFail($id);
+            $permission = $this->repository->findById($id);
 
             return $this->view('permissions.show', compact('permission'));
         } catch (ModelNotFoundException $e) {
@@ -95,7 +90,7 @@ class PermissionsController extends BaseController
     public function edit($id)
     {
         try {
-            $permission = $this->permissions->findOrFail($id);
+            $permission = $this->repository->findById($id);
 
             return $this->view('permissions.edit', compact('permission'));
         } catch (ModelNotFoundException $e) {
@@ -112,7 +107,7 @@ class PermissionsController extends BaseController
     public function update(Update $request, $id)
     {
         try {
-            $permission = $this->permissions->findOrFail($id);
+            $permission = $this->repository->findById($id);
                 
             $data = $request->all();
             
@@ -133,7 +128,7 @@ class PermissionsController extends BaseController
     public function destroy($id)
     {
         try {
-            $this->permissions->destroy($id);
+            $this->repository->delete($id);
 
             return $this->redirect('permissions.index');
         } catch (ModelNotFoundException $e) {

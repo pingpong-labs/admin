@@ -19,6 +19,7 @@ class RepositoriesServiceProvider extends ServiceProvider
         'Article',
         'Category',
         'Role',
+        'Permission',
     ];
 
     /**
@@ -62,6 +63,14 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(
             'Pingpong\Admin\Repositories\Roles\RoleRepository',
             'Pingpong\Admin\Repositories\Roles\EloquentRoleRepository'
+        );
+    }
+
+    protected function bindPermissionRepository()
+    {
+        $this->app->bind(
+            'Pingpong\Admin\Repositories\Permissions\PermissionRepository',
+            'Pingpong\Admin\Repositories\Permissions\EloquentPermissionRepository'
         );
     }
 }
