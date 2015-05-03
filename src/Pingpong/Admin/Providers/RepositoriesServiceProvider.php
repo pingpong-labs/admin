@@ -14,6 +14,11 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     protected $defer = false;
 
+    protected $entities = [
+        'Article',
+        'Category'
+    ];
+
     /**
      * Register the service provider.
      *
@@ -21,7 +26,9 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->bindArticleRepository();
+        foreach ($this->entities as $entity) {
+            $this->{"bind" . $entity . "Repository"}();
+        }
     }
 
     protected function bindArticleRepository()
@@ -29,6 +36,14 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(
             'Pingpong\Admin\Repositories\Articles\ArticleRepository',
             'Pingpong\Admin\Repositories\Articles\EloquentArticleRepository'
+        );
+    }
+
+    protected function bindCategoryRepository()
+    {
+        $this->app->bind(
+            'Pingpong\Admin\Repositories\Categories\CategoryRepository',
+            'Pingpong\Admin\Repositories\Categories\EloquentCategoryRepository'
         );
     }
 

@@ -1,13 +1,20 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Pingpong\Admin\Entities\Category;
+use Pingpong\Admin\Repositories\Categories\CategoryRepository;
 use Pingpong\Admin\Validation\Category\Create;
 use Pingpong\Admin\Validation\Category\Update;
 
 class CategoriesController extends BaseController
 {
+    protected $repository;
 
+    public function __construct(CategoryRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * Redirect not found.
      *
@@ -23,9 +30,10 @@ class CategoriesController extends BaseController
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::paginate(10);
+        $categories = $this->repository->allOrSearch($request->get('q'));
+     
         $no = $categories->firstItem();
 
         return $this->view('categories.index', compact('categories', 'no'));
@@ -64,7 +72,7 @@ class CategoriesController extends BaseController
     public function show($id)
     {
         try {
-            $category = Category::findOrFail($id);
+            $category = $this->repository->findById($id);
 
             return $this->view('categories.show', compact('category'));
         } catch (ModelNotFoundException $e) {
@@ -81,7 +89,7 @@ class CategoriesController extends BaseController
     public function edit($id)
     {
         try {
-            $category = Category::findOrFail($id);
+            $category = $this->repository->findById($id);
 
             return $this->view('categories.edit', compact('category'));
         } catch (ModelNotFoundException $e) {
@@ -100,7 +108,7 @@ class CategoriesController extends BaseController
         try {
             $data = $request->all();
 
-            $category = Category::findOrFail($id);
+            $category = $this->repository->findById($id);
 
             $category->update($data);
 
@@ -119,7 +127,7 @@ class CategoriesController extends BaseController
     public function destroy($id)
     {
         try {
-            Category::destroy($id);
+            $this->repository->delete($id);
 
             return $this->redirect('categories.index');
         } catch (ModelNotFoundException $e) {
