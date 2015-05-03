@@ -12,6 +12,9 @@ return [
         'model' => 'Pingpong\Admin\Entities\Article',
         'perpage' => 10
     ],
+    'page' => [
+        'perpage' => 10
+    ],
     'user' => [
         'model' => 'Pingpong\Admin\Entities\User',
         'perpage' => 10
