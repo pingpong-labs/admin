@@ -9,6 +9,7 @@ return [
         'view' => 'admin::article'
     ],
     'article' => [
+        'model' => 'Pingpong\Admin\Entities\Article',
         'perpage' => 10
     ],
     'user' => [
@@ -16,9 +17,11 @@ return [
         'perpage' => 10
     ],
     'role' => [
+        'model' => 'Pingpong\Admin\Entities\Role',
         'perpage' => 10
     ],
     'permission' => [
+        'model' => 'Pingpong\Admin\Entities\Permission',
         'perpage' => 10
     ],
 ];

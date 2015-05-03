@@ -11,6 +11,13 @@ class EloquentCategoryRepository implements CategoryRepository
         return config('admin.category.perpage');
     }
 
+    public function getModel()
+    {
+        $model = config('admin.category.model');
+        
+        return new $model;
+    }
+
     public function allOrSearch($searchQuery = null)
     {
         if (is_null($searchQuery)) {
@@ -22,14 +29,14 @@ class EloquentCategoryRepository implements CategoryRepository
 
     public function getAll()
     {
-        return Category::latest()->paginate($this->perPage());
+        return $this->getModel()->latest()->paginate($this->perPage());
     }
 
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
         
-        return Category::where('name', 'like', $search)
+        return $this->getModel()->where('name', 'like', $search)
             ->orWhere('slug', 'like', $search)
             ->paginate($this->perPage())
         ;
@@ -37,12 +44,12 @@ class EloquentCategoryRepository implements CategoryRepository
 
     public function findById($id)
     {
-        return Category::find($id);
+        return $this->getModel()->find($id);
     }
 
     public function findBy($key, $value, $operator = '=')
     {
-        return Category::where($key, $operator, $value)->paginate($this->perPage());
+        return $this->getModel()->where($key, $operator, $value)->paginate($this->perPage());
     }
 
     public function delete($id)
@@ -59,6 +66,6 @@ class EloquentCategoryRepository implements CategoryRepository
 
     public function create(array $data)
     {
-        return Category::create($data);
+        return $this->getModel()->create($data);
     }
 }

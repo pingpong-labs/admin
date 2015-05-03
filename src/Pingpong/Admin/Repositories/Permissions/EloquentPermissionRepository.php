@@ -11,6 +11,13 @@ class EloquentPermissionRepository implements PermissionRepository
         return config('admin.permission.perpage');
     }
 
+    public function getModel()
+    {
+        $model = config('admin.permission.model');
+        
+        return new $model;
+    }
+
     public function allOrSearch($searchQuery = null)
     {
         if (is_null($searchQuery)) {
@@ -22,14 +29,14 @@ class EloquentPermissionRepository implements PermissionRepository
 
     public function getAll()
     {
-        return Permission::latest()->paginate($this->perPage());
+        return $this->getModel()->latest()->paginate($this->perPage());
     }
 
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
         
-        return Permission::where('name', 'like', $search)
+        return $this->getModel()->where('name', 'like', $search)
             ->orWhere('slug', 'like', $search)
             ->paginate($this->perPage())
         ;
@@ -37,12 +44,12 @@ class EloquentPermissionRepository implements PermissionRepository
 
     public function findById($id)
     {
-        return Permission::find($id);
+        return $this->getModel()->find($id);
     }
 
     public function findBy($key, $value, $operator = '=')
     {
-        return Permission::where($key, $operator, $value)->paginate($this->perPage());
+        return $this->getModel()->where($key, $operator, $value)->paginate($this->perPage());
     }
 
     public function delete($id)
@@ -59,6 +66,6 @@ class EloquentPermissionRepository implements PermissionRepository
 
     public function create(array $data)
     {
-        return Permission::create($data);
+        return $this->getModel()->create($data);
     }
 }

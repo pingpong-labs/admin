@@ -11,6 +11,13 @@ class EloquentArticleRepository implements ArticleRepository
         return config('admin.article.perpage');
     }
 
+    public function getModel()
+    {
+        $model = config('admin.article.model');
+        
+        return new $model;
+    }
+
     public function allOrSearch($searchQuery = null)
     {
         if (is_null($searchQuery)) {
@@ -22,14 +29,14 @@ class EloquentArticleRepository implements ArticleRepository
 
     public function getAll()
     {
-        return Article::latest()->paginate($this->perPage());
+        return $this->getModel()->latest()->paginate($this->perPage());
     }
 
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
         
-        return Article::where('title', 'like', $search)
+        return $this->getModel()->where('title', 'like', $search)
             ->orWhere('body', 'like', $search)
             ->orWhere('id', '=', $searchQuery)
             ->paginate($this->perPage())
@@ -38,12 +45,12 @@ class EloquentArticleRepository implements ArticleRepository
 
     public function findById($id)
     {
-        return Article::find($id);
+        return $this->getModel()->find($id);
     }
 
     public function findBy($key, $value, $operator = '=')
     {
-        return Article::where($key, $operator, $value)->paginate($this->perPage());
+        return $this->getModel()->where($key, $operator, $value)->paginate($this->perPage());
     }
 
     public function delete($id)
@@ -60,6 +67,6 @@ class EloquentArticleRepository implements ArticleRepository
 
     public function create(array $data)
     {
-        return Article::create($data);
+        return $this->getModel()->create($data);
     }
 }
