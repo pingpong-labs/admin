@@ -70,8 +70,11 @@ class AdminServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../../config/config.php' => $configPath,
+        ], 'config');
+
+        $this->publishes([
             __DIR__ . '/../../../public/' => public_path('packages/pingpong/admin/')
-        ]);
+        ], 'assets');
 
         if (file_exists($configPath)) {
             $this->mergeConfigFrom($configPath, 'admin');
