@@ -27,6 +27,8 @@ class EloquentArticleRepository implements ArticleRepository
 
 	public function search($searchQuery)
 	{
+		$search = "%{$searchQuery}%";
+		
 		return Article::where('title', 'like', $search)
 			->orWhere('body', 'like', $search)
 			->orWhere('id', '=', $searchQuery)
