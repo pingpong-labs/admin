@@ -17,7 +17,8 @@ class RepositoriesServiceProvider extends ServiceProvider
     protected $entities = [
         'User',
         'Article',
-        'Category'
+        'Category',
+        'Role',
     ];
 
     /**
@@ -53,6 +54,14 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(
             'Pingpong\Admin\Repositories\Users\UserRepository',
             'Pingpong\Admin\Repositories\Users\EloquentUserRepository'
+        );
+    }
+
+    protected function bindRoleRepository()
+    {
+        $this->app->bind(
+            'Pingpong\Admin\Repositories\Roles\RoleRepository',
+            'Pingpong\Admin\Repositories\Roles\EloquentRoleRepository'
         );
     }
 }

@@ -1,24 +1,19 @@
 <?php namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Input;
 use Pingpong\Admin\Entities\Role;
+use Pingpong\Admin\Repositories\Roles\RoleRepository;
 use Pingpong\Admin\Validation\Role\Create;
 use Pingpong\Admin\Validation\Role\Update;
 
 class RolesController extends BaseController
 {
+    protected $repository;
 
-    /**
-     * @var \Pingpong\Admin\Entities\Role
-     */
-    protected $roles;
-
-    /**
-     * @param \Pingpong\Admin\Entities\Role $roles
-     */
-    public function __construct(Role $roles)
+    public function __construct(RoleRepository $repository)
     {
-        $this->roles = $roles;
+        $this->repository = $repository;
     }
 
     /**
@@ -38,7 +33,8 @@ class RolesController extends BaseController
      */
     public function index()
     {
-        $roles = $this->roles->paginate(10);
+        $roles = $this->repository->allOrSearch(Input::get('q'));
+
         $no = $roles->firstItem();
 
         return $this->view('roles.index', compact('roles', 'no'));
@@ -63,7 +59,7 @@ class RolesController extends BaseController
     {
         $data = $request->all();
 
-        $this->roles->create($data);
+        $this->repository->create($data);
 
         return $this->redirect('roles.index');
     }
@@ -77,7 +73,7 @@ class RolesController extends BaseController
     public function show($id)
     {
         try {
-            $role = $this->roles->findOrFail($id);
+            $role = $this->repository->findById($id);
             return $this->view('roles.show', compact('role'));
         } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
@@ -93,7 +89,7 @@ class RolesController extends BaseController
     public function edit($id)
     {
         try {
-            $role = $this->roles->findOrFail($id);
+            $role = $this->repository->findById($id);
 
             $permission_role = $role->permissions->lists('id');
 
@@ -112,7 +108,7 @@ class RolesController extends BaseController
     public function update(Update $request, $id)
     {
         try {
-            $role = $this->roles->findOrFail($id);
+            $role = $this->repository->findById($id);
             
             $data = $request->all();
 
@@ -143,7 +139,7 @@ class RolesController extends BaseController
     public function destroy($id)
     {
         try {
-            $this->roles->destroy($id);
+            $this->repository->delete($id);
 
             return $this->redirect('roles.index');
         } catch (ModelNotFoundException $e) {
