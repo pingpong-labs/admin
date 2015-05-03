@@ -8,4 +8,7 @@ return [
     'post' => [
         'view' => 'admin::article'
     ],
+    'article' => [
+    	'perpage' => 10
+    ]
 ];

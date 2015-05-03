@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
-use Pingpong\Admin\Repositories\ArticleRepository;
+use Pingpong\Admin\Repositories\Articles\ArticleRepository;
 use Pingpong\Admin\Repositories\PagesRepository;
 use Pingpong\Admin\Uploader\ImageUploader;
 use Pingpong\Admin\Validation\Article\Create;
@@ -24,15 +24,11 @@ class ArticlesController extends BaseController
     /**
      * @param ImageUploader $uploader
      */
-    public function __construct(ImageUploader $uploader)
+    public function __construct(ImageUploader $uploader, ArticleRepository $repository)
     {
         $this->uploader = $uploader;
 
-        if (Request::is('admin/pages')) {
-            $this->articles = App::make(PagesRepository::className());
-        } else {
-            $this->articles = App::make(ArticleRepository::className());
-        }
+        $this->repository = $repository;
     }
 
     /**
@@ -54,7 +50,7 @@ class ArticlesController extends BaseController
      */
     public function index()
     {
-        $articles = $this->articles->searchOrAllPaginated(Input::get('q'));
+        $articles = $this->repository->allOrSearch(Input::get('q'));
 
         $no = $articles->firstItem();
 
@@ -92,7 +88,7 @@ class ArticlesController extends BaseController
         $data['user_id'] = \Auth::id();
         $data['slug'] = Str::slug($data['title']);
 
-        $this->articles->getArticle()->create($data);
+        $this->repository->create($data);
 
         return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
     }
@@ -106,7 +102,7 @@ class ArticlesController extends BaseController
     public function show($id)
     {
         try {
-            $article = $this->articles->findOrFail($id);
+            $article = $this->repository->findById($id);
 
             return $this->view('articles.show', compact('article'));
         } catch (ModelNotFoundException $e) {
@@ -123,7 +119,7 @@ class ArticlesController extends BaseController
     public function edit($id)
     {
         try {
-            $article = $this->articles->findOrFail($id);
+            $article = $this->repository->findById($id);
 
             return $this->view('articles.edit', compact('article'));
         } catch (ModelNotFoundException $e) {
@@ -140,7 +136,7 @@ class ArticlesController extends BaseController
     public function update(Update $request, $id)
     {
         try {
-            $article = $this->articles->findOrFail($id);
+            $article = $this->repository->findById($id);
 
             $data = $request->all();
 
@@ -174,7 +170,7 @@ class ArticlesController extends BaseController
     public function destroy($id)
     {
         try {
-            $this->articles->getArticle()->destroy($id);
+            $this->repository->delete($id);
 
             return $this->redirect(isOnPages() ? 'pages.index' : 'articles.index');
         } catch (ModelNotFoundException $e) {

@@ -22,6 +22,7 @@ class AdminServiceProvider extends ServiceProvider
         'Pingpong\Menus\MenusServiceProvider',
         'Pingpong\Trusty\TrustyServiceProvider',
         'Pingpong\Admin\Providers\ConsoleServiceProvider',
+        'Pingpong\Admin\Providers\RepositoriesServiceProvider',
     ];
 
     /**

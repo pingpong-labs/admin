@@ -115,7 +115,7 @@ class Article extends Model
         parent::boot();
 
         static::deleting(function ($data) {
-            $data->deleteImage();
+            // $data->deleteImage();
         });
     }
 
