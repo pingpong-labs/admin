@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Input;
+use Pingpong\Admin\Repositories\Users\UserRepository;
 use Pingpong\Admin\Validation\User\Create;
 use Pingpong\Admin\Validation\User\Update;
 
@@ -16,9 +18,9 @@ class UsersController extends BaseController
     /**
      * @param \User $users
      */
-    public function __construct()
+    public function __construct(UserRepository $repository)
     {
-        $this->users = app(Config::get('auth.model'));
+        $this->repository = $repository;
     }
 
     /**
@@ -38,7 +40,8 @@ class UsersController extends BaseController
      */
     public function index()
     {
-        $users = $this->users->paginate(10);
+        $users = $this->repository->allOrSearch(Input::get('q'));
+
         $no = $users->firstItem();
 
         return $this->view('users.index', compact('users', 'no'));
@@ -63,7 +66,7 @@ class UsersController extends BaseController
     {
         $data = $request->all();
 
-        $user = $this->users->create($data);
+        $user = $this->repository->create($data);
 
         $user->addRole($request->get('role'));
 
@@ -79,7 +82,7 @@ class UsersController extends BaseController
     public function show($id)
     {
         try {
-            $user = $this->users->findOrFail($id);
+            $user = $this->repository->findById($id);
             return $this->view('users.show', compact('user'));
         } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
@@ -95,7 +98,7 @@ class UsersController extends BaseController
     public function edit($id)
     {
         try {
-            $user = $this->users->findOrFail($id);
+            $user = $this->repository->findById($id);
 
             $role = $user->roles->lists('id');
 
@@ -116,7 +119,7 @@ class UsersController extends BaseController
         try {
             $data = ! $request->has('password') ? $request->except('password') : $this->inputAll();
             
-            $user = $this->users->findOrFail($id);
+            $user = $this->repository->findById($id);
             
             $user->update($data);
 
@@ -137,7 +140,7 @@ class UsersController extends BaseController
     public function destroy($id)
     {
         try {
-            $this->users->destroy($id);
+            $this->repository->delete($id);
 
             return $this->redirect('users.index');
         } catch (ModelNotFoundException $e) {

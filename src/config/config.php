@@ -9,6 +9,10 @@ return [
         'view' => 'admin::article'
     ],
     'article' => [
-    	'perpage' => 10
-    ]
+        'perpage' => 10
+    ],
+    'user' => [
+        'model' => 'Pingpong\Admin\Entities\User',
+        'perpage' => 10
+    ],
 ];
