@@ -118,7 +118,8 @@ if ( ! function_exists('session_check'))
      */
     function session_check()
     {
-        if ( ! getenv('PINGPONG_ADMIN_TESTING')) session_start();
+        if ( ! getenv('PINGPONG_ADMIN_TESTING') && ! app()->runningInConsole())
+            session_start();
     }
 }
 
