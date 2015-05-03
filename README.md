@@ -41,9 +41,9 @@ Next, update your user model to extend the `Pingpong\Admin\Entities\User` class.
 class User extends \Pingpong\Admin\Entities\User {}
 ```
 
-Next, publish the admin's assets.
+Next, publish the package's config and assets.
 ```
-php artisan vendor:publish
+php artisan vendor:publish --package="Pingpong\Admin\AdminServiceProvider"
 ```
 
 Next, install the package.
