@@ -17,8 +17,16 @@
 > For Laravel 4, use version `~1`.
 
 Open your composer.json file, and add the new required package.
-```
-"pingpong/admin": "dev-develop" 
+```json
+{
+  "require" : {
+     "pingpong/menus": "2.0.*@dev",
+     "pingpong/trusty": "2.0.*@dev",
+     "pingpong/testing": "2.0.*@dev",
+     "pingpong/presenters": "2.0.*@dev",
+     "pingpong/admin": "dev-develop" 
+  }
+}
 ```
 
 Next, open a terminal and run.
@@ -26,19 +34,11 @@ Next, open a terminal and run.
 composer update 
 ```
 
-Next, Add new service provider in `app/config/app.php`.
+Next, Add new service provider in `config/app.php`.
 
 ```php
 'Pingpong\Admin\Providers\SupportServiceProvider',
 'Pingpong\Admin\AdminServiceProvider',
-```
-
-Next, update your user model to extend the `Pingpong\Admin\Entities\User` class. Looks like this.
-
-```php
-// app/User.php
-
-class User extends \Pingpong\Admin\Entities\User {}
 ```
 
 Next, publish the package's config and assets.
