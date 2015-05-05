@@ -43,7 +43,7 @@ Next, Add new service provider in `config/app.php`.
 
 Next, publish the package's config and assets.
 ```
-php artisan vendor:publish --package="Pingpong\Admin\AdminServiceProvider"
+php artisan vendor:publish --provider="Pingpong\Admin\AdminServiceProvider"
 ```
 
 Next, install the package.
