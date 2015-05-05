@@ -32,10 +32,9 @@ class CreateUserCommand extends Command
     {
         $name = $this->ask('Name : ');
         $email = $this->ask('Email : ');
-        $username = $this->ask('Username : ');
         $password = $this->secret('Password : ');
 
-        $user = User::firstOrcreate(compact('name', 'username', 'email', 'password'));
+        $user = User::firstOrcreate(compact('name', 'email', 'password'));
 
         $this->line('Select role:');
 
