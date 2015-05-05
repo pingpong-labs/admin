@@ -41,6 +41,24 @@ Next, Add new service provider in `config/app.php`.
 'Pingpong\Admin\AdminServiceProvider',
 ```
 
+Next, update your `auth.model` config value to `Pingpong\Admin\Entities\User`.
+```php
+// file: config/auth.php
+return [
+   'model' => 'Pingpong\Admin\Entities\User',
+];
+```
+If you want to use your `App\User` model, you can extends the `Pingpong\Admin\Entities\User` class to your `App\User` or other model class.
+```php
+// example
+namespace App;
+
+class User extends \Pingpong\Admin\Entities\User
+{
+  //
+}
+```
+
 Next, publish the package's config and assets.
 ```
 php artisan vendor:publish --provider="Pingpong\Admin\AdminServiceProvider"
