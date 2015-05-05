@@ -38,6 +38,10 @@ class SupportServiceProvider extends ServiceProvider
         require __DIR__ . '/../observers.php';
         require __DIR__ . '/../menus.php';
         require __DIR__ . '/../routes.php';
+
+        if (file_exists($path = app_path('menus.php'))) {
+            require $path;
+        }
     }
 
     /**
