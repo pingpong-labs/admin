@@ -76,11 +76,17 @@ class AdminServiceProvider extends ServiceProvider
             __DIR__ . '/../../../public/' => public_path('packages/pingpong/admin/')
         ], 'assets');
 
+        $viewPath = base_path('resources/views/vendor/pingpong/admin/');
+
+        $this->publishes([
+            __DIR__ . '/../../views/' => $viewPath
+        ], 'views');
+
         if (file_exists($configPath)) {
             $this->mergeConfigFrom($configPath, 'admin');
         }
 
-        $this->loadViewsFrom(__DIR__.'/../../views', 'admin');
+        $this->loadViewsFrom([$viewPath, __DIR__.'/../../views'], 'admin');
     }
 
     /**
