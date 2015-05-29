@@ -40,8 +40,9 @@ class SiteController extends BaseController
      */
     public function settings()
     {
-        if (! defined('STDIN')) {
-            define('STDIN', fopen("php://stdin", "r"));
+        if ( ! defined('STDIN'))
+        {
+           $stdin = fopen("php://stdin", "r");
         }
 
         return $this->view('settings');
