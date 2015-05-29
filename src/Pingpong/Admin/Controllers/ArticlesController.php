@@ -32,7 +32,7 @@ class ArticlesController extends BaseController
 
     /**
      * Get repository instance.
-     * 
+     *
      * @return mixed
      */
     public function getRepository()

@@ -6,5 +6,5 @@ use Pingpong\Admin\Repositories\Repository;
 
 interface ArticleRepository extends Repository
 {
-	public function getArticle();
+    public function getArticle();
 }

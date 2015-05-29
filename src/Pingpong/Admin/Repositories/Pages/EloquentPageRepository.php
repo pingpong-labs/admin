@@ -26,7 +26,7 @@ class EloquentPageRepository extends EloquentArticleRepository implements Reposi
 
     public function create(array $data)
     {
-        if ( ! isset($data['type'])) {
+        if (! isset($data['type'])) {
             $data['type'] = 'page';
         }
 
