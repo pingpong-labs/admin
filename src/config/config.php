@@ -27,4 +27,8 @@ return [
         'model' => 'Pingpong\Admin\Entities\Permission',
         'perpage' => 10
     ],
+    'category' => [
+        'model' => 'Pingpong\Admin\Entities\Category',
+        'perpage' => 10
+    ],
 ];
