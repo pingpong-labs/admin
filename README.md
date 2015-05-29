@@ -4,14 +4,6 @@
 [![Latest Stable Version](https://poser.pugx.org/pingpong/admin/v/stable.svg)](https://packagist.org/packages/pingpong/admin) [![Total Downloads](https://poser.pugx.org/pingpong/admin/downloads.svg)](https://packagist.org/packages/pingpong/admin) [![Latest Unstable Version](https://poser.pugx.org/pingpong/admin/v/unstable.svg)](https://packagist.org/packages/pingpong/admin) [![License](https://poser.pugx.org/pingpong/admin/license.svg)](https://packagist.org/packages/pingpong/admin)
 [![HHVM Status](http://hhvm.h4cc.de/badge/pingpong/admin.svg)](http://hhvm.h4cc.de/package/pingpong/admin)
 
-### Server Requirements
-
-- PHP 5.4 or higher
-
-### What's New
-
-- Admin theme now using [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
-
 ### Installation
 
 > For Laravel 4, use version `~1`.
@@ -20,11 +12,7 @@ Open your composer.json file, and add the new required package.
 ```json
 {
   "require" : {
-     "pingpong/menus": "2.0.*@dev",
-     "pingpong/trusty": "2.0.*@dev",
-     "pingpong/testing": "2.0.*@dev",
-     "pingpong/presenters": "2.0.*@dev",
-     "pingpong/admin": "dev-develop" 
+     "pingpong/admin": "~2.0" 
   }
 }
 ```
