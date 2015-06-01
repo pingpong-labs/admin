@@ -9,7 +9,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Administrator',
             'email' => 'pingpong.labs@gmail.com',
             'password' => 'secret',
         ]);
