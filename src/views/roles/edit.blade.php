@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends($layout)
 
 
 @section('content-header')

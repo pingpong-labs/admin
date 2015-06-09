@@ -5,8 +5,9 @@ return [
         'auth' => 'admin.auth',
         'guest' => 'admin.guest',
     ],
-    'post' => [
-        'view' => 'admin::article'
+    'views' => [
+        'layout' => 'admin::layouts.master',
+        'post' => 'admin::article'
     ],
     'article' => [
         'model' => 'Pingpong\Admin\Entities\Article',

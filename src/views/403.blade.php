@@ -1,4 +1,4 @@
-@extends('admin::layouts.master')
+@extends($layout)
 
 @section('content-header')
 	<h1>403 - Access Denied</h1>
