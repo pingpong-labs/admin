@@ -87,6 +87,12 @@ class AdminServiceProvider extends ServiceProvider
         }
 
         $this->loadViewsFrom([$viewPath, __DIR__.'/../../views'], 'admin');
+
+        $langPath = base_path('resources/lang/en/admin.php');
+
+        $this->publishes([
+            __DIR__ . '/../../lang/admin.php' => $langPath
+        ], 'lang');
     }
 
     /**
