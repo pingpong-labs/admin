@@ -21,6 +21,7 @@ class ConsoleServiceProvider extends ServiceProvider
         'Seed',
         'Refresh',
         'Install',
+        'Migration',
         'CreateUser',
     ];
 
