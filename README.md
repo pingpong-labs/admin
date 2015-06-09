@@ -6,7 +6,8 @@
 
 ### Documentation
 
-For more documentation please see [wiki](https://github.com/pingpong-labs/admin/wiki) part of this repo.
+Documentation is located in the [wiki](https://github.com/pingpong-labs/admin/wiki) page.
+
 ### Screenshot
 
 [![Build Status](https://raw.githubusercontent.com/pingpong-labs/admin/master/shots/pingpong-admin-shot.png)](https://raw.githubusercontent.com/pingpong-labs/admin/master/shots/pingpong-admin-shot.png)
