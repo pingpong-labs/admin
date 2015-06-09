@@ -15,6 +15,7 @@
         "pingpong/menus": "~2.0",
         "pingpong/presenters": "~2.0",
         "pingpong/trusty": "~2.0",
+        "pingpong/support": "~2.0",
         "intervention/image": "~2"
     },
     "require-dev": {
