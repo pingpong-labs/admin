@@ -1,4 +1,4 @@
-@extends(config('admin.views.post', 'layouts.master'))
+@extends(config('admin.views.post', config('admin.post.view', 'layouts.master')))
 
 @section('content')
 
