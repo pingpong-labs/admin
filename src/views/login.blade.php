@@ -30,7 +30,7 @@ type="text/css"/>
                         <input type="password" name="password" class="form-control" placeholder="Password"/>
                     </div>
                     <div class="form-group checkbox" style="margin-left:20px;">
-                        <input type="checkbox" name="rememner" value="1" /> Remember me
+                        <input type="checkbox" name="remember" value="1" /> Remember me
                     </div>
                 </div>
                 <div class="footer">
