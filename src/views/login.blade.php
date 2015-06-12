@@ -23,6 +23,11 @@ type="text/css"/>
             <div class="header">Sign In</div>
             {!! Form::open(['route' => 'admin.login.store']) !!}
                 <div class="body bg-gray">
+                    @if(Session::has('flash_message'))
+                        <p class="login-flash-text text-danger">
+                            {{ Session::get('flash_message') }}
+                        </p>
+                    @endif
                     <div class="form-group">
                         <input type="text" name="email" class="form-control" placeholder="Email"/>
                     </div>
@@ -37,7 +42,7 @@ type="text/css"/>
                     <button type="submit" class="btn bg-olive btn-block">Sign me in</button>
                     <!--
                     <p><a href="#">I forgot my password</a></p>
-                    
+
                     <a href="register.html" class="text-center">Register a new membership</a> -->
                 </div>
             {!! Form::close() !!}

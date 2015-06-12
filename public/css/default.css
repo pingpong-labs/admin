@@ -12,7 +12,7 @@ body, table, a{
 	font-family: menlo, monaco, monospace;
 }
 
-a, 
+a,
 a:hover,
 a:focus{
 	color: #E5453E;
@@ -41,7 +41,7 @@ a:focus{
 .navbar-admin .navbar-nav>.open>a,
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li.active > a,
-.dropdown-menu > li > a:focus 
+.dropdown-menu > li > a:focus
 .navbar-admin .navbar-nav>.active>a:focus{
 	background-color: #F6564F !important;
 	color: #FFF !important;
@@ -79,4 +79,8 @@ footer.container {
 	margin-bottom: 50px;
 	padding: 10px;
 	margin-top: -19px;
+}
+
+.login-flash-text {
+	margin-top: 10px;
 }
