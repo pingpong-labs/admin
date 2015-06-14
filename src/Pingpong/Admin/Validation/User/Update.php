@@ -10,10 +10,15 @@ class Update extends Validator
     {
         $id = Request::segment(3);
 
-        return [
+        $rules = [
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $id,
-            'password' => 'required|min:6|max:20',
         ];
+
+        if ($this->has('password')) {
+            $rules['password'] = 'required|min:6|max:20';
+        }
+
+        return $rules;
     }
 }
