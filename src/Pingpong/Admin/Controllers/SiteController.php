@@ -107,7 +107,7 @@ class SiteController extends BaseController
                            ->orWhere('slug', $id)
                            ->firstOrFail();
 
-            $view = \Config::get('admin::post.view');
+            $view = \Config::get('admin.views.post');
 
             return \View::make($view, compact('post'));
         } catch (ModelNotFoundException $e) {
