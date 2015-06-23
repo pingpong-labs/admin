@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'prefix' => 'admin',
     'filter' => [
         'auth' => 'admin.auth',
         'guest' => 'admin.guest',

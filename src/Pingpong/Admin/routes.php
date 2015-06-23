@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'], function () {
+Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingpong\Admin\Controllers'], function () {
     Route::group(['before' => config('admin.filter.guest')], function () {
         Route::resource('login', 'LoginController', [
             'only' => ['index', 'store'],
