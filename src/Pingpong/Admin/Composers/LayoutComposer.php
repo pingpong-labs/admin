@@ -4,7 +4,7 @@ class LayoutComposer
 {
     public function compose($view)
     {
-    	$layout = config('admin.view.layout', 'admin::layouts.master');
+    	$layout = config('admin.views.layout', 'admin::layouts.master');
 
         $view->with(compact('layout'));
     }
