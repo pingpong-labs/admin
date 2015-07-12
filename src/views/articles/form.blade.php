@@ -21,7 +21,7 @@
 		{!! Form::text('slug', null, ['class' => 'form-control']) !!}
 		{!! $errors->first('slug', '<div class="text-danger">:message</div>') !!}
 	</div>
-	@if(Request::is('admin/articles/create'))
+	@if(! isOnPages())
 	<div class="form-group">
 		{!! Form::label('category_id', 'Category:') !!}
 		{!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
