@@ -83,14 +83,14 @@ class InstallCommand extends Command
         if ($this->confirm('Do you want publish configuration files from pingpong/admin package ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Admin\AdminServiceProvider',
-                '--tag' => 'config'
+                ['--tag' => ['config']]
             ]);
         }
 
         if ($this->confirm('Do you want publish assets from pingpong/admin package ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Admin\AdminServiceProvider',
-                '--tag' => 'assets'
+                ['--tag' => ['assets']]
             ]);
         }
 
