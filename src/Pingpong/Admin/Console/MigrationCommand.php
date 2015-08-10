@@ -1,12 +1,11 @@
-<?php namespace Pingpong\Admin\Console;
+<?php
+
+namespace Pingpong\Admin\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 class MigrationCommand extends Command
 {
-
     /**
      * The console command name.
      *
@@ -28,13 +27,13 @@ class MigrationCommand extends Command
      */
     public function fire()
     {
-        $path = realpath(__DIR__ . '/../../../../src/migrations/');
+        $path = realpath(__DIR__.'/../../../../src/migrations/');
 
         $this->laravel['files']->copyDirectory(
             $path,
-            $this->laravel['path.database'] . '/migrations/'
+            $this->laravel['path.database'].'/migrations/'
         );
 
-        $this->info("Migrations published successfully.");
+        $this->info('Migrations published successfully.');
     }
 }

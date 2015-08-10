@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Entities;
+<?php
+
+namespace Pingpong\Admin\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +11,6 @@ use Pingpong\Trusty\Traits\TrustyTrait;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-
     use Authenticatable, CanResetPassword, TrustyTrait;
 
     /**
@@ -37,28 +38,30 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /**
      * Get gravatar url.
      *
-     * @param  integer $size
-     * @param  string  $default
-     * @param  string  $rating
+     * @param int    $size
+     * @param string $default
+     * @param string $rating
+     *
      * @return string
      */
     public function gravatar($size = 60, $default = 'mm', $rating = 'g')
     {
         $email = $this->email;
-        
-        return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . "?s={$size}&d={$default}&r={$rating}";
+
+        return 'http://www.gravatar.com/avatar/'.md5(strtolower(trim($email)))."?s={$size}&d={$default}&r={$rating}";
     }
 
     /**
-     * Scope "today"
+     * Scope "today".
      *
-     * @param  mixed $query
+     * @param mixed $query
+     *
      * @return mixed
      */
     public function scopeToday($query)
     {
         $sql = 'date(created_at) = date(now())';
-        
+
         if (db_is('sqlite')) {
             $sql = "date(created_at) = date('now')";
         }

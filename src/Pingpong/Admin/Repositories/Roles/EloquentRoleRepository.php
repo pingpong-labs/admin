@@ -14,8 +14,8 @@ class EloquentRoleRepository implements RoleRepository
     public function getModel()
     {
         $model = config('admin.role.model');
-        
-        return new $model;
+
+        return new $model();
     }
 
     public function allOrSearch($searchQuery = null)
@@ -35,7 +35,7 @@ class EloquentRoleRepository implements RoleRepository
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
-        
+
         return $this->getModel()->where('name', 'like', $search)
             ->orWhere('slug', 'like', $search)
             ->paginate($this->perPage())
@@ -58,6 +58,7 @@ class EloquentRoleRepository implements RoleRepository
 
         if (!is_null($article)) {
             $article->delete();
+
             return true;
         }
 

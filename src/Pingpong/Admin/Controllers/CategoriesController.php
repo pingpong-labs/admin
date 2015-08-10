@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -26,21 +28,21 @@ class CategoriesController extends BaseController
     }
 
     /**
-     * Display a listing of categories
+     * Display a listing of categories.
      *
      * @return Response
      */
     public function index(Request $request)
     {
         $categories = $this->repository->allOrSearch($request->get('q'));
-     
+
         $no = $categories->firstItem();
 
         return $this->view('categories.index', compact('categories', 'no'));
     }
 
     /**
-     * Show the form for creating a new category
+     * Show the form for creating a new category.
      *
      * @return Response
      */
@@ -66,7 +68,8 @@ class CategoriesController extends BaseController
     /**
      * Display the specified category.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -83,7 +86,8 @@ class CategoriesController extends BaseController
     /**
      * Show the form for editing the specified category.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -100,7 +104,8 @@ class CategoriesController extends BaseController
     /**
      * Update the specified category in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Update $request, $id)
@@ -121,7 +126,8 @@ class CategoriesController extends BaseController
     /**
      * Remove the specified category from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

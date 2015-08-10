@@ -14,8 +14,8 @@ class EloquentArticleRepository implements ArticleRepository
     public function getModel()
     {
         $model = config('admin.article.model');
-        
-        return new $model;
+
+        return new $model();
     }
 
     public function getArticle()
@@ -40,7 +40,7 @@ class EloquentArticleRepository implements ArticleRepository
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
-        
+
         return $this->getArticle()->where('title', 'like', $search)
             ->orWhere('body', 'like', $search)
             ->orWhere('id', '=', $searchQuery)
@@ -64,6 +64,7 @@ class EloquentArticleRepository implements ArticleRepository
 
         if (!is_null($article)) {
             $article->delete();
+
             return true;
         }
 

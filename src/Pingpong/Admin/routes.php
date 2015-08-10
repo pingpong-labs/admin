@@ -6,8 +6,8 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
             'only' => ['index', 'store'],
             'names' => [
                 'index' => 'admin.login.index',
-                'store' => 'admin.login.store'
-            ]
+                'store' => 'admin.login.store',
+            ],
         ]);
     });
 
@@ -29,7 +29,7 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
                 'update' => 'admin.articles.update',
                 'edit' => 'admin.articles.edit',
                 'destroy' => 'admin.articles.destroy',
-            ]
+            ],
         ]);
         Route::resource('pages', 'ArticlesController', [
             'except' => 'show',
@@ -41,7 +41,7 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
                 'update' => 'admin.pages.update',
                 'edit' => 'admin.pages.edit',
                 'destroy' => 'admin.pages.destroy',
-            ]
+            ],
         ]);
         Route::resource('users', 'UsersController', [
             'except' => 'show',
@@ -53,7 +53,7 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
                 'update' => 'admin.users.update',
                 'edit' => 'admin.users.edit',
                 'destroy' => 'admin.users.destroy',
-            ]
+            ],
         ]);
         Route::resource('categories', 'CategoriesController', [
             'except' => 'show',
@@ -65,7 +65,7 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
                 'update' => 'admin.categories.update',
                 'edit' => 'admin.categories.edit',
                 'destroy' => 'admin.categories.destroy',
-            ]
+            ],
         ]);
         Route::resource('roles', 'RolesController', [
             'except' => 'show',
@@ -77,7 +77,7 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
                 'update' => 'admin.roles.update',
                 'edit' => 'admin.roles.edit',
                 'destroy' => 'admin.roles.destroy',
-            ]
+            ],
         ]);
         Route::resource('permissions', 'PermissionsController', [
             'except' => 'show',
@@ -89,7 +89,7 @@ Route::group(['prefix' => config('admin.prefix', 'admin'), 'namespace' => 'Pingp
                 'update' => 'admin.permissions.update',
                 'edit' => 'admin.permissions.edit',
                 'destroy' => 'admin.permissions.destroy',
-            ]
+            ],
         ]);
 
         // backup & reset

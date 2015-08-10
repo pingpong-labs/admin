@@ -14,8 +14,8 @@ class EloquentUserRepository implements UserRepository
     public function getModel()
     {
         $model = config('admin.user.model');
-        
-        return new $model;
+
+        return new $model();
     }
 
     public function allOrSearch($searchQuery = null)
@@ -35,7 +35,7 @@ class EloquentUserRepository implements UserRepository
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
-        
+
         return $this->getModel()->where('name', 'like', $search)
             ->orWhere('email', 'like', $search)
             ->paginate($this->perPage())
@@ -58,6 +58,7 @@ class EloquentUserRepository implements UserRepository
 
         if (!is_null($article)) {
             $article->delete();
+
             return true;
         }
 

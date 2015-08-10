@@ -1,18 +1,17 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
-use Pingpong\Admin\Repositories\PagesRepository;
 use Pingpong\Admin\Uploader\ImageUploader;
 use Pingpong\Admin\Validation\Article\Create;
 use Pingpong\Admin\Validation\Article\Update;
 
 class ArticlesController extends BaseController
 {
-
     protected $articles;
 
     /**
@@ -59,7 +58,7 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * Display a listing of articles
+     * Display a listing of articles.
      *
      * @return Response
      */
@@ -73,7 +72,7 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * Show the form for creating a new article
+     * Show the form for creating a new article.
      *
      * @return Response
      */
@@ -111,7 +110,8 @@ class ArticlesController extends BaseController
     /**
      * Display the specified article.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -128,7 +128,8 @@ class ArticlesController extends BaseController
     /**
      * Show the form for editing the specified article.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -145,7 +146,8 @@ class ArticlesController extends BaseController
     /**
      * Update the specified article in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Update $request, $id)
@@ -179,7 +181,8 @@ class ArticlesController extends BaseController
     /**
      * Remove the specified article from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

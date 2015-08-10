@@ -1,11 +1,11 @@
-<?php namespace Pingpong\Admin\Entities;
+<?php
+
+namespace Pingpong\Admin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Pingpong\Admin\Entities\Option;
 
 class Option extends Model
 {
-
     /**
      * @var array
      */
@@ -14,6 +14,7 @@ class Option extends Model
     /**
      * @param $query
      * @param $key
+     *
      * @return mixed
      */
     public function scopeFindByKey($query, $key)

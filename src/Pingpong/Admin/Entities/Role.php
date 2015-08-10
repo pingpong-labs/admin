@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Entities;
+<?php
+
+namespace Pingpong\Admin\Entities;
 
 use Pingpong\Trusty\Role as BaseRole;
 

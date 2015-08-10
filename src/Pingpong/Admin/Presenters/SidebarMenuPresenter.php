@@ -1,25 +1,26 @@
-<?php namespace Pingpong\Admin\Presenters;
+<?php
+
+namespace Pingpong\Admin\Presenters;
 
 use Pingpong\Menus\Presenters\Bootstrap\NavbarPresenter;
 
 class SidebarMenuPresenter extends NavbarPresenter
 {
-
     /**
-     * {@inheritdoc }
+     * {@inheritdoc}
      */
     public function getOpenTagWrapper()
     {
-        return  PHP_EOL . '<ul class="sidebar-menu">' . PHP_EOL;
+        return  PHP_EOL.'<ul class="sidebar-menu">'.PHP_EOL;
     }
 
     /**
-     * {@inheritdoc }
+     * {@inheritdoc}
      */
     public function getMenuWithDropDownWrapper($item)
     {
         return '
-      		<li class="treeview'. $this->getActiveStateOnChild($item, ' active') .'">
+      		<li class="treeview'.$this->getActiveStateOnChild($item, ' active').'">
                 <a href="#">
                     '.$item->getIcon().'
                     <span>'.$item->title.'</span>

@@ -9,13 +9,14 @@ class OnlyAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if ( ! $request->user()->is('admin')) {
+        if (!$request->user()->is('admin')) {
             return redirect()->route('admin.login.index');
         }
 

@@ -15,8 +15,8 @@ class EloquentPageRepository extends EloquentArticleRepository implements Reposi
     public function getModel()
     {
         $model = config('admin.article.model');
-        
-        return new $model;
+
+        return new $model();
     }
 
     public function getPage()
@@ -26,7 +26,7 @@ class EloquentPageRepository extends EloquentArticleRepository implements Reposi
 
     public function create(array $data)
     {
-        if (! isset($data['type'])) {
+        if (!isset($data['type'])) {
             $data['type'] = 'page';
         }
 
@@ -41,7 +41,7 @@ class EloquentPageRepository extends EloquentArticleRepository implements Reposi
     public function search($searchQuery)
     {
         $search = "%{$searchQuery}%";
-        
+
         return $this->getPage()->where('title', 'like', $search)
             ->orWhere('body', 'like', $search)
             ->orWhere('id', '=', $searchQuery)

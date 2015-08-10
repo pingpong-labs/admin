@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Input;
@@ -27,7 +29,7 @@ class PermissionsController extends BaseController
     }
 
     /**
-     * Display a listing of permissions
+     * Display a listing of permissions.
      *
      * @return Response
      */
@@ -41,7 +43,7 @@ class PermissionsController extends BaseController
     }
 
     /**
-     * Show the form for creating a new permission
+     * Show the form for creating a new permission.
      *
      * @return Response
      */
@@ -67,7 +69,8 @@ class PermissionsController extends BaseController
     /**
      * Display the specified permission.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -84,7 +87,8 @@ class PermissionsController extends BaseController
     /**
      * Show the form for editing the specified permission.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -101,16 +105,17 @@ class PermissionsController extends BaseController
     /**
      * Update the specified permission in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Update $request, $id)
     {
         try {
             $permission = $this->repository->findById($id);
-                
+
             $data = $request->all();
-            
+
             $permission->update($data);
 
             return $this->redirect('permissions.index');
@@ -122,7 +127,8 @@ class PermissionsController extends BaseController
     /**
      * Remove the specified permission from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

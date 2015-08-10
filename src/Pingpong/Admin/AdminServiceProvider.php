@@ -1,11 +1,12 @@
-<?php namespace Pingpong\Admin;
+<?php
+
+namespace Pingpong\Admin;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class AdminServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -39,8 +40,6 @@ class AdminServiceProvider extends ServiceProvider
 
     /**
      * Register the providers.
-     *
-     * @return void
      */
     public function registerProviders()
     {
@@ -51,8 +50,6 @@ class AdminServiceProvider extends ServiceProvider
 
     /**
      * Register the facades.
-     *
-     * @return void
      */
     public function registerFacades()
     {
@@ -61,25 +58,23 @@ class AdminServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
         $configPath = config_path('admin.php');
 
         $this->publishes([
-            __DIR__ . '/../../config/config.php' => $configPath,
+            __DIR__.'/../../config/config.php' => $configPath,
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../../../public/' => public_path('packages/pingpong/admin/')
+            __DIR__.'/../../../public/' => public_path('packages/pingpong/admin/'),
         ], 'assets');
 
         $viewPath = base_path('resources/views/vendor/pingpong/admin/');
 
         $this->publishes([
-            __DIR__ . '/../../views/' => $viewPath
+            __DIR__.'/../../views/' => $viewPath,
         ], 'views');
 
         if (file_exists($configPath)) {
@@ -91,14 +86,12 @@ class AdminServiceProvider extends ServiceProvider
         $langPath = base_path('resources/lang/en/admin.php');
 
         $this->publishes([
-            __DIR__ . '/../../lang/admin.php' => $langPath
+            __DIR__.'/../../lang/admin.php' => $langPath,
         ], 'lang');
     }
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -111,8 +104,6 @@ class AdminServiceProvider extends ServiceProvider
 
     /**
      * Register events.
-     *
-     * @return void
      */
     public function registerRoutes()
     {

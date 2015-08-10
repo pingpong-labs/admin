@@ -1,10 +1,11 @@
-<?php namespace Pingpong\Admin\Providers;
+<?php
+
+namespace Pingpong\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -27,13 +28,11 @@ class ConsoleServiceProvider extends ServiceProvider
 
     /**
      * Register the commands.
-     *
-     * @return void
      */
     public function register()
     {
         foreach ($this->commands as $command) {
-            $this->commands('Pingpong\\Admin\\Console\\' . $command . 'Command');
+            $this->commands('Pingpong\\Admin\\Console\\'.$command.'Command');
         }
     }
 
@@ -45,7 +44,7 @@ class ConsoleServiceProvider extends ServiceProvider
         $provides = [];
 
         foreach ($this->commands as $command) {
-            $provides[] = 'Pingpong\\Admin\\Console\\' . $command . 'Command';
+            $provides[] = 'Pingpong\\Admin\\Console\\'.$command.'Command';
         }
 
         return $provides;

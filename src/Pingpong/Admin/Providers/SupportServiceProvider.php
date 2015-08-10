@@ -1,18 +1,19 @@
-<?php namespace Pingpong\Admin\Providers;
+<?php
+
+namespace Pingpong\Admin\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 
 class SupportServiceProvider extends ServiceProvider
 {
-
     /**
      * The class aliases array.
      *
      * @var array
      */
     protected $aliases = [
-        'Image' => 'Intervention\Image\Facades\Image'
+        'Image' => 'Intervention\Image\Facades\Image',
     ];
 
     /**
@@ -26,17 +27,15 @@ class SupportServiceProvider extends ServiceProvider
 
     /**
      * Boot the service provider.
-     *
-     * @return void
      */
     public function boot()
     {
-        require __DIR__ . '/../permissions.php';
-        require __DIR__ . '/../composers.php';
-        require __DIR__ . '/../helpers.php';
-        require __DIR__ . '/../observers.php';
-        require __DIR__ . '/../menus.php';
-        require __DIR__ . '/../routes.php';
+        require __DIR__.'/../permissions.php';
+        require __DIR__.'/../composers.php';
+        require __DIR__.'/../helpers.php';
+        require __DIR__.'/../observers.php';
+        require __DIR__.'/../menus.php';
+        require __DIR__.'/../routes.php';
 
         if (file_exists($path = app_path('menus.php'))) {
             require $path;
@@ -45,8 +44,6 @@ class SupportServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -56,8 +53,6 @@ class SupportServiceProvider extends ServiceProvider
 
     /**
      * Register service providers.
-     *
-     * @return void
      */
     public function registerProviders()
     {
@@ -68,8 +63,6 @@ class SupportServiceProvider extends ServiceProvider
 
     /**
      * Register class aliases.
-     *
-     * @return void
      */
     public function registerAliases()
     {

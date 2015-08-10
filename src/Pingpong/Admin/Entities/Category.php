@@ -1,10 +1,11 @@
-<?php namespace Pingpong\Admin\Entities;
+<?php
+
+namespace Pingpong\Admin\Entities;
 
 use Pingpong\Presenters\Model;
 
 class Category extends Model
 {
-
     /**
      * @var array
      */
@@ -15,11 +16,12 @@ class Category extends Model
      */
     public function articles()
     {
-        return $this->hasMany(__NAMESPACE__ . '\\Article');
+        return $this->hasMany(__NAMESPACE__.'\\Article');
     }
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeOptions($query)

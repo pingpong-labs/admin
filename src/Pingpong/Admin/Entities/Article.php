@@ -1,10 +1,11 @@
-<?php namespace Pingpong\Admin\Entities;
+<?php
+
+namespace Pingpong\Admin\Entities;
 
 use Pingpong\Presenters\Model;
 
 class Article extends Model
 {
-
     /**
      * @var string
      */
@@ -21,7 +22,7 @@ class Article extends Model
         'slug',
         'body',
         'image',
-        'published_at'
+        'published_at',
     ];
 
     /**
@@ -29,7 +30,7 @@ class Article extends Model
      */
     public function user()
     {
-        return $this->belongsTo(__NAMESPACE__ . '\\User');
+        return $this->belongsTo(__NAMESPACE__.'\\User');
     }
 
     /**
@@ -37,7 +38,7 @@ class Article extends Model
      */
     public function category()
     {
-        return $this->belongsTo(__NAMESPACE__ . '\\Category');
+        return $this->belongsTo(__NAMESPACE__.'\\Category');
     }
 
     /**
@@ -52,6 +53,7 @@ class Article extends Model
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeNewest($query)
@@ -61,6 +63,7 @@ class Article extends Model
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeOnlyPage($query)
@@ -70,6 +73,7 @@ class Article extends Model
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeOnlyPost($query)
@@ -79,6 +83,7 @@ class Article extends Model
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopePublished($query)
@@ -88,6 +93,7 @@ class Article extends Model
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeDrafted($query)
@@ -98,6 +104,7 @@ class Article extends Model
     /**
      * @param $query
      * @param $id
+     *
      * @return mixed
      */
     public function scopeBySlugOrId($query, $id)
@@ -107,8 +114,6 @@ class Article extends Model
 
     /**
      * Boot the eloquent.
-     *
-     * @return void
      */
     public static function boot()
     {

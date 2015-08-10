@@ -1,7 +1,8 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Pingpong\Admin\Repositories\Users\UserRepository;
 use Pingpong\Admin\Validation\User\Create;
@@ -9,7 +10,6 @@ use Pingpong\Admin\Validation\User\Update;
 
 class UsersController extends BaseController
 {
-
     /**
      * @var \User
      */
@@ -34,7 +34,7 @@ class UsersController extends BaseController
     }
 
     /**
-     * Display a listing of users
+     * Display a listing of users.
      *
      * @return Response
      */
@@ -48,7 +48,7 @@ class UsersController extends BaseController
     }
 
     /**
-     * Show the form for creating a new user
+     * Show the form for creating a new user.
      *
      * @return Response
      */
@@ -76,13 +76,15 @@ class UsersController extends BaseController
     /**
      * Display the specified user.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
     {
         try {
             $user = $this->repository->findById($id);
+
             return $this->view('users.show', compact('user'));
         } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
@@ -92,7 +94,8 @@ class UsersController extends BaseController
     /**
      * Show the form for editing the specified user.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -111,16 +114,17 @@ class UsersController extends BaseController
     /**
      * Update the specified user in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Update $request, $id)
     {
         try {
-            $data = ! $request->has('password') ? $request->except('password') : $this->inputAll();
-            
+            $data = !$request->has('password') ? $request->except('password') : $this->inputAll();
+
             $user = $this->repository->findById($id);
-            
+
             $user->update($data);
 
             $user->roles()->sync((array) \Input::get('role'));
@@ -134,7 +138,8 @@ class UsersController extends BaseController
     /**
      * Remove the specified user from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

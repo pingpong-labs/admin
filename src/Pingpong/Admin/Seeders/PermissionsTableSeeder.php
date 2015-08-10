@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Seeders;
+<?php
+
+namespace Pingpong\Admin\Seeders;
 
 use Illuminate\Database\Seeder;
 use Pingpong\Trusty\Role;
@@ -6,7 +8,6 @@ use Pingpong\Trusty\Permission;
 
 class PermissionsTableSeeder extends Seeder
 {
-
     public function run()
     {
         $permissions = array(

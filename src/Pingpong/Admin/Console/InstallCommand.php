@@ -1,12 +1,11 @@
-<?php namespace Pingpong\Admin\Console;
+<?php
+
+namespace Pingpong\Admin\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 class InstallCommand extends Command
 {
-
     /**
      * The console command name.
      *
@@ -37,8 +36,6 @@ class InstallCommand extends Command
 
     /**
      * Install package using testing environment.
-     *
-     * @return void
      */
     private function installPackageTest()
     {
@@ -57,8 +54,6 @@ class InstallCommand extends Command
 
     /**
      * Install the package.
-     *
-     * @return void
      */
     protected function installPackage()
     {
@@ -68,7 +63,7 @@ class InstallCommand extends Command
 
         if ($this->confirm('Do you want publish the pingpong/trusty\'s migrations ?')) {
             $this->call('vendor:publish', [
-                '--provider' => 'Pingpong\Trusty\TrustyServiceProvider'
+                '--provider' => 'Pingpong\Trusty\TrustyServiceProvider',
             ]);
         }
 
@@ -83,14 +78,14 @@ class InstallCommand extends Command
         if ($this->confirm('Do you want publish configuration files from pingpong/admin package ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Admin\AdminServiceProvider',
-                ['--tag' => ['config']]
+                ['--tag' => ['config']],
             ]);
         }
 
         if ($this->confirm('Do you want publish assets from pingpong/admin package ?')) {
             $this->call('vendor:publish', [
                 '--provider' => 'Pingpong\Admin\AdminServiceProvider',
-                ['--tag' => ['assets']]
+                ['--tag' => ['assets']],
             ]);
         }
 
@@ -103,28 +98,26 @@ class InstallCommand extends Command
 
     public function publishTrustyMigrations()
     {
-        $path = realpath(__DIR__ . '/../../../../vendor/pingpong/trusty/src/migrations/');
+        $path = realpath(__DIR__.'/../../../../vendor/pingpong/trusty/src/migrations/');
 
         $published = $this->laravel['migration.publisher']->publish(
-            $path, $this->laravel['path'] . '/database/migrations'
+            $path, $this->laravel['path'].'/database/migrations'
         );
 
         foreach ($published as $migration) {
-            $this->line('<info>Published:</info> ' . basename($migration));
+            $this->line('<info>Published:</info> '.basename($migration));
         }
     }
 
     /**
      * Create the menus.php file in app directory if that file does not exist.
-     *
-     * @return void
      */
     protected function installMenus()
     {
         $file = app_path('menus.php');
 
-        if (! file_exists($file)) {
-            $contents = $this->laravel['files']->get(__DIR__ . '/stubs/menus.txt');
+        if (!file_exists($file)) {
+            $contents = $this->laravel['files']->get(__DIR__.'/stubs/menus.txt');
 
             $this->laravel['files']->put($file, $contents);
 

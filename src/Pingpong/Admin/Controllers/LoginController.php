@@ -1,10 +1,11 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 session_check();
 
 class LoginController extends BaseController
 {
-
     /**
      * Show login page.
      *
@@ -32,9 +33,9 @@ class LoginController extends BaseController
         }
 
         if (getenv('PINGPONG_ADMIN_TESTING')) {
-            return \Redirect::to('admin/login')->withFlashMessage("Login failed!")->withFlashType('danger');
+            return \Redirect::to('admin/login')->withFlashMessage('Login failed!')->withFlashType('danger');
         }
 
-        return \Redirect::back()->withFlashMessage("Login failed!")->withFlashType('danger');
+        return \Redirect::back()->withFlashMessage('Login failed!')->withFlashType('danger');
     }
 }

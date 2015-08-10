@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 session_check();
 
@@ -8,7 +10,6 @@ use Pingpong\Admin\Entities\Option;
 
 class SiteController extends BaseController
 {
-
     /**
      * Admin dashboard.
      *
@@ -40,8 +41,8 @@ class SiteController extends BaseController
      */
     public function settings()
     {
-        if (! defined('STDIN')) {
-            $stdin = fopen("php://stdin", "r");
+        if (!defined('STDIN')) {
+            $stdin = fopen('php://stdin', 'r');
         }
 
         return $this->view('settings');
@@ -86,7 +87,7 @@ class SiteController extends BaseController
             $option = str_replace('_', '.', $key);
 
             Option::findByKey($option)->update([
-                'value' => $value
+                'value' => $value,
             ]);
         }
 
@@ -96,7 +97,8 @@ class SiteController extends BaseController
     /**
      * Show article.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return mixed
      */
     public function showArticle($id)

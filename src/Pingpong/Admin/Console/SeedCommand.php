@@ -1,12 +1,11 @@
-<?php namespace Pingpong\Admin\Console;
+<?php
+
+namespace Pingpong\Admin\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 
 class SeedCommand extends Command
 {
-
     /**
      * The console command name.
      *

@@ -1,8 +1,9 @@
-<?php namespace Pingpong\Admin\Traits;
+<?php
+
+namespace Pingpong\Admin\Traits;
 
 trait ClassNameTrait
 {
-
     /**
      * Get called classname.
      *

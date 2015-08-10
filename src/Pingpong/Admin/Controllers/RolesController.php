@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Controllers;
+<?php
+
+namespace Pingpong\Admin\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Input;
@@ -27,7 +29,7 @@ class RolesController extends BaseController
     }
 
     /**
-     * Display a listing of roles
+     * Display a listing of roles.
      *
      * @return Response
      */
@@ -41,7 +43,7 @@ class RolesController extends BaseController
     }
 
     /**
-     * Show the form for creating a new role
+     * Show the form for creating a new role.
      *
      * @return Response
      */
@@ -67,13 +69,15 @@ class RolesController extends BaseController
     /**
      * Display the specified role.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
     {
         try {
             $role = $this->repository->findById($id);
+
             return $this->view('roles.show', compact('role'));
         } catch (ModelNotFoundException $e) {
             return $this->redirectNotFound();
@@ -83,7 +87,8 @@ class RolesController extends BaseController
     /**
      * Show the form for editing the specified role.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -102,14 +107,15 @@ class RolesController extends BaseController
     /**
      * Update the specified role in storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function update(Update $request, $id)
     {
         try {
             $role = $this->repository->findById($id);
-            
+
             $data = $request->all();
 
             $role->update($data);
@@ -133,7 +139,8 @@ class RolesController extends BaseController
     /**
      * Remove the specified role from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

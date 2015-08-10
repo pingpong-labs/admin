@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -25,13 +24,11 @@ class RepositoriesServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
         foreach ($this->entities as $entity) {
-            $this->{"bind" . $entity . "Repository"}();
+            $this->{'bind'.$entity.'Repository'}();
         }
     }
 

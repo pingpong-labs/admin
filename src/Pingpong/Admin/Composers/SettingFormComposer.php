@@ -1,8 +1,9 @@
-<?php namespace Pingpong\Admin\Composers;
+<?php
+
+namespace Pingpong\Admin\Composers;
 
 class SettingFormComposer
 {
-
     public function compose($view)
     {
         $themes = [

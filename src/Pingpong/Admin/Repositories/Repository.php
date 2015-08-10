@@ -4,7 +4,6 @@ namespace Pingpong\Admin\Repositories;
 
 interface Repository
 {
-
     /**
      * Get count of row being shown perpage.
      *
@@ -15,7 +14,8 @@ interface Repository
     /**
      * Get all data or search data by specific search query.
      *
-     * @param  mixed $searchQuery
+     * @param mixed $searchQuery
+     *
      * @return mixed
      */
     public function allOrSearch($searchQuery = null);
@@ -30,7 +30,8 @@ interface Repository
     /**
      * Search data by specify criteria.
      *
-     * @param  mixed $searchQuery
+     * @param mixed $searchQuery
+     *
      * @return mixed
      */
     public function search($searchQuery);
@@ -38,7 +39,8 @@ interface Repository
     /**
      * Find data by given an identifier.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function findById($id);
@@ -46,9 +48,10 @@ interface Repository
     /**
      * Find data by specified column name and value.
      *
-     * @param  string $key
-     * @param  string $value
-     * @param  string $operator
+     * @param string $key
+     * @param string $value
+     * @param string $operator
+     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function findBy($key, $value, $operator = '=');
@@ -56,15 +59,17 @@ interface Repository
     /**
      * Delete a specified data by given data id.
      *
-     * @param  int $id
-     * @return boolean
+     * @param int $id
+     *
+     * @return bool
      */
     public function delete($id);
 
     /**
      * Create a new data.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function create(array $data);

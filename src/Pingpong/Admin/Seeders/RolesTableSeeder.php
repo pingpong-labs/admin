@@ -1,21 +1,22 @@
-<?php namespace Pingpong\Admin\Seeders;
+<?php
+
+namespace Pingpong\Admin\Seeders;
 
 use Illuminate\Database\Seeder;
 use Pingpong\Trusty\Role;
 
 class RolesTableSeeder extends Seeder
 {
-
     public function run()
     {
         Role::create([
             'name' => 'Administrator',
-            'slug' => 'admin'
+            'slug' => 'admin',
         ]);
 
         Role::create([
             'name' => 'User',
-            'slug' => 'user'
+            'slug' => 'user',
         ]);
     }
 }

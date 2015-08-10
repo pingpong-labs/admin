@@ -1,14 +1,13 @@
-<?php namespace Pingpong\Admin\Observers;
+<?php
+
+namespace Pingpong\Admin\Observers;
 
 use Illuminate\Support\Facades\Route;
 
 class RoutesObserver
 {
-
     /**
      * Handle the specified event.
-     *
-     * @return void
      */
     public function handle()
     {
@@ -16,6 +15,6 @@ class RoutesObserver
 
         $controller = 'Pingpong\Admin\Controllers\SiteController';
 
-        Route::get($permalink, ['as' => 'articles.show', 'uses' => $controller . '@showArticle']);
+        Route::get($permalink, ['as' => 'articles.show', 'uses' => $controller.'@showArticle']);
     }
 }

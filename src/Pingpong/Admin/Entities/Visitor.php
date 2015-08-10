@@ -1,4 +1,6 @@
-<?php namespace Pingpong\Admin\Entities;
+<?php
+
+namespace Pingpong\Admin\Entities;
 
 use DB;
 use Request;
@@ -7,7 +9,6 @@ use Pingpong\Presenters\Model;
 
 class Visitor extends Model
 {
-
     /**
      * Fillable Property.
      *
@@ -17,8 +18,6 @@ class Visitor extends Model
 
     /**
      * Track hits online visitors.
-     *
-     * @return void
      */
     public static function track()
     {
@@ -28,12 +27,12 @@ class Visitor extends Model
         $path = Request::path();
 
         $visited = static::whereIp($ip)->today()->first();
-        if (! empty($visited)) {
+        if (!empty($visited)) {
             $visited->update([
                 'online' => $online,
                 'hits' => $visited->hits + 1,
                 'url' => $url,
-                'path' => $path
+                'path' => $path,
             ]);
         } else {
             static::createNewVisitor();
@@ -52,20 +51,21 @@ class Visitor extends Model
             'ip' => Request::server('REMOTE_ADDR'),
             'hits' => 1,
             'url' => URL::full(),
-            'path' => Request::path()
+            'path' => Request::path(),
         ]);
     }
 
     // scopes
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeToday($query)
     {
         // mysql
-        $raw = "date(created_at) = date(now())";
-        
+        $raw = 'date(created_at) = date(now())';
+
         if (db_is('sqlite')) {
             $raw = "date(created_at) = date(date('now'))";
         }
@@ -75,11 +75,12 @@ class Visitor extends Model
 
     /**
      * @param $query
+     *
      * @return mixed
      */
     public function scopeSelectTotalHits($query)
     {
-        return $query->select('visitors.*', DB::raw("SUM(hits) as total_hits"));
+        return $query->select('visitors.*', DB::raw('SUM(hits) as total_hits'));
     }
 
     /**
@@ -119,7 +120,7 @@ class Visitor extends Model
 
         $data = static::where('online', '>', $time)
                       ->groupBy('ip')
-                      ->select('ip', DB::raw("count(*) as total_users"))
+                      ->select('ip', DB::raw('count(*) as total_users'))
                       ->first();
 
         return isset($data->total_users) ? $data->total_users : 0;
