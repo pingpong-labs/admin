@@ -3,8 +3,11 @@
 return [
     'prefix' => 'admin',
     'filter' => [
-        'auth' => 'admin.auth',
-        'guest' => 'admin.guest',
+        'auth' => [
+            Pingpong\Admin\Middleware\Authenticate::class,
+            Pingpong\Admin\Middleware\OnlyAdmin::class
+        ],
+        'guest' => Pingpong\Admin\Middleware\RedirectIfAuthenticated::class,
     ],
     'views' => [
         'layout' => 'admin::layouts.master',
