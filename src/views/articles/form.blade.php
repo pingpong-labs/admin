@@ -58,7 +58,7 @@
 	{!! script('vendor/ckfinder/ckfinder.js') !!}
 	
 	<script type="text/javascript">
-	  var prefix = '{!! asset(option("ckfinder.prefix")) !!}';
+		var prefix = '{!! asset(option("ckfinder.prefix")) !!}';
 		CKEDITOR.editorConfig = function( config ) {
 		   config.filebrowserBrowseUrl = prefix + '/vendor/ckfinder/ckfinder.html';
 		   config.filebrowserImageBrowseUrl = prefix + '/vendor/ckfinder/ckfinder.html?type=Images';
