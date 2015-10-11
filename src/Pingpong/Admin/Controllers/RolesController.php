@@ -121,7 +121,7 @@ class RolesController extends BaseController
             $role->update($data);
 
             if ($role->permissions->count()) {
-                $role->permissions()->detach($role->permissions->lists('id'));
+                $role->permissions()->detach($role->permissions->lists('id')->toArray());
 
                 $role->permissions()->attach(\Input::get('permissions'));
             }
