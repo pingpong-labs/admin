@@ -58,9 +58,8 @@
 	{!! script('vendor/ckfinder/ckfinder.js') !!}
 	
 	<script type="text/javascript">
+		var prefix = '{!! asset(option("ckfinder.prefix")) !!}';
 		CKEDITOR.editorConfig = function( config ) {
-			var prefix = '/{!! option("ckfinder.prefix") !!}';
-
 		   config.filebrowserBrowseUrl = prefix + '/vendor/ckfinder/ckfinder.html';
 		   config.filebrowserImageBrowseUrl = prefix + '/vendor/ckfinder/ckfinder.html?type=Images';
 		   config.filebrowserFlashBrowseUrl = prefix + '/vendor/ckfinder/ckfinder.html?type=Flash';
@@ -70,7 +69,6 @@
 		};
 
 		var editor = CKEDITOR.replace( 'ckeditor' );
-		var prefix = '/{!! option("ckfinder.prefix") !!}';
 		CKFinder.setupCKEditor( editor, prefix + '/vendor/ckfinder/') ;
 	</script>
 @stop
